@@ -92,3 +92,7 @@
 - AIによる過去の記録の自動分析機能（OpenAI API）
 - 振り返りレポート機能：（OpenAI API）
   
+---
+
+### 画面遷移図
+Figma：https://www.figma.com/design/drNzTqwHiFNEYBRw2YCoV6/MemoSprout-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=69-1551&t=FtvuiL0VvUHfymp8-1
