@@ -96,3 +96,8 @@
 
 ### 画面遷移図
 Figma：https://www.figma.com/design/drNzTqwHiFNEYBRw2YCoV6/MemoSprout-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=69-1551&t=FtvuiL0VvUHfymp8-1
+
+---
+
+### ER図
+Lucid：https://lucid.app/lucidchart/67994f35-4488-483c-aed8-25d895a7bceb/edit?view_items=VxY~BQPNr.zP%2CbYW~AKIBfA5i%2C7XV~tjncJ~RW%2CD0W~KnFko~26%2C1RW~qBMMiJPu%2CG1W~nKanzwzi%2CnwX~ZCJyfJp5%2C0WX~-K.Pbuvq%2C6XX~mZseKHME%2C6YX~ydVPHmaW&invitationId=inv_c3fd471f-7d15-446e-9add-96c7978f123a
