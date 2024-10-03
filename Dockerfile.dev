@@ -1,16 +1,47 @@
+# Rubyの公式イメージを使用して、バージョン3.3.5を指定
 FROM ruby:3.3.5
+
+# 環境変数LANGをC.UTF-8に設定
 ENV LANG C.UTF-8
+
+# タイムゾーンをアジア/東京に設定
 ENV TZ Asia/Tokyo
+
+# 必要なパッケージをインストール
 RUN apt-get update -qq \
+# ca-certificates、curl、gnupgをインストール
 && apt-get install -y ca-certificates curl gnupg \
+# ノードソースのGPGキーを保存するディレクトリを作成
 && mkdir -p /etc/apt/keyrings \
+# ノードソースのGPGキーをダウンロードして保存
 && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+# 使用するNode.jsのメジャーバージョンを指定
 && NODE_MAJOR=22 \
+# ノードソースのリポジトリを追加
 && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+# YarnのGPGキーをダウンロードして追加
 && wget --quiet -O - /tmp/pubkey.gpg https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+# Yarnのリポジトリを追加
 && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+# パッケージリストを再更新し、必要なパッケージをインストール
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs yarn vim
+
+# プロジェクト用のディレクトリを作成
 RUN mkdir /memo_sprout
+
+# 作業ディレクトリを/memo_sproutに設定
 WORKDIR /memo_sprout
+
+# package.jsonとyarn.lockをコピーしてyarn installを実行
+COPY package.json yarn.lock /memo_sprout/
+RUN yarn install
+
+# esbuildとtailwindcssをインストール
+RUN yarn add esbuild tailwindcss
+
+# Bundlerをインストール
 RUN gem install bundler
+
+# 現在のディレクトリの内容をコンテナ内の/memo_sproutにコピー
 COPY . /memo_sprout/
