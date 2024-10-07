@@ -1,27 +1,108 @@
-<h1>Top#index<br><br>
-機能概要</h1>
-<p>「その日の出来事を一言で記録し、
-なぜそう感じたかを深掘りすることで
-思考を整理するアプリです。
-<br>
-「なぜ？」「どこが？」と具体的に問いかけることで、思考の明確化を促します。
-思考整理を習慣化して、自分の価値観や本質に気づきませんか？」</p>
-<br><br>
-------------------------------------------------------------
-<br><br>
-<%= link_to "ログインなしで使ってみる", "#" %>
-<br><br>
-<%= form_with do |form| %>
-  <%= form.label :address, "メールアドレス" %>
-  <%= form.email_field :address %>
-<br><br>
-  <%= form.label :password, "パスワード" %>
-  <%= form.password_field :password %>
-<% end %>
-<br><br>
-<%= link_to "パスワードをお忘れの方はこちら", "#" %>
-<br><br>
-<%= link_to "ログイン", "#" %>
-<br><br>
-<%= link_to "新規登録ページへ", "#" %>
-<br><br>
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:text-center">
+
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Top#index　機能概要
+      </p>
+
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        「その日の出来事を一言で記録し、なぜそう感じたかを深掘りすることで<br>
+        思考を整理するアプリです。<br>
+        <br>
+        「なぜ？」「どこが？」と具体的に問いかけることで、思考の明確化を促します。<br>
+        <br><br>
+        思考整理を習慣化して、自分の価値観や本質に気づきませんか？
+      </p>
+      <br><br>
+
+
+      <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
+        <%= link_to "ログインなしで使ってみる", "#", class: "btn btn-success" %>
+        <br><br>
+        <%= form_with do |form| %>
+          <%= form.label :address, "メールアドレス", class: "label" %>
+          <%= form.email_field :address, placeholder: "memosprout@example.com", class: "input input-bordered w-full max-w-xs" %>
+          <br>
+          <br>
+          <%= form.label :password, "パスワード", class: "label" %>
+          <%= form.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+        <% end %>
+        <br><br>
+        <%= link_to "パスワードをお忘れの方はこちら", "#", class: "btn btn-link" %>
+        <br><br>
+        <%= link_to "ログイン", "#", class: "btn btn-warning" %>
+        <br><br>
+        <%= link_to "新規登録ページへ", "#", class: "btn btn-error" %>
+        <br><br>
+      </div>
+      <br>
+      -----------------------------
+      <br>
+      <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
+        このアプリでできること
+        <br>
+        <br>
+        <div class="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4 w-96 ">
+          <div class="carousel-item">
+            <div class="card bg-base-100 w-96 shadow-xl rounded-box">
+              <figure>
+                <img
+                  src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+                  alt="Shoes" />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">①</h2>
+                <p>
+                  <br><br>
+                    一言ずつの入力で思考を整理！
+                  <br><br>
+                  <p><div align="right">※ スライド  →</div></p>
+                  <br><br>
+                </p>
+              </div>
+            </div>
+          </div>
+
+            <div class="carousel-item">
+            <div class="card bg-base-100 w-96 shadow-xl">
+              <figure>
+                <img
+                  src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+                  alt="Shoes" />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">②</h2>
+                <p>
+                  <br><br>
+                    自然と文章にする力が鍛えられる！
+                  <br><br><br>
+                </p>
+              </div>
+            </div>
+          </div>
+
+            <div class="carousel-item">
+            <div class="card bg-base-100 w-96 shadow-xl">
+              <figure>
+                <img
+                  src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+                  alt="Shoes" />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">③</h2>
+                <p>
+                  <br><br>
+                    アップデート予定機能:<br>
+                    ・記事のお気に入り機能<br>
+                    ・google認証機能 など<br>
+                  <br><br><br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
