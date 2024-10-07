@@ -1,0 +1,28 @@
+<header>
+  <div class="navbar bg-base-100 flex items-center justify-between">
+  <div class="flex items-center space-x-1">
+    <%= link_to '/' do %>
+      <%= image_tag 'logo.png', alt: "Memo Sprout logo", class: "h-14 w-auto" %>
+    <% end %>
+  </div>
+  <h2 class="text-sm leading-8 text-gray-900">- 記録して振り返り、思考を育てる -</h2>
+  <div class="flex-none  ml-auto">
+    <ul class="menu menu-horizontal px-1">
+      <li><a>新規作成</a></li>
+      <li>
+        <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
+          <summary>Menu</summary>
+          <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
+            <li><a>TOP</a></li>
+            <li><a>使い方</a></li>
+            <li><a>記録一覧</a></li>
+            <li><a>お気に入り一覧</a></li>
+            <li><a>アプリをシェア（X)</a></li>
+            <li><a>ログアウト</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
+</header>
