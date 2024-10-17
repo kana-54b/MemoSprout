@@ -7,15 +7,18 @@
     </div>
     <h2 class="text-sm leading-8 text-gray-900">- 記録して振り返り、思考を育てる -</h2>
     <div class="flex-none  ml-auto">
-      <h2 class="text-error text-sm leading-8 p-3">ログイン中</h2>
       <ul class="menu menu-horizontal px-1">
-        <li><%= link_to "新規作成", "#" %></li>
+        <li><%= link_to "ログイン（TOPページへ)", "/" %></li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
             <summary>Menu</summary>
-            <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
-              <li><%= link_to "使い方", "#" %></li>
-              <li><%= link_to "記録一覧", "#" %></li>
+          <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
+              <li><a>使い方</a></li>
+              <li>
+                <div class="tooltip tooltip-left" data-tip="ログイン後に使える機能です">
+                  <a>記録一覧</a>
+                </div>
+              </li>
               <li>
                 <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
                   <a>お気に入り一覧</a>
@@ -26,7 +29,6 @@
                   <a>アプリをシェア（X）</a>
                 </div>
               </li>
-              <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
             </ul>
           </details>
         </li>
