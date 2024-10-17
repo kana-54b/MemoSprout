@@ -7,4 +7,3 @@ class ApplicationController < ActionController::Base
 
   def not_authenticated; end
 end
-
