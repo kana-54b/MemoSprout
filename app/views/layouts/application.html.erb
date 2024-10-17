@@ -23,6 +23,7 @@
     <% else %>
       <%= render "shared/header_before_login" %>
     <% end %>
+    <%= render "shared/flash_message" %>
     <%= yield %>
     <%= render "shared/footer" %>
   </body>
