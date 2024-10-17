@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_to root_path, success: "ログインしました"
     else
-      redirect_to root_path, alert: "ログインに失敗しました"
+      redirect_to root_path, error: "ログインに失敗しました"
     end
   end
 
