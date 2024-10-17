@@ -3,13 +3,13 @@ class UserSessionsController < ApplicationController
 
   def new; end
 
-  def create
+  def create # ログイン
     @user = login(params[:email], params[:password])
 
     if @user
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, alert: "ログインに失敗しました"
     end
   end
 
