@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "top/index" # TOPページ
   post "login", to: "user_sessions#create" # ログインする
   get "login", to: "user_sessions#new" # ログイン画面を表示
+  delete "logout", to: "user_sessions#destroy"
 
   resources :users, only: %i[new create]
 
