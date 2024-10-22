@@ -1,12 +1,13 @@
 class Memo < ApplicationRecord
   belongs_to :user
 
-  validates :emotion, presence: true
   validates :memo_content, presence: true
   validate :validate_memo_content
 
   def validate_memo_content
-    data = memo_content
+    # memo_contentがJSON形式であることを前提にデータを取得
+    data = JSON.parse(memo_content) rescue {}
+
     if data["what"].blank? || data["why"].blank? || data["why_more"].blank? || data["how"].blank?
       errors.add(:base, "(*)は必須項目です")
     end
