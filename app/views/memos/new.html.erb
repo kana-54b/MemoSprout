@@ -1,0 +1,61 @@
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:text-center">
+
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Memos#new　メモ新規作成
+      </p>
+      <br><br><br>
+
+      <button class="btn btn-outline btn-success" onclick="my_modal_2.showModal()">書き方例</button>
+      <dialog id="my_modal_2" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">例</h3>
+          <p class="py-4">只今作成中です。<br>アップデートをお待ちください🌱</p>
+          <p class="py-4 text-gray-500">※ESCキーを押すか、外側をクリックすることで閉じます</p>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+
+      <br><br><br>
+      <%= form_with model: @memo do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.select :emotion, [["嬉しかったこと・いいね", "happy"]], { selected: "happy" }, class: "select select-error w-full max-w-xs" %>
+
+        <br><br>
+        いつ（When）<br>
+        <%= f.date_field :date, class: "input input-bordered w-full max-w-xs" %>
+
+        <br><br>
+        <%= f.fields_for :memo_content do |key| %>
+          何（What）(*)<br>
+          <%= key.text_area 'what',  placeholder: "何？どんなこと？があったの？", class: "input input-bordered w-full max-w-xs" %>
+
+          <br><br>
+          なぜ(Why)(*)<br>
+          <%= key.text_area 'why',  placeholder: "どうして嬉しかったの？", class: "input input-bordered w-full max-w-xs" %>
+
+          <br><br>
+          なぜをもっと深掘り(*)<br>
+          <%= key.text_area 'why_more', placeholder: "具体的にはどんなところ？", class: "input input-bordered w-full max-w-xs" %>
+
+          <br><br>
+          どのように(How)(*)<br>
+          <%= key.text_area 'how',  placeholder: "どうやって実現したの？何かアクションをした？", class: "input input-bordered w-full max-w-xs" %>
+
+          <br><br>
+          まとめ・気付き<br>
+          <%= key.text_area 'summary', placeholder: "自分の言葉で書き出してみよう", class: "input input-bordered w-full max-w-xs h-32" %>
+          <% end %>
+
+        <br><br><br>
+        <%= f.submit "確認する", class: "btn btn-error" %>
+      <% end %>
+
+      <br>
+      <%= link_to "◀︎ 前のページに戻る　", :back, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>
