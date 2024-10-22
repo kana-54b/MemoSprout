@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_18_050825) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_045711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "memos", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.text "emotion", null: false
+    t.jsonb "emotion"
     t.date "date"
     t.jsonb "memo_content", null: false
     t.datetime "created_at", null: false
