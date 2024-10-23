@@ -20,7 +20,7 @@
       </dialog>
 
       <br><br><br>
-      <%= form_with model: @memo do |f| %>
+      <%= form_with model: @memo, url: confirm_memos_path, method: :post, data: { turbo: false } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.select :emotion, [["嬉しかったこと・いいね", "happy"]], { selected: "happy" }, class: "select select-error w-full max-w-xs" %>
 
