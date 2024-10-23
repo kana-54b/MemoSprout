@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   delete "logout", to: "user_sessions#destroy"
 
   resources :users, only: %i[new create]
-  resources :memos, only: %i[new create]
+  resources :memos, only: %i[new create] do
+    post :confirm, on: :collection
+    get :confirm, on: :collection
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
