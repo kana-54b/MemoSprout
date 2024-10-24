@@ -1,0 +1,64 @@
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:text-center">
+
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Memos#confirm　メモ確認
+      </p>
+      <br><br><br>
+      <%= form_with model: @memo, url: memos_path do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
+          <br><br>
+          この内容でよろしいですか？
+
+          <br><br>
+          感情<br>
+          <%= @memo.emotion %>
+          <%= f.hidden_field :emotion, value: @memo.emotion %>
+
+          <br><br>
+          いつ（When）<br>
+          <%= @memo.date %>
+          <%= f.hidden_field :date, value: @memo.date %>
+
+
+          <br><br>
+          <%= f.fields_for :memo_content do |key| %>
+            何（What）<br>
+            <%= JSON.parse(@memo.memo_content)["what"] %>
+            <%= key.hidden_field 'what', value: JSON.parse(@memo.memo_content)["what"] %>
+
+            <br><br>
+            なぜ(Why)<br>
+            <%= JSON.parse(@memo.memo_content)["why"] %>
+            <%= key.hidden_field 'why', value: JSON.parse(@memo.memo_content)["why"] %>
+            
+            <br><br>
+            なぜをもっと深掘り<br>
+            <%= JSON.parse(@memo.memo_content)["why_more"] %>
+            <%= key.hidden_field 'why_more', value: JSON.parse(@memo.memo_content)["why_more"] %>
+
+            <br><br>
+            どのように(How)<br>
+            <%= JSON.parse(@memo.memo_content)["how"] %>
+            <%= key.hidden_field 'how', value: JSON.parse(@memo.memo_content)["how"] %>
+            
+            <br><br>
+            まとめ・気付き<br>
+            <%= simple_format JSON.parse(@memo.memo_content)["summary"] %>
+            <%= key.hidden_field 'summary', value: JSON.parse(@memo.memo_content)["summary"] %>
+          <% end %>
+
+        <br><br><br>
+          <%= f.submit nil, class: "btn btn-error" %>
+        <% end %>
+        <br>
+      </div>
+
+      <br>
+      <%= link_to "◀︎ 前のページに戻る　", :back, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>
