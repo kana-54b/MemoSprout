@@ -20,13 +20,13 @@
       </dialog>
 
       <br><br><br>
-      <%= form_with model: @memo, url: confirm_memos_path, method: :post, data: { turbo: false } do |f| %>
+      <%= form_with model: @memo, url: confirm_memos_path, data: { turbo: false } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.select :emotion, [["嬉しかったこと・いいね", "happy"]], { selected: "happy" }, class: "select select-error w-full max-w-xs" %>
 
         <br><br>
         いつ（When）<br>
-        <%= f.date_field :date, class: "input input-bordered w-full max-w-xs" %>
+        <%= f.date_field :date, value: Date.today, class: "input input-bordered w-full max-w-xs" %>
 
         <br><br>
         <%= f.fields_for :memo_content do |key| %>
@@ -51,11 +51,11 @@
           <% end %>
 
         <br><br><br>
-        <%= f.submit "確認する", class: "btn btn-error" %>
+        <%= f.submit "入力内容を確認する", class: "btn btn-error" %>
       <% end %>
 
       <br>
-      <%= link_to "◀︎ 前のページに戻る　", :back, class: "btn btn-warning" %>
+
     </div>
   </div>
 </div>
