@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :require_login, only: %i[new confirm create]
+  before_action :require_login, only: %i[new confirm create show]
 
   def new
     @memo = Memo.new
@@ -30,6 +30,10 @@ class MemosController < ApplicationController
       flash.now[:error] = "メモの保存に失敗しました"
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @memo = Memo.find(params[:id])
   end
 
   private
