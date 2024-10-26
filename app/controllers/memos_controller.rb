@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :require_login, only: %i[new confirm create show]
+  before_action :require_login, only: %i[new confirm create show destroy]
 
   def new
     @memo = Memo.new
@@ -34,6 +34,12 @@ class MemosController < ApplicationController
 
   def show
     @memo = Memo.find(params[:id])
+  end
+
+  def destroy
+    @memo = Memo.find(params[:id])
+    @memo.destroy!
+    redirect_to new_memo_path, success: "メモを削除しました", status: :see_other
   end
 
   private
