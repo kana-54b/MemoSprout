@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete "logout", to: "user_sessions#destroy"
 
   resources :users, only: %i[new create]
-  resources :memos, only: %i[new create show destroy] do
+  resources :memos, only: %i[new create show edit update destroy] do
     post :confirm, on: :collection
     get :confirm, on: :collection
   end
