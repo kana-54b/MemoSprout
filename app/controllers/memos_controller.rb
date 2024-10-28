@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :require_login, only: %i[new confirm show edit update destroy]
+  before_action :require_login
 
   def new
     @memo = Memo.new
