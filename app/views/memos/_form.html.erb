@@ -4,7 +4,7 @@
 
         <br><br>
         いつ（When）<br>
-        <%= f.date_field :date, value: Date.today, class: "input input-bordered w-full max-w-xs" %>
+        <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "input input-bordered w-full max-w-xs" %>
 
         <br><br>
         <%= f.fields_for :memo_content do |key| %>
