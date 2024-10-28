@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-2xl lg:text-center">
 
       <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Memos#new　メモ新規作成
+        Memos#edit　メモ編集
       </p>
       <br><br><br>
 
@@ -18,9 +18,9 @@
           <button>close</button>
         </form>
       </dialog>
-
       <br><br><br>
-      <%= render "form", memo: @memo, form_url: confirm_memos_path %>
+
+      <%= render "form", memo: @memo, form_url: memo_path(@memo) %>
     </div>
   </div>
 </div>
