@@ -8,7 +8,7 @@ class Memo < ApplicationRecord
     # memo_contentがJSON形式であることを前提にデータを取得
     data = JSON.parse(memo_content) rescue {}
 
-    if data["what"].blank? || data["why"].blank? || data["why_more"].blank? || data["how"].blank?
+    if data["what"].blank? || data["why"].blank? || data["why_more"].blank? || data["how"].blank? || data["summary"].blank?
       errors.add(:base, "(*)は必須項目です")
     end
   end

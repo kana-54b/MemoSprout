@@ -3,14 +3,15 @@
     <div class="mx-auto max-w-2xl lg:text-center">
 
       <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Memos#confirm　メモ確認
+        Memos#show　メモ詳細
       </p>
-      <br><br><br>
+      <br><br>
+      <%= link_to "編集", edit_memo_path(@memo), class: "btn btn-success"  %>
+      ・
+      <%= link_to "削除", memo_path(@memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error" %>
+      <br>
       <%= form_with model: @memo, url: memos_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-          <br>
-          この内容でよろしいですか？
-          <br><br>
         <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
           <br>
           <br>
@@ -19,7 +20,7 @@
           </div>
           <%= f.hidden_field :emotion, value: @memo.emotion %>
 
-          <br><br>
+          <br><br><br>
           <div class="text-gray-400">
           いつ（When）<br>
           </div>
@@ -73,11 +74,8 @@
             <%= simple_format JSON.parse(@memo.memo_content)["summary"] %>
             </div>
             <%= key.hidden_field 'summary', value: JSON.parse(@memo.memo_content)["summary"] %>
+            <br>
           <% end %>
-
-        <br><br><br>
-          <%= f.submit "メモ保存", class: "btn btn-error" %>
-          <br>
         <% end %>
         <br>
       </div>

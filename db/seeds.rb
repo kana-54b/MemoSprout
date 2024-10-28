@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# load(Rails.root.join("親ディレクトリ", "子ディレクトリ", "#{開発環境名.downcase}.rb))
+load(Rails.root.join("db", "seeds", "#{Rails.env.downcase}.rb"))

@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :require_login, only: %i[new confirm create]
+  before_action :require_login
 
   def new
     @memo = Memo.new
@@ -17,8 +17,8 @@ class MemosController < ApplicationController
       render :new, status: :unprocessable_entity
       return
     end
-      Rails.logger.debug "confirmアクション Memo_params🎃🎃🎃: #{memo_params.inspect}" # デバッグ用ログ
-      render :confirm
+    Rails.logger.debug "confirmアクション Memo_params🎃🎃🎃: #{memo_params.inspect}" # デバッグ用ログ
+    render :confirm
   end
 
   def create
@@ -32,9 +32,45 @@ class MemosController < ApplicationController
     end
   end
 
+  def show
+    @memo = current_user.memos.find_by(id: params[:id])
+
+    unless @memo
+      redirect_to new_memo_path, error: "このアクセスは正しくありません🥶"
+    end
+  end
+
+  def edit
+    @memo = current_user.memos.find_by(id: params[:id])
+    Rails.logger.debug "confirmアクション Memo_params🍩🍩🍩: #{params.inspect}" # デバッグ用ログ
+
+    unless @memo
+      redirect_to new_memo_path, alert: "このアクセスは正しくありません😞"
+    end
+  end
+
+  def update
+    @memo = current_user.memos.find(params[:id])
+    Rails.logger.debug "confirmアクション Memo_params🍻🍻🍻: #{params.inspect}" # デバッグ用ログ
+    if @memo.update(memo_params)
+      redirect_to memo_path(@memo), success: "メモを更新しました✨"
+    else
+      flash.now[:error] = "メモの編集に失敗しました"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @memo = current_user.memos.find_by(id: params[:id])
+    @memo.destroy!
+    redirect_to new_memo_path, success: "メモを削除しました", status: :see_other
+  end
+
   private
 
-  def not_authenticated; end
+  def not_authenticated
+    redirect_to root_path, error: "ログインが必要です"
+  end
 
   def memo_params
     Rails.logger.debug "memo_params🐠🐠🐠: #{params.inspect}" # デバッグ用ログ

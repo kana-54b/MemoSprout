@@ -1,0 +1,35 @@
+<% parsed_content = JSON.parse(@memo.memo_content) rescue {} %>
+  <%= form_with model: @memo, url: form_url, data: { turbo: false } do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.select :emotion, [["嬉しかったこと・いいね", "happy"]], { selected: "happy" }, class: "select select-error w-full max-w-xs" %>
+
+    <br><br>
+    いつ（When）<br>
+    <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "input input-bordered w-full max-w-xs" %>
+
+    <br><br>
+    <%= f.fields_for :memo_content do |key| %>
+      何（What）(*)<br>
+      <%= key.text_area 'what', value: parsed_content['what'], placeholder: "何？どんなこと？があったの？", class: "input input-bordered w-full max-w-xs" %>
+
+      <br><br>
+      なぜ(Why)(*)<br>
+      <%= key.text_area 'why', value: parsed_content['why'], placeholder: "どうして嬉しかったの？", class: "input input-bordered w-full max-w-xs" %>
+
+      <br><br>
+      なぜをもっと深掘り(*)<br>
+      <%= key.text_area 'why_more', value: parsed_content['why_more'], placeholder: "具体的にはどんなところ？", class: "input input-bordered w-full max-w-xs" %>
+
+      <br><br>
+      どのように(How)(*)<br>
+      <%= key.text_area 'how', value: parsed_content['how'],  placeholder: "どうやって実現したの？何かアクションをした？", class: "input input-bordered w-full max-w-xs" %>
+
+      <br><br>
+      まとめ・気付き<br>
+      <%= key.text_area 'summary', value: parsed_content['summary'], placeholder: "自分の言葉で書き出してみよう", class: "input input-bordered w-full max-w-xs h-32" %>
+      <% end %>
+
+    <br><br><br>
+    <%= f.submit @memo.new_record? ? "入力内容を確認する" : "更新", class: "btn btn-error" %>
+    <br>
+  <% end %>
