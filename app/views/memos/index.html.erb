@@ -6,28 +6,26 @@
         Memos#index　メモ一覧
       </p>
       <br><br>
-      記録がない場合：<br><br>
-      記録はまだありません。<br>
-      メモを作成してみましょう！<br>
-      <%= link_to "新規作成", new_memo_path, class: "btn" %>
+      <% if @memos.present? %>
+        最新情報：<br><br>
 
-      <br><br><br>------------<br><br><br>
-      最新情報：<br><br>
-
-      最新の記録<br><br>
-      登録した日付：<%= @latest_memo.date %>
-      <br>
-      whatの内容： <%= JSON.parse(@latest_memo.memo_content)["what"] %>
-      <br>
-      summaryの内容： <%= JSON.parse(@latest_memo.memo_content)["summary"] %>
-
-      <br><br><br>------------<br><br><br>
-      一覧表示：<br><br>
-
-      <% @memos.each do |memo| %>
-      date：<%= memo.date || "日付は未選択です" %><br>
-      what：<%= JSON.parse(memo.memo_content)["what"] %><br>
-      <%= link_to "編集", edit_memo_path(memo), id: memo.id,  class: "btn btn-success" %>・<%= link_to "削除", edit_memo_path(memo), id: memo.id, method: :delete, class: "btn btn-error" %><br><br>
+        最新の記録<br><br>
+        登録した日付：<%= @latest_memo.date %>
+        <br>
+        whatの内容： <%= JSON.parse(@latest_memo.memo_content)["what"] %>
+        <br>
+        summaryの内容： <%= JSON.parse(@latest_memo.memo_content)["summary"] %> 
+        <br><br><br>
+        一覧表示：<br><br>
+        <% @memos.each do |memo| %>
+          date：<%= memo.date || "日付は未選択です" %><br>
+          what：<%= JSON.parse(memo.memo_content)["what"] %><br>
+          <%= link_to "編集", edit_memo_path(memo), id: memo.id,  class: "btn btn-success" %>・<%= link_to "削除", edit_memo_path(memo), id: memo.id, method: :delete, class: "btn btn-error" %><br><br>
+        <% end %>
+      <% else %>
+        記録はまだありません。<br>
+        メモを作成してみましょう！<br>
+        <%= link_to "新規作成", new_memo_path, class: "btn" %>
       <% end %>
       <br><br>
     </div>
