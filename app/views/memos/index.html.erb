@@ -22,6 +22,7 @@
           what：<%= JSON.parse(memo.memo_content)["what"] %><br>
           <%= link_to "編集", edit_memo_path(memo), id: memo.id,  class: "btn btn-success" %>・<%= link_to "削除", edit_memo_path(memo), id: memo.id, method: :delete, class: "btn btn-error" %><br><br>
         <% end %>
+        <%= paginate @memos %>
       <% else %>
         記録はまだありません。<br>
         メモを作成してみましょう！<br>

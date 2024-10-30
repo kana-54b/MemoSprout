@@ -20,6 +20,8 @@ gem "cssbundling-rails"
 gem "jbuilder"
 # User registration
 gem "sorcery", "~> 0.17.0"
+# pagination
+gem "kaminari"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
