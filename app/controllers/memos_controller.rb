@@ -32,6 +32,11 @@ class MemosController < ApplicationController
     end
   end
 
+  def index
+    @latest_memo = current_user.memos.includes(:user).order(updated_at: :desc).first
+    @memos = current_user.memos.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+  end
+
   def show
     @memo = current_user.memos.find_by(id: params[:id])
 

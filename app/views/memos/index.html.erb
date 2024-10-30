@@ -1,0 +1,41 @@
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:text-center">
+
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Memos#index　メモ一覧
+      </p>
+      <br><br>
+      <% if @memos.present? %>
+        <div class="border p-3 mb-10"> <!-- 最終更新のメモ -->
+          最新の記録<br><br>
+          <%= @latest_memo.date %><br>
+          <div class="text-xl">
+            <%= JSON.parse(@latest_memo.memo_content)["what"] %>
+          </div><br>
+            <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
+        </div>
+
+        <% @memos.each do |memo| %> <!-- メモ一覧 -->
+          <div class="border p-3">
+            <div class="flex justify-start">
+              <%= memo.date || "日付は未選択です" %>
+            </div>
+            <%= link_to JSON.parse(memo.memo_content)["what"], memo_path(memo), id: memo.id, class: "link link-hover text-xl" %>
+            <div class="flex justify-end">
+              <%= link_to "編集", edit_memo_path(memo), id: memo.id,  class: "btn btn-success mx-1" %>
+              <%= link_to "削除", edit_memo_path(memo), id: memo.id, method: :delete, class: "btn btn-error float-right mx-1" %><br><br>
+            </div>
+          </div>
+        <% end %><br><br>
+        <%= paginate @memos %> <!-- ページネーション -->
+
+      <% else %> <!-- メモがない場合 -->
+        記録はまだありません。<br>
+        メモを作成してみましょう！<br><br>
+        <%= link_to "新規作成", new_memo_path, class: "btn" %>
+      <% end %>
+      <br><br>
+    </div>
+  </div>
+</div>
