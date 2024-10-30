@@ -7,14 +7,12 @@
       </p>
       <br><br>
       <% if @memos.present? %>
-        最新情報：<br><br>
-
         最新の記録<br><br>
-        登録した日付：<%= @latest_memo.date %>
+        <%= @latest_memo.date %>
         <br>
-        whatの内容： <%= JSON.parse(@latest_memo.memo_content)["what"] %>
+        <%= JSON.parse(@latest_memo.memo_content)["what"] %>
         <br>
-        summaryの内容： <%= JSON.parse(@latest_memo.memo_content)["summary"] %> 
+        <%= JSON.parse(@latest_memo.memo_content)["summary"] %> 
         <br><br><br>
         一覧表示：<br><br>
         <% @memos.each do |memo| %>
