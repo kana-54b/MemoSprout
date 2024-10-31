@@ -3,10 +3,10 @@ class User < ApplicationRecord
 
   has_many :memos, dependent: :destroy
 
-  validates :email, presence: true, uniqueness: true
-  validates :password, length: { minimum: 4 }, if: -> { new_record? || changes[:crypted_password] }
-  validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
-  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :email, presence: { message: "メールアドレスを入力してください" }, uniqueness: { message: "このメールアドレスはすでに使用されています" }
+  validates :password, length: { minimum: 4, message: "パスワードは4文字以上にしてください" }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, confirmation: { message: "確認用パスワードが一致していません" }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password_confirmation, presence: { message: "確認用パスワードを入力してください" }, if: -> { new_record? || changes[:crypted_password] }
+  validates :first_name, presence: { message: "姓を入力してください" }
+  validates :last_name, presence: { message: "名を入力してください" }
 end

@@ -25,7 +25,7 @@ class MemosController < ApplicationController
     Rails.logger.debug "createアクション Memo_params🌱🌱🌱: #{memo_params.inspect}" # デバッグ用ログ
     @memo = current_user.memos.build(memo_params)
     if @memo.save
-      redirect_to new_memo_path, success: "メモを保存しました✨"
+      redirect_to memos_path, success: "メモを保存しました✨"
     else
       flash.now[:error] = "メモの保存に失敗しました"
       render :new, status: :unprocessable_entity
