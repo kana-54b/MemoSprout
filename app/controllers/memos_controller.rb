@@ -17,12 +17,10 @@ class MemosController < ApplicationController
       render :new, status: :unprocessable_entity
       return
     end
-    Rails.logger.debug "confirmアクション Memo_params🎃🎃🎃: #{memo_params.inspect}" # デバッグ用ログ
     render :confirm
   end
 
   def create
-    Rails.logger.debug "createアクション Memo_params🌱🌱🌱: #{memo_params.inspect}" # デバッグ用ログ
     @memo = current_user.memos.build(memo_params)
     if @memo.save
       redirect_to memos_path, success: "メモを保存しました✨"
@@ -47,7 +45,6 @@ class MemosController < ApplicationController
 
   def edit
     @memo = current_user.memos.find_by(id: params[:id])
-    Rails.logger.debug "confirmアクション Memo_params🍩🍩🍩: #{params.inspect}" # デバッグ用ログ
 
     unless @memo
       redirect_to new_memo_path, alert: "このアクセスは正しくありません😞"
@@ -56,7 +53,6 @@ class MemosController < ApplicationController
 
   def update
     @memo = current_user.memos.find(params[:id])
-    Rails.logger.debug "confirmアクション Memo_params🍻🍻🍻: #{params.inspect}" # デバッグ用ログ
     if @memo.update(memo_params)
       redirect_to memo_path(@memo), success: "メモを更新しました✨"
     else
@@ -78,7 +74,6 @@ class MemosController < ApplicationController
   end
 
   def memo_params
-    Rails.logger.debug "memo_params🐠🐠🐠: #{params.inspect}" # デバッグ用ログ
     params.require(:memo).permit(:emotion, :date, memo_content: [ :what, :why, :why_more, :how, :summary ])
   end
 end
