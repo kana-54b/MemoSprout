@@ -14,6 +14,8 @@ class UserSessionsController < ApplicationController
   end
 
   def guest_login
+    User.where("email LIKE ?", "guest_%@example.com").where("created_at < ?", 24.hours.ago).destroy_all # 24時間前のゲストユーザーを削除
+
     guest_user = User.create(
       first_name: "ゲスト",
       last_name: "ユーザー",
@@ -21,12 +23,14 @@ class UserSessionsController < ApplicationController
       password: "password",
       password_confirmation: "password"
     )
-    Rails.logger.info("ゲストユーザーの情報:  #{guest_user.first_name} / #{guest_user.email} / #{guest_user.password} / #{guest_user.password_confirmation}")
     auto_login(guest_user)
     redirect_to memos_path(user_id: guest_user.id), success: "ゲストログインしました"
   end
 
   def destroy
+    if current_user&.email&.start_with?("guest_") # ゲストユーザーの場合は削除
+      current_user.destroy
+    end
     logout
     flash[:info] = "ログアウトしました。またね！"
     redirect_to root_path, status: :see_other
