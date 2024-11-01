@@ -11,28 +11,29 @@
       </p>
       <br><br>
 
-
-      <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
-        <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
-          <%= f.button "登録なしで使ってみる", class: "btn btn-success" %>
-        <% end %>
-        <br><br>
-        <%= form_with url: login_path, method: :post, local: true do |f| %>
-          <%= f.label :email, "メールアドレス", class: "label" %>
-          <%= f.email_field :email, placeholder: "memosprout@example.com", class: "input input-bordered w-full max-w-xs" %>
-          <br>
-          <br>
-          <%= f.label :password, "パスワード", class: "label" %>
-          <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+      <% if current_user.nil? %>
+        <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
+          <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
+            <%= f.button "登録なしで使ってみる", class: "btn btn-success" %>
+          <% end %>
           <br><br>
-          <%= link_to "パスワードをお忘れの方はこちら", "#", class: "btn btn-link" %>
+          <%= form_with url: login_path, method: :post, local: true do |f| %>
+            <%= f.label :email, "メールアドレス", class: "label" %>
+            <%= f.email_field :email, placeholder: "memosprout@example.com", class: "input input-bordered w-full max-w-xs" %>
+            <br>
+            <br>
+            <%= f.label :password, "パスワード", class: "label" %>
+            <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+            <br><br>
+            <%= link_to "パスワードをお忘れの方はこちら", "#", class: "btn btn-link" %>
+            <br><br>
+            <%= submit_tag "ログイン", class: "btn btn-warning" %>
+          <% end %>
           <br><br>
-          <%= submit_tag "ログイン", class: "btn btn-warning" %>
-        <% end %>
-        <br><br>
-        <%= link_to "新規登録ページへ", new_user_path, class: "btn btn-error" %>
-        <br><br>
-      </div>
+          <%= link_to "新規登録ページへ", new_user_path, class: "btn btn-error" %>
+          <br><br>
+        </div>
+      <% end %>
       <br>
       <br>
       <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
