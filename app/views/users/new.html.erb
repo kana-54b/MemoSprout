@@ -1,14 +1,9 @@
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
-
-      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Users#new　ユーザー新規登録
-      </p>
+      ユーザー情報を入力してください。
       <br><br>
-
       <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
-        <br><br>
         <%= form_with model: @user do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
           <%= f.label :last_name, "姓(*)", class: "label" %>
@@ -29,14 +24,10 @@
           <br>
           <%= f.label :password_confirmation, "パスワード確認(*)", class: "label" %>
           <%= f.password_field :password_confirmation, class: "input input-bordered w-full max-w-xs" %>
-          <br><br>
+          <br><br><br>
           <%= f.submit "登録", class: "btn btn-error" %>
         <% end %>
-        <br><br>
-        <%= link_to "TOPへ戻る", "/", class: "btn btn-link" %>
-        <br><br>
       </div>
-      
     </div>
   </div>
 </div>
