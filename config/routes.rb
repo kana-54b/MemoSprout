@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post "login", to: "user_sessions#create" # ログインする
   get "login", to: "user_sessions#new" # ログイン画面を表示
   delete "logout", to: "user_sessions#destroy"
+  post "guest_login", to: "user_sessions#guest_login"
 
   resources :users, only: %i[new create]
   resources :memos do
