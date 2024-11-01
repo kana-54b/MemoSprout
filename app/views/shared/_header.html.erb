@@ -7,15 +7,21 @@
     </div>
     <h2 class="text-sm leading-8 text-gray-900">- 記録して振り返り、思考を育てる -</h2>
     <div class="flex-none  ml-auto">
-      <h2 class="text-error text-sm leading-8 p-3">ログイン中</h2>
+      <h2 class="text-error text-sm leading-8 p-3">
+        <%= logged_in? && current_user.email.start_with?("guest_") ? "ゲストログイン中" : "ログイン中" %>
+      </h2>
       <ul class="menu menu-horizontal px-1">
         <li><%= link_to "新規作成", new_memo_path %></li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
             <summary>Menu</summary>
             <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
-              <li><%= link_to "使い方", "#" %></li>
               <li><%= link_to "記録一覧", memos_path %></li>
+              <li>
+                <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
+                  使い方
+                </div>
+              </li>
               <li>
                 <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
                   <a>お気に入り一覧</a>
