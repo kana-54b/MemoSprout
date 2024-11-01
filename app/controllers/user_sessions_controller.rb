@@ -13,6 +13,19 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def guest_login
+    guest_user = User.create(
+      first_name: "ゲスト",
+      last_name: "ユーザー",
+      email: "guest_#{SecureRandom.hex(8)}@example.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+    Rails.logger.info("ゲストユーザーの情報:  #{guest_user.first_name} / #{guest_user.email} / #{guest_user.password} / #{guest_user.password_confirmation}")
+    auto_login(guest_user)
+    redirect_to memos_path(user_id: guest_user.id), success: "ゲストログインしました"
+  end
+
   def destroy
     logout
     flash[:info] = "ログアウトしました。またね！"
