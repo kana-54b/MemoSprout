@@ -41,6 +41,17 @@ class MemosController < ApplicationController
     unless @memo
       redirect_to new_memo_path, error: "このアクセスは正しくありません🥶"
     end
+
+
+    # JSONデータから`what`と`emotion`を取り出す
+    memo_data = JSON.parse(@memo.memo_content)
+    what = memo_data["what"]
+    emotion = memo_data["emotion"]
+
+    emoji = emotion ? { happy: "😀", angry: "😤", sad: "😞", funny: "😆" }[emotion.to_sym] || "✏️" : "✏️"
+
+    # シェアテキストを生成
+    @share_text = "#{emoji} : 「#{what}」について\n掘り下げて思考の芽を生やしました🌱\n #MemoSprout"
   end
 
   def edit
