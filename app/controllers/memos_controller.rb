@@ -45,7 +45,7 @@ class MemosController < ApplicationController
 
     # JSONデータから`what`と`emotion`を取り出す
     memo_data = JSON.parse(@memo.memo_content)
-    what = memo_data["what"]
+    what = memo_data["what"].gsub(/\R/, '') if memo_data["what"].present? # 改行を削除
     emotion = memo_data["emotion"]
 
     emoji = emotion ? { happy: "😀", angry: "😤", sad: "😞", funny: "😆" }[emotion.to_sym] || "✏️" : "✏️"
