@@ -22,6 +22,9 @@ gem "jbuilder"
 gem "sorcery", "~> 0.17.0"
 # pagination
 gem "kaminari"
+# OGP
+gem "meta-tags"
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
