@@ -2,7 +2,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: "Memo Sprout", # サイト名
-      title: title,
+      title: page_title,
       reverse: true,
       charset: "utf-8",
       description: "一言入力で新たな思考の芽を生やすメモアプリ",
@@ -14,7 +14,7 @@ module ApplicationHelper
       ],
       og: {
         site_name: "Memo Sprout",
-        title: title,
+        title: page_title,
         description: "一言入力で新たな思考の芽を生やすメモアプリ",
         type: "website", # websiteかarticle
         url: request.original_url,
