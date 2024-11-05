@@ -27,4 +27,9 @@ module ApplicationHelper
       }
     }
   end
+
+  def page_title
+    title = content_for(:title)
+    title ? "Memo Sprout | #{title}" : "Memo Sprout"
+  end
 end
