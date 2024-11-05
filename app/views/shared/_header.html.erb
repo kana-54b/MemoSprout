@@ -28,9 +28,9 @@
                 </div>
               </li>
               <li>
-                <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
-                  <a>アプリをシェア（X）</a>
-                </div>
+                <%= link_to "https://x.com/share?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#MemoSprout　#めもすぷらうと\n#{root_url}")}", target: "_blank", rel: "noopener noreferrer" do %>
+                  アプリをシェア<i class="fa-brands fa-x-twitter"></i>
+                <% end %>
               </li>
               <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
             </ul>
