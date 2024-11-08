@@ -23,9 +23,7 @@
                 </div>
               </li>
               <li>
-                <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
-                  <a>お気に入り一覧</a>
-                </div>
+                <%= link_to "お気に入り一覧", memo_favorites_memos_path %>
               </li>
               <li>
                 <%= link_to "https://x.com/share?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#MemoSprout　#めもすぷらうと\n#{root_url}")}", target: "_blank", rel: "noopener noreferrer" do %>

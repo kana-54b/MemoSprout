@@ -7,10 +7,16 @@ Rails.application.routes.draw do
   post "guest_login", to: "user_sessions#guest_login"
 
   resources :users, only: %i[new create]
+
   resources :memos do
-    post :confirm, on: :collection
-    get :confirm, on: :collection
+    collection do
+      match :confirm, via: %i[get post]
+      get :memo_favorites # お気に入りしたメモ一覧
+    end
+
+    resources :memo_favorites, only: %i[create destroy] # お気に入りの登録・解除
   end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
