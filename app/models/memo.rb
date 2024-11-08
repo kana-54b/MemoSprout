@@ -1,5 +1,6 @@
 class Memo < ApplicationRecord
   belongs_to :user
+  has_many :memo_favorites, dependent: :destroy # 追加
 
   validates :memo_content, presence: true
   validate :validate_memo_content
