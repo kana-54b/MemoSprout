@@ -21,4 +21,8 @@ class Memo < ApplicationRecord
       super
     end
   end
+
+  def favorited_by?(user) # current_userがお気に入り登録しているかを確認
+    memo_favorite&.user_id == user.id
+  end
 end

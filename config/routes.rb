@@ -11,12 +11,10 @@ Rails.application.routes.draw do
   resources :memos do
     collection do
       match :confirm, via: %i[get post]
-      get :memo_favorites # お気に入りしたメモ一覧
     end
-
-    resources :memo_favorites, only: %i[create destroy] # お気に入りの登録・解除
   end
 
+  resources :memo_favorites, only: %i[create destroy index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
