@@ -1,17 +1,6 @@
 class MemoFavorite < ApplicationRecord
   belongs_to :memo
+  belongs_to :user
 
-  validates :memo_id, uniqueness: true
-
-  def add_memo_favorite(memo) # お気に入り登録
-    self.class.create(memo: memo) # MemoFavoriteの新しいインスタンスを作成
-  end
-
-  def remove_memo_favorite(memo) # お気に入り解除
-    self.class.find_by(memo: memo)&.destroy
-  end
-
-  def memo_favorite?(memo) # お気に入りしたメモかどうか
-    self.class.exists?(memo: memo)
-  end
+  validates :memo_id, uniqueness: { scope: :user_id } # 同じユーザーが同じメモを複数回お気に入り登録できない
 end

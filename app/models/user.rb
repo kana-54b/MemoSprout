@@ -2,6 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :memos, dependent: :destroy
+  has_many :memo_favorites, through: :memos
 
   validates :email, presence: { message: "メールアドレスを入力してください" }, uniqueness: { message: "このメールアドレスはすでに使用されています" }
   validates :password, length: { minimum: 4, message: "パスワードは4文字以上にしてください" }, if: -> { new_record? || changes[:crypted_password] }
