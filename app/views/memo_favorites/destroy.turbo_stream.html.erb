@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "favorite-star-#{@memo.id}" do %>
+<p>Debug: 🟧@memo ID = <%= @memo.id %></p> <!-- デバッグ ID確認 -->
+  <%= render "shared/favorite_star", memo: @memo %>
+<% end %>

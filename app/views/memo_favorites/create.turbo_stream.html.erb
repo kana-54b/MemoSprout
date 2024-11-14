@@ -1,0 +1,4 @@
+<!-- 呼び出し元は memo_favorites#createアクション -->
+<%= turbo_stream.replace "favorite-star-#{memo.id}" do %>
+  <%= render "shared/favorite_star", memo: memo %>
+<% end %>
