@@ -24,6 +24,8 @@ gem "sorcery", "~> 0.17.0"
 gem "kaminari"
 # OGP
 gem "meta-tags"
+# create fake data
+gem "faker"
 
 
 # Use Redis adapter to run Action Cable in production

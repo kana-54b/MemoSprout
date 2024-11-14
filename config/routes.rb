@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   post "guest_login", to: "user_sessions#guest_login"
 
   resources :users, only: %i[new create]
+
   resources :memos do
-    post :confirm, on: :collection
-    get :confirm, on: :collection
+    collection do
+      match :confirm, via: %i[get post]
+    end
   end
+
+  resources :memo_favorites, only: %i[create destroy index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

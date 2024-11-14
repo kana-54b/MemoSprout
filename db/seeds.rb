@@ -8,5 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# load(Rails.root.join("親ディレクトリ", "子ディレクトリ", "#{開発環境名.downcase}.rb))
+
+# ※create seed file
+# load(Rails.root.join("親ディレクトリ", "子ディレクトリ", "#{開発環境名.downcase}.rb)) 環境ごとに異なるデータをが必要な場合に使用
 load(Rails.root.join("db", "seeds", "#{Rails.env.downcase}.rb"))

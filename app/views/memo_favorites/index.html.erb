@@ -1,0 +1,11 @@
+<% if @memo_favorites.empty? %> <!-- お気に入りがない場合 -->
+  お気に入りのメモはまだありません。<br>
+  お気に入り登録をしてみましょう！<br><br>
+  <%= link_to "記録一覧", memos_path, class: "btn" %>
+<% else %> <!-- お気に入りがある場合 -->
+  <% @memo_favorites.each do |mf| %>
+    <%= render "memo_favorite", memo: mf.memo %>
+  <% end %>
+  <br><br>
+  <%= paginate @memo_favorites %> <!-- ページネーション -->
+<% end %>

@@ -1,5 +1,6 @@
 class Memo < ApplicationRecord
   belongs_to :user
+  has_one :memo_favorite, dependent: :destroy
 
   validates :memo_content, presence: true
   validate :validate_memo_content
@@ -19,5 +20,9 @@ class Memo < ApplicationRecord
     else
       super
     end
+  end
+
+  def favorited_by?(user) # current_userがお気に入り登録しているかを確認
+    memo_favorite&.user_id == user.id
   end
 end

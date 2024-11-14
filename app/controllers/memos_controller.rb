@@ -51,7 +51,7 @@ class MemosController < ApplicationController
     emoji = emotion ? { happy: "😀", angry: "😤", sad: "😞", funny: "😆" }[emotion.to_sym] || "✏️" : "✏️"
 
     # シェアテキストを生成
-    @share_text = "#{emoji} : 「#{what}」について\n掘り下げて思考の芽を生やしました🌱\n #MemoSprout"
+    @share_text = "#{emoji} : 「#{what}」について\n掘り下げて思考の芽を生やしました🌱\n#MemoSprout　#めもすぷらうと\n#{root_url}"
   end
 
   def edit
