@@ -78,10 +78,6 @@ class MemosController < ApplicationController
     redirect_to new_memo_path, success: "メモを削除しました", status: :see_other
   end
 
-  def memo_favorites # お気に入りしたメモ一覧
-    @memo_favotites = @memo_favorites = MemoFavorite.includes(:memo).order(created_at: :desc).page(params[:page]).per(5)
-  end
-
   private
 
   def not_authenticated
@@ -92,11 +88,3 @@ class MemosController < ApplicationController
     params.require(:memo).permit(:emotion, :date, memo_content: [ :what, :why, :why_more, :how, :summary ])
   end
 end
-
-# <%= turbo_stream.replace "bookmark-button-for-board-#{@board.id}" do %>
-#   <%= render 'boards/unbookmark', board: @board %>
-# <% end %>
-
-# <%= link_to bookmark_path(current_user.bookmarks.find_by(board_id: board.id)), id: "unbookmark-button-for-board-#{board.id}", data: { turbo_method: :delete } do %>
-#   <i class="bi bi-star-fill"></i>
-# <% end %>
