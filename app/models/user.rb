@@ -10,4 +10,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: { message: "確認用パスワードを入力してください" }, if: -> { new_record? || changes[:crypted_password] }
   validates :first_name, presence: { message: "姓を入力してください" }
   validates :last_name, presence: { message: "名を入力してください" }
+
+  def favorite_memo?(memo)
+    memo_favorites.exists?(memo_id: memo.id) # memo_idが存在するか？
+  end
 end

@@ -1,0 +1,8 @@
+<!-- 呼び出し元 memos/index.html.erb, memo_favorite.index -->
+<div class='ms-auto'>
+  <% if current_user.favorite_memo?(memo) %> <!-- お気に入りがある場合 -->
+    <%= render "shared/star_favorite", memo: memo %> <!-- 黒い星★ -->
+  <% else %>
+    <%= render "shared/star_unfavorite", memo: memo %> <!-- 白い星☆ -->
+  <% end %>
+</div>
