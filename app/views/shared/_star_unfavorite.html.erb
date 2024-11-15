@@ -1,5 +1,6 @@
 <%= link_to memo_favorites_path(memo_id: memo.id),
     id: "favorite-star-#{memo.id}",
-    data: { turbo_method: :post } do %>
+    data: { turbo_method: :post },
+    class: "mx-2" do %>
   <i class="fa-regular fa-star"></i> <!-- 白い星 クリックでお気に入り登録 -->
 <% end %>
