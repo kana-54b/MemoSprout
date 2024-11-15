@@ -65,7 +65,7 @@ class MemosController < ApplicationController
   def update
     @memo = current_user.memos.find(params[:id])
     if @memo.update(memo_params)
-      redirect_to memo_path(@memo), success: "メモを更新しました✨"
+      redirect_to memos_path, success: "メモを更新しました✨"
     else
       flash.now[:error] = "メモの編集に失敗しました"
       render :edit, status: :unprocessable_entity
