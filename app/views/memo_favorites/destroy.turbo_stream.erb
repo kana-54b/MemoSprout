@@ -1,0 +1,4 @@
+<!-- 呼び出し元は memo_favorites#destroy -->
+<%= turbo_stream.replace "favorite-star-#{@memo.id}" do %>
+  <%= render "shared/favorite_star", memo: @memo %> <!-- お気に入りの有無を確認 -->
+<% end %>

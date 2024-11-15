@@ -65,7 +65,7 @@ class MemosController < ApplicationController
   def update
     @memo = current_user.memos.find(params[:id])
     if @memo.update(memo_params)
-      redirect_to memo_path(@memo), success: "メモを更新しました✨"
+      redirect_to memos_path, success: "メモを更新しました✨"
     else
       flash.now[:error] = "メモの編集に失敗しました"
       render :edit, status: :unprocessable_entity
@@ -75,7 +75,6 @@ class MemosController < ApplicationController
   def destroy
     @memo = current_user.memos.find_by(id: params[:id])
     @memo.destroy!
-    redirect_to new_memo_path, success: "メモを削除しました", status: :see_other
   end
 
   private
