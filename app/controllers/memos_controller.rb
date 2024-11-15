@@ -75,7 +75,6 @@ class MemosController < ApplicationController
   def destroy
     @memo = current_user.memos.find_by(id: params[:id])
     @memo.destroy!
-    redirect_to new_memo_path, success: "メモを削除しました", status: :see_other
   end
 
   private
