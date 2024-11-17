@@ -33,6 +33,7 @@ class MemosController < ApplicationController
   def index
     @latest_memo = current_user.memos.includes(:user).order(updated_at: :desc).first
     @memos = current_user.memos.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+    @total_memos = @memos.total_count # Kaminariのtotal_countで全体数を取得
   end
 
   def show

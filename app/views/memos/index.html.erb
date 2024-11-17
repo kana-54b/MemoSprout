@@ -14,6 +14,8 @@
           <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
         </div>
 
+        <br><br>
+        累計メモ数：<%= @total_memos %>件<i class="fa-solid fa-seedling"></i>　　
         <% @memos.each do |memo| %> <!-- メモ一覧 -->
           <div id="memo-<%= memo.id %>">
             <div class="border p-3">
