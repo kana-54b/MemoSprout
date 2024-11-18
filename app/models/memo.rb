@@ -34,7 +34,7 @@ class Memo < ApplicationRecord
     Rails.logger.debug("今日🌞: #{today.all_day}")
 
     # 今日のメモだけでなく、過去のメモを全て取得する
-    user.memos.where('created_at <= ?', today.end_of_day).order(created_at: :desc).each do |memo|
+    user.memos.where("created_at <= ?", today.end_of_day).order(created_at: :desc).each do |memo|
       memo_date = memo.created_at.to_date # メモの日付を取得。時刻は除く。
       Rails.logger.debug("取得したメモの作成日📝: #{memo_date}")
       Rails.logger.debug("直前の日付👀: #{previous_date}")
@@ -55,7 +55,7 @@ class Memo < ApplicationRecord
 
       previous_date = memo_date
       Rails.logger.debug("previous_dateを更新📅: #{previous_date} = #{memo_date}")
-    
+
       if previous_date.nil?
         streak_count = 1 # 初回処理の場合
       elsif previous_date == memo_date || previous_date == memo_date - 1 # 直前の日付と同じか、連続している場合
@@ -64,7 +64,7 @@ class Memo < ApplicationRecord
         streak_count = 0
       end
     end
-    
+
     Rails.logger.debug("最終連続の記録streak_count🔵: #{streak_count}")
     streak_count
   end
