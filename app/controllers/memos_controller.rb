@@ -35,7 +35,6 @@ class MemosController < ApplicationController
     @memos = current_user.memos.order(created_at: :desc).page(params[:page]).per(5)
     @total_memos = @memos.total_count # Kaminariのtotal_countで全体数を取得
     @streak_days = Memo.streak_days(current_user) # 連続記録
-    Rails.logger.debug("current_user👤: #{current_user.id}")
   end
 
   def show

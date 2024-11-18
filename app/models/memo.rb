@@ -27,30 +27,45 @@ class Memo < ApplicationRecord
   end
 
   def self.streak_days(user) # 連続記録
-    Rails.logger.debug("DEBUG: streak_daysがよばれました。このユーザーに: #{user.id}")
-
-    # メモの作成日を取得し日時を日付に変換、日付の重複を削除。
-    dates = user.memos.order(created_at: :asc).pluck(:created_at).map(&:to_date).uniq
-    Rails.logger.debug("dates📅: #{dates} - USER👦: #{user.id}")
-
-    streak_count = 1 # 連続記録をカウントする
+    today = Date.today
+    streak_count = 0 # 連続記録をカウントする
     previous_date = nil # 直前の日付を保持する
 
-    dates.each do |date|
-      current_date = date
-      Rails.logger.debug("current_date🍎: #{current_date}, previous_date🍏: #{previous_date}, streak_count#️⃣: #{streak_count}")
+    Rails.logger.debug("今日🌞: #{today.all_day}")
 
-    if previous_date.nil? || current_date == previous_date + 1 # 直前の日付がnilの場合、または今日の日付が直前の日付+1の場合
-      streak_count += 1 unless previous_date.nil? # 直前の日付がnilではない時（直前の日付が入っている時）に、streak_countを+1する
-    elsif current_date > previous_date + 1 # 今日の日付が直前の日付+1よりも大きい場合(1日より空いている場合)
-      Rails.logger.debug "🐛:日付が空いたため中断" 
-      break # ループを抜ける
+    # 今日のメモだけでなく、過去のメモを全て取得する
+    user.memos.where('created_at <= ?', today.end_of_day).order(created_at: :desc).each do |memo|
+      memo_date = memo.created_at.to_date # メモの日付を取得。時刻は除く。
+      Rails.logger.debug("取得したメモの作成日📝: #{memo_date}")
+      Rails.logger.debug("直前の日付👀: #{previous_date}")
+
+      if previous_date.nil? # 直前の日付がnilの場合
+        streak_count = 1
+        Rails.logger.debug("初回処理 memo_date📕: #{memo_date}")
+        Rails.logger.debug("初回処理 streak_count📕: #{streak_count}")
+      elsif memo_date == previous_date # 直前の日付と同じ場合
+        Rails.logger.debug("🔁: 重複した日付: #{memo_date} はスキップ")
+      elsif memo_date == previous_date - 1 # 連続している場合
+        streak_count += 1
+        Rails.logger.debug("連続記録🔥: #{streak_count}")
+      else
+        Rails.logger.debug("途切れた日付🐛: #{memo_date}で記録終了")
+        break
+      end
+
+      previous_date = memo_date
+      Rails.logger.debug("previous_dateを更新📅: #{previous_date} = #{memo_date}")
+    
+      if previous_date.nil?
+        streak_count = 1 # 初回処理の場合
+      elsif previous_date == memo_date || previous_date == memo_date - 1 # 直前の日付と同じか、連続している場合
+        # 何もしない（streak_countをそのままにする）
+      else
+        streak_count = 0
+      end
     end
-
-      previous_date = current_date # 直前の日付 ＝　今日の日付に更新
-    end
-
-    Rails.logger.debug "DEBUG🔥: 最終的なstreak_count: #{streak_count}"
-    streak_count # 計算結果を返す
+    
+    Rails.logger.debug("最終連続の記録streak_count🔵: #{streak_count}")
+    streak_count
   end
 end

@@ -15,8 +15,7 @@
         </div>
 
         <br><br>
-        累計メモ数：<%= @total_memos %>件<i class="fa-solid fa-seedling"></i>　　
-        連続記録日数：<%= @streak_days %>日<i class="fa-solid fa-sun"></i><br>
+        <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
         <% @memos.each do |memo| %> <!-- メモ一覧 -->
           <div id="memo-<%= memo.id %>">
             <div class="border p-3">
@@ -43,6 +42,7 @@
         <%= paginate @memos %> <!-- ページネーション -->
 
       <% else %> <!-- メモがない場合 -->
+      <%= render "count_memos" %><!-- メモ総数と連続記録日数 -->
         記録はまだありません。<br>
         メモを作成してみましょう！<br><br>
         <%= link_to "新規作成", new_memo_path, class: "btn" %>
