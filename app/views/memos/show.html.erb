@@ -2,6 +2,8 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
       <% content_for :title, JSON.parse(@memo.memo_content)["what"] %>
+
+      <h1 class=text-3xl><%= "#{JSON.parse(@memo.memo_content)["what"]}の詳細" %></h1><br>
       <br><br>
       <%= link_to "編集", edit_memo_path(@memo), class: "btn btn-success"  %>
       ・

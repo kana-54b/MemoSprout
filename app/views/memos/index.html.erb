@@ -2,7 +2,8 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
       <% content_for :title, "メモ一覧" %>
-      
+
+      <h1 class=text-3xl>Memo一覧</h1><br>
       <% if @memos.present? %>
         <div class="border p-3 mb-10"> <!-- 最終更新のメモ -->
           最新の記録<br><br>
@@ -13,6 +14,8 @@
           <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
         </div>
 
+        <br><br>
+        <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
         <% @memos.each do |memo| %> <!-- メモ一覧 -->
           <div id="memo-<%= memo.id %>">
             <div class="border p-3">
@@ -26,8 +29,12 @@
                 <div id="favorite-star-<%= memo.id %>">
                   <%= render "shared/favorite_star", memo: memo %> <!-- お気に入りの⭐️ -->
                 </div>
-                <%= link_to "編集", edit_memo_path(memo), class: "btn btn-success mx-1" %>
-                <%= link_to "削除", memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error float-right mx-1" %><br><br>
+                <%= link_to edit_memo_path(memo), class: "mx-2" do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+                <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "mx-2" do %>
+                <i class="fa-solid fa-trash"></i>
+                <% end %>
               </div>
             </div>
           </div>
@@ -35,6 +42,7 @@
         <%= paginate @memos %> <!-- ページネーション -->
 
       <% else %> <!-- メモがない場合 -->
+      <%= render "count_memos" %><!-- メモ総数と連続記録日数 -->
         記録はまだありません。<br>
         メモを作成してみましょう！<br><br>
         <%= link_to "新規作成", new_memo_path, class: "btn" %>

@@ -1,6 +1,7 @@
 <%= link_to memo_favorite_path(current_user.memo_favorites.find_by(memo_id: memo.id)),
     id: "favorite-star-#{memo.id}",
-    data: { turbo_method: :delete } do %>
+    data: { turbo_method: :delete },
+    class: "mx-2" do %>
   <i class="fa-solid fa-star"></i> <!-- 黒い星 クリックでお気に入り解除-->
 <% end %>
 
