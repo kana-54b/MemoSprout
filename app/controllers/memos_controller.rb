@@ -32,7 +32,7 @@ class MemosController < ApplicationController
 
   def index
     @latest_memo = current_user.memos.includes(:user).order(updated_at: :desc).first
-    @memos = current_user.memos.order(created_at: :desc).page(params[:page]).per(5)
+    @memos = current_user.memos.order(created_at: :desc).page(params[:page]).per(10)
     @total_memos = @memos.total_count # Kaminariのtotal_countで全体数を取得
     @streak_days = Memo.streak_days(current_user) # 連続記録
   end
