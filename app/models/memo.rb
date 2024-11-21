@@ -53,4 +53,8 @@ class Memo < ApplicationRecord
 
     streak_count
   end
+
+  def self.today_memo?(user) # 今日のメモが存在するか？
+    user.memos.exists?(created_at: Date.today.all_day)
+  end
 end
