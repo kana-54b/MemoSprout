@@ -32,7 +32,7 @@
                 <%= link_to edit_memo_path(memo), class: "mx-2" do %>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-                <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "mx-2" do %>
+                <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？\n※削除すると連続記録が失われる場合があります。" }, class: "mx-2" do %>
                 <i class="fa-solid fa-trash"></i>
                 <% end %>
               </div>
