@@ -1,2 +1,3 @@
 <!-- 呼び出し元は memos#destroy -->
 <%= turbo_stream.remove "memo-#{@memo.id}" %>
+<%= turbo_stream.replace "count_memos", partial: "memos/count_memos" %>
