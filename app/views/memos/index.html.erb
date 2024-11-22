@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-2xl lg:text-center">
       <% content_for :title, "メモ一覧" %>
 
-      <h1 class=text-3xl>Memo一覧</h1><br>
+      <h1 class="text-3xl">Memo一覧</h1><br>
       <% if @memos.present? %>
         <div class="border p-3 mb-10"> <!-- 最終更新のメモ -->
           最新の記録<br><br>
@@ -24,16 +24,13 @@
               </div>
               <!-- タイトル（Whatの内容）-->
               <%= link_to JSON.parse(memo.memo_content)["what"], memo_path(memo), id: memo.id, class: "btn glass btn-wide btn-lg" %>
-
               <div class="flex justify-end">
-                <div id="favorite-star-<%= memo.id %>">
-                  <%= render "shared/favorite_star", memo: memo %> <!-- お気に入りの⭐️ -->
-                </div>
+                <%= render "shared/favorite_star", memo: memo %> <!-- お気に入りの⭐️ -->
                 <%= link_to edit_memo_path(memo), class: "mx-2" do %>
-                <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-                <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "mx-2" do %>
-                <i class="fa-solid fa-trash"></i>
+                <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？\n\n※このメモが連続記録日数に含まれている場合、\n　記録が途切れる可能性があります。" }, class: "mx-2" do %>
+                  <i class="fa-solid fa-trash"></i>
                 <% end %>
               </div>
             </div>
