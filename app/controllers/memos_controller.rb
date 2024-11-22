@@ -77,7 +77,11 @@ class MemosController < ApplicationController
 
   def destroy
     @memo = current_user.memos.find_by(id: params[:id])
-    @memo.destroy!
+    if @memo.destroy!
+    @total_memos = current_user.memos.count
+    @streak_days = Memo.streak_days(current_user)
+    @today_memo = Memo.today_memo?(current_user)
+    end
   end
 
   private
