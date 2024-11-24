@@ -40,25 +40,19 @@ class Memo < ApplicationRecord
 
     uniq_dates.each do |memo_date|
       if previous_date == today + 1 # 初回処理
-        Rails.logger.debug("preview_date初回処理: #{previous_date}")
         if memo_date == today || memo_date == today - 1 # 今日か昨日の場合
-          Rails.logger.debug("memo_date⭕️: #{memo_date}")
           streak_count += 1
         else
           return 0
         end
       elsif memo_date == previous_date - 1 # 連続している場合
-        Rails.logger.debug("memo_date⭕️: #{memo_date} - streak_count: #{streak_count}")
         streak_count += 1
       else
-        Rails.logger.debug("memo_date❌: #{memo_date} - streak_count: #{streak_count}")
-        streak_count += 1
         break
       end
 
       previous_date = memo_date
     end
-Rails.logger.debug("streak_count🟡: #{streak_count}")
     streak_count
   end
 
