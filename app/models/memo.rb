@@ -42,17 +42,17 @@ class Memo < ApplicationRecord
       if previous_date == today + 1 # 初回処理
         Rails.logger.debug("preview_date初回処理: #{previous_date}")
         if memo_date == today || memo_date == today - 1 # 今日か昨日の場合
-          Rails.logger.debug("memo_date⭕️: #{memo_date}")
+          Rails.logger.debug("memo_date⭕️今日か昨日: #{memo_date}")
           streak_count += 1
         else
+          Rails.logger.debug("memo_date❌今日でも昨日でもない: #{memo_date}")
           return 0
         end
       elsif memo_date == previous_date - 1 # 連続している場合
-        Rails.logger.debug("memo_date⭕️: #{memo_date} - streak_count: #{streak_count}")
+        Rails.logger.debug("memo_date⭕️連続している場合: #{memo_date} - streak_count: #{streak_count}")
         streak_count += 1
       else
-        Rails.logger.debug("memo_date❌: #{memo_date} - streak_count: #{streak_count}")
-        streak_count += 1
+        Rails.logger.debug("memo_date❌連続していない時: #{memo_date} - streak_count: #{streak_count}")
         break
       end
 
