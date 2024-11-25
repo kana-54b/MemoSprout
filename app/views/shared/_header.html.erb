@@ -11,7 +11,7 @@
         <%= logged_in? && current_user.email.start_with?("guest_") ? "ゲストログイン中" : "ログイン中" %>
       </h2>
       <ul class="menu menu-horizontal px-1">
-        <li><%= link_to "新規作成", new_memo_path %></li>
+        <li><%= link_to "メモ作成", new_memo_path %></li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
             <summary>Menu</summary>
@@ -26,7 +26,7 @@
                 <%= link_to "お気に入り一覧", memo_favorites_path %>
               </li>
               <li>
-                <%= link_to "https://x.com/share?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#MemoSprout　#めもすぷらうと\n#{root_url}")}", target: "_blank", rel: "noopener noreferrer" do %>
+                <%= link_to "https://x.com/share?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#MemoSprout\n#{root_url}")}", target: "_blank", rel: "noopener noreferrer" do %>
                   アプリをシェア<i class="fa-brands fa-x-twitter"></i>
                 <% end %>
               </li>
