@@ -11,12 +11,18 @@
         <%= logged_in? && current_user.email.start_with?("guest_") ? "ゲストログイン中" : "ログイン中" %>
       </h2>
       <ul class="menu menu-horizontal px-1">
-        <li><%= link_to "メモ作成", new_memo_path %></li>
+        <li>
+          <%= link_to new_memo_path do %>
+            <i class="fa-solid fa-plus"></i>メモ作成
+          <% end %>
+        </li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
             <summary>Menu</summary>
             <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
-              <li><%= link_to "メモ一覧", memos_path %></li>
+              <li>
+                <%= link_to "メモ一覧", memos_path %>
+              </li>
               <li>
                 <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
                   使い方
@@ -30,7 +36,9 @@
                   アプリをシェア<i class="fa-brands fa-x-twitter"></i>
                 <% end %>
               </li>
-              <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
+              <li>
+                <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %>
+              </li>
             </ul>
           </details>
         </li>

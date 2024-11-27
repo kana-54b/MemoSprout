@@ -1,7 +1,7 @@
 <!-- 呼び出し元は memos#index-->
 <div id="count_memos">
   <br>
-  累計メモ数　<i class="fa-solid fa-seedling"></i>　<%= @total_memos %>件<br><br>
+  累計メモ数　<%= @total_memos %>件<br><br>
   連続記録 <button onclick="my_modal_2.showModal()"><i class="fa-regular fa-circle-question"></i></button>
 <dialog id="my_modal_2" class="modal">
   <div class="modal-box">
@@ -14,7 +14,7 @@
   <form method="dialog" class="modal-backdrop">
     <button>close</button>
   </form>
-</dialog>　<i class="fa-solid fa-sun"></i>　<%= @streak_days %>日<br>
+</dialog>　<%= @streak_days %>日<br>
   <% if @today_memo %> <!-- 今日のメモがあるか -->
     （今日の記録はカウントされています✨）
   <% else %>
