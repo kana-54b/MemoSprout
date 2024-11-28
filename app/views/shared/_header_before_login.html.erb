@@ -1,11 +1,15 @@
 <header>
-  <div class="pt-20"><div class="navbar bg-base-100 fixed top-0 left-0 w-full z-50">
-    <div class="flex">
+  <div class="navbar bg-base-100 fixed top-0 left-0 w-full z-50">
+
+    <div class="flex items-center space-x-4">
+      <!-- ロゴ -->
       <%= link_to '/' do %>
-        <%= image_tag 'logo.png', alt: "Memo Sprout logo", class: "h-14 w-auto" %>
+        <%= image_tag 'logo.png', alt: "Memo Sprout logo", class: "h-14 w-auto object-contain" %>
       <% end %>
+
+      <!-- サブタイトル（モバイル非表示） -->
+      <h2 class="text-sm leading-8 text-gray-900 whitespace-nowrap hidden sm:block">- 記録して振り返り、思考を育てる -</h2>
     </div>
-    <h2 class="text-sm leading-8 text-gray-900">- 記録して振り返り、思考を育てる -</h2>
     <div class="flex-none  ml-auto">
       <ul class="menu menu-horizontal px-1">
         <li><%= link_to "ログイン（TOPページへ)", "/" %></li>
