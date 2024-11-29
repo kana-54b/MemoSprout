@@ -28,9 +28,7 @@
                 <%= link_to "メモ一覧", memos_path %>
               </li>
               <li>
-                <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
-                  使い方
-                </div>
+                <a onclick="my_modal_3.showModal()">使い方</a> <!-- モーダルを開くリンク -->
               </li>
               <li>
                 <%= link_to "お気に入り一覧", memo_favorites_path %>
@@ -49,4 +47,6 @@
       </ul>
     </div>
   </div>
+
+<%= render "memos/example" %>
 </header>

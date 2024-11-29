@@ -4,6 +4,7 @@
       <% content_for :title, "メモ作成" %>
       <h1 class=text-3xl>メモ作成</h1><br>
       <br><br>
+      <button class="btn btn-outline btn-success" onclick="my_modal_3.showModal()">書き方例</button>
       <%= render "example" %> <!-- 書き方例ボタン -->
       <br><br><br>
       <%= render "form", memo: @memo, form_url: confirm_memos_path %> <!-- メモ入力フォーム -->
