@@ -7,12 +7,12 @@
                                                     md:flex-nowrapで中サイズ以上の画面では折り返さずに横並びに -->
 
     <!-- 左側モックアップ -->
-    <div class="mockup-window border-base-300 border w-full md:w-2/3 p-4">
+    <div class="mockup-window border-base-300 border w-full md:w-2/3">
       <div class="border-base-300 flex justify-center border-t px-4">
-        <div class="bg-white py-8 w-full text-center">
+        <div class="bg-white py-8 w-full text-center" style="transform: scale(0.95);">
           
           <% content_for :title, "メモ作成" %>
-          <% parsed_content = JSON.parse(@memo.memo_content) rescue {} %>
+          <% parsed_content = JSON.parse(memo_example) rescue {} %>
           
           <p>どんなことがありましたか？</p>
           
@@ -25,24 +25,24 @@
             
             <br><br>
             <%= f.fields_for :memo_content do |key| %>
-              <p>何（What）(*)</p>
-              <%= key.text_area "what：どんなことが嬉しかったの？", value: parsed_content["what"], placeholder: "おともだちと遊んだこと", class: "input input-bordered w-[60%]" %>
+              何（What）(*)<br><p class="text-gray-400">どんなことが嬉しかったの？</p>
+              <%= key.text_area "what", value: parsed_content["what"], class: "input input-bordered w-[60%]" %>
               
               <br><br>
-              <p>なぜ(Why)(*)</p>
-              <%= key.text_area "why：どうして嬉しかったの？", value: parsed_content["why"], placeholder: "楽しかったから", class: "input input-bordered w-[60%]" %>
+              なぜ(Why)(*)<br><p class="text-gray-400">どうして嬉しかったの？</p>
+              <%= key.text_area "why", value: parsed_content["why"], class: "input input-bordered w-[60%]" %>
               
               <br><br>
-              <p>なぜをもっと深掘り(*)</p>
-              <%= key.text_area "具体的にはそれのどんなところが？", value: parsed_content["why_more"], placeholder: "おままごとをした", class: "input input-bordered w-[60%]" %>
+              なぜをもっと深掘り(*)<br><p class="text-gray-400">具体的にはそれのどんなところが？</p>
+              <%= key.text_area "why_more", value: parsed_content["why_more"], class: "input input-bordered w-[60%]" %>
               
               <br><br>
-              <p>どのように(How)(*)</p>
-              <%= key.text_area "どうやって実現したの？何かアクションをした？", value: parsed_content["how"], placeholder: "「おままごとしよ」って言った", class: "input input-bordered w-[60%]" %>
+              どのように(How)(*)<br><p class="text-gray-400">どうやって実現したの？何かアクションをした？</p>
+              <%= key.text_area "how", value: parsed_content["how"], class: "input input-bordered w-[60%]" %>
               
               <br><br>
-              <p>まとめ・気付き(*)</p>
-              <%= key.text_area "自分の言葉で書き出してみよう", value: parsed_content["summary"], placeholder: "おともだちとおままごとをした。\n自分が「遊ぼう」って言ったから遊べた。\n\n（5歳の女の子の例）", class: "input input-bordered h-32 w-[60%]" %>
+              まとめ・気付き(*)<br><p class="text-gray-400">自分の言葉で書き出してみよう</p>
+              <%= key.text_area "summary", value: parsed_content["summary"], class: "input input-bordered h-40 w-[60%]" %>
             <% end %>
             
             <br><br>
@@ -54,32 +54,30 @@
     </div>
 
     <!-- 右側カード表示 -->
-    <div class="flex flex-col grid gap-4 w-full md:w-1/3 p-4">
+    <div class="grid gap-4 w-full md:w-1/3 p-4">
       <div class="card shadow w-full">
-        <div class="card-body">
-          <h2 class="card-title"><i class="fa-solid fa-1"></i>感情を選択</h2>
-          <p><br>記録したい出来事への感情を選びます。</p>
+        <div class="card-body my-2" style="transform: scale(0.95);">
+          <h2 class="card-title"><i class="fa-solid fa-1"></i>感情を選ぶ</h2>
+          <p><br>記録したい出来事に対する<br>感情を選択しましょう。</p>
         </div>
       </div>
       <div class="card shadow w-full">
-        <div class="card-body">
-          <h2 class="card-title"><i class="fa-solid fa-2"></i>一言ずつ入力</h2>
-          <p><br>フォームに沿って<br>内容の詳細を記録します。</p>
+        <div class="card-body my-2" style="transform: scale(0.95);">
+          <h2 class="card-title"><i class="fa-solid fa-2"></i>詳細を入力</h2>
+          <p><br>フォームに沿って<br>出来事の詳細を記録します。</p>
         </div>
       </div>
       <div class="card shadow w-full">
-        <div class="card-body">
-          <h2 class="card-title">　</h2>
-          <p><br>『なぜ？』を深めることで<br>自身の考えを認識します。</p>
+        <div class="card card-body my-2" style="transform: scale(0.95);">
+          <p><br>「なぜ？」を掘り下げて<br>自身の考えを見つめ直します。</p>
         </div>
       </div>
       <div class="card shadow w-full">
-        <div class="card-body">
+        <div class="card-body my-2" style="transform: scale(0.95);">
           <h2 class="card-title"><i class="fa-solid fa-3"></i>まとめ</h2>
           <p><br>
-            自身が持っている答えを認識したり、新たな発見があるかもしれません。
-            気づきやまとめも簡潔に記録しましょう。
-            続けることで、思考整理や言語化の芽が出るかもしれません<i class="fa-solid fa-seedling"></i>
+            自分なりの答えや気づきを<br>記録しましょう。<br><br>
+            思考整理や新たな発見に<br>つながるかもしれません<i class="fa-solid fa-seedling"></i>
           </p>
         </div>
       </div>
