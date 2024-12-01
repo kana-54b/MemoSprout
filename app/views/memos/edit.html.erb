@@ -2,19 +2,11 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
       <% content_for :title, "メモ編集" %>
-      <button class="btn btn-outline btn-success" onclick="my_modal_2.showModal()">書き方例</button>
-      <dialog id="my_modal_2" class="modal">
-        <div class="modal-box">
-          <h3 class="text-lg font-bold">例</h3>
-          <p class="py-4">只今作成中です。<br>アップデートをお待ちください🌱</p>
-          <p class="py-4 text-gray-500">※ESCキーを押すか、外側をクリックすることで閉じます</p>
-        </div>
-        <form method="dialog" class="modal-backdrop">
-          <button>close</button>
-        </form>
-      </dialog>
+      <h1 class=text-3xl>メモ編集</h1><br>
+      <br><br>
+      <button class="btn btn-outline btn-success" onclick="my_modal_3.showModal()">書き方例</button>
+      <%#= render "example" %> <!-- 書き方例ボタン -->
       <br><br><br>
-
       <%= render "form", memo: @memo, form_url: memo_path(@memo) %>
     </div>
   </div>

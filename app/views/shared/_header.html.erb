@@ -1,26 +1,34 @@
 <header>
   <div class="navbar bg-base-100 fixed top-0 left-0 w-full z-50">
-    <div class="flex">
+
+    <div class="flex items-center space-x-4">
+      <!-- ロゴ -->
       <%= link_to '/' do %>
-        <%= image_tag 'logo.png', alt: "Memo Sprout logo", class: "h-14 w-auto" %>
+        <%= image_tag 'logo.png', alt: "Memo Sprout logo", class: "h-14 w-auto object-contain" %>
       <% end %>
+
+      <!-- サブタイトル（モバイル非表示） -->
+      <h2 class="text-sm leading-8 text-gray-900 whitespace-nowrap hidden sm:block">- 記録して振り返り、思考を育てる -</h2>
     </div>
-    <h2 class="text-sm leading-8 text-gray-900">- 記録して振り返り、思考を育てる -</h2>
     <div class="flex-none  ml-auto">
       <h2 class="text-error text-sm leading-8 p-3">
         <%= logged_in? && current_user.email.start_with?("guest_") ? "ゲストログイン中" : "ログイン中" %>
       </h2>
       <ul class="menu menu-horizontal px-1">
-        <li><%= link_to "メモ作成", new_memo_path %></li>
+        <li>
+          <%= link_to new_memo_path do %>
+            <i class="fa-solid fa-plus"></i>メモ作成
+          <% end %>
+        </li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
             <summary>Menu</summary>
             <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
-              <li><%= link_to "メモ一覧", memos_path %></li>
               <li>
-                <div class="tooltip tooltip-left" data-tip="アップデートをお待ちください">
-                  使い方
-                </div>
+                <%= link_to "メモ一覧", memos_path %>
+              </li>
+              <li>
+                <a onclick="my_modal_3.showModal()">使い方</a> <!-- モーダルを開くリンク -->
               </li>
               <li>
                 <%= link_to "お気に入り一覧", memo_favorites_path %>
@@ -30,11 +38,15 @@
                   アプリをシェア<i class="fa-brands fa-x-twitter"></i>
                 <% end %>
               </li>
-              <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
+              <li>
+                <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %>
+              </li>
             </ul>
           </details>
         </li>
       </ul>
     </div>
   </div>
+
+<%= render "memos/example" %>
 </header>
