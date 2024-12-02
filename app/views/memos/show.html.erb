@@ -12,7 +12,7 @@
       <%= link_to "", 
         target: "_blank", 
         rel: "noopener noreferrer", 
-        href: "https://x.com/share?text=#{CGI.escape(@share_text)}",
+        href: "https://twitter.com/intent/tweet?text=#{CGI.escape(@share_text)}",
         class: "btn btn-info" do %>
         <i class='fa-brands fa-x-twitter'></i>シェア
       <% end %>
