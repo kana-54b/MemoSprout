@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_many :memos, dependent: :destroy
   has_many :memo_favorites, through: :memos
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   validates :email, presence: { message: "メールアドレスを入力してください" }, uniqueness: { message: "このメールアドレスはすでに使用されています" }
   validates :password, length: { minimum: 4, message: "パスワードは4文字以上にしてください" }, if: -> { new_record? || changes[:crypted_password] }
