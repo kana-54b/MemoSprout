@@ -26,6 +26,8 @@ gem "kaminari"
 gem "meta-tags"
 # create fake data
 gem "faker"
+# configration management
+gem "config"
 
 
 # Use Redis adapter to run Action Cable in production
