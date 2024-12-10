@@ -10,18 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_022346) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_09_063303) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
 
   create_table "memo_favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "memo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["memo_id"], name: "index_memo_favorites_on_memo_id"
     t.index ["user_id", "memo_id"], name: "index_memo_favorites_on_user_id_and_memo_id", unique: true
-    t.index ["user_id"], name: "index_memo_favorites_on_user_id"
   end
 
   create_table "memos", force: :cascade do |t|
@@ -38,8 +46,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_022346) do
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
-    t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

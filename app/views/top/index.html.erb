@@ -10,13 +10,21 @@
         思考整理を習慣化して、自分の新しい価値観に気付いてみませんか？
       </p>
       <br><br>
-
       <% if current_user.nil? %>
+      <br>
+        <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
+          <%= f.button "登録なしで使ってみる", class: "btn btn-success" %>
+        <% end %>
+        <br>
         <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
-          <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
-            <%= f.button "登録なしで使ってみる", class: "btn btn-success" %>
+        <br>
+          <!-- Google認証ボタン -->
+          <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
+            <%= image_tag "web_light_sq_SI.svg", alt: "Sign in with Google", class: "google-button" %>
           <% end %>
-          <br><br>
+
+          <br><div class="divider text-gray-500 text-sm">または</div><br>
+
           <%= form_with url: login_path, method: :post, local: true do |f| %>
             <%= f.label :email, "メールアドレス", class: "label" %>
             <%= f.email_field :email, placeholder: "memosprout@example.com", class: "input input-bordered w-full max-w-xs" %>
@@ -25,9 +33,11 @@
             <%= f.label :password, "パスワード", class: "label" %>
             <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
             <br><br>
-            <%= link_to "パスワードをお忘れの方はこちら", "#", class: "btn btn-link" %>
+            <div class="tooltip" data-tip="アップデートをお待ちください">
+              <%= link_to "パスワードをお忘れの方はこちら", "#", class: "btn btn-link" %>
+            </div>
             <br><br>
-            <%= submit_tag "ログイン", class: "btn btn-warning" %>
+            <%= submit_tag "　　ログイン　　", class: "btn btn-warning" %>
           <% end %>
           <br><br>
           <%= link_to "新規登録ページへ", new_user_path, class: "btn btn-error" %>

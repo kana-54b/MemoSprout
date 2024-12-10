@@ -22,7 +22,12 @@ module MemoSprout
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+    # タイムゾーンを東京に設定
     config.time_zone = "Asia/Tokyo"
+
+    # データベースのタイムゾーンを東京に設定
+    config.active_record.default_timezone = :local
+
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

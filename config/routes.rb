@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   resources :memo_favorites, only: %i[create destroy index]
 
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback"
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
