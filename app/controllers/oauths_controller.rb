@@ -7,16 +7,25 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
+
+    # ユーザーが認証をキャンセルした場合
+    if params[:error]
+      redirect_to root_path, alert: "#{provider.titleize}アカウントでのログインがキャンセルされました"
+      return
+    end
+
+    # ユーザーが認証を許可した場合
     if (@user = login_from(provider))
-      redirect_to root_path, notice: "#{provider.titleize}でログインしました"
+      redirect_to memos_path, notice: "#{provider.titleize}アカウントでログインしました"
     else
       begin
         @user = create_from(provider)
         reset_session # protect from session fixation attack（セッション固定攻撃から保護する）
         auto_login(@user)
-        redirect_to root_path, notice: "#{provider.titleize}でログインしました"
-      rescue
-        redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
+        redirect_to memos_path, notice: "#{provider.titleize}アカウントを作成しログインしました"
+      rescue StandardError => e
+        flash[:alert] = "#{provider.titleize}アカウントでのログインに失敗しました: #{e.message}"
+        redirect_to root_path
       end
     end
   end
@@ -24,7 +33,7 @@ class OauthsController < ApplicationController
   private
 
   def auth_params
-    params.permit(:code, :provider)
+    params.permit(:code, :provider, :error)
   end
 
   def signup_and_login(provider)
