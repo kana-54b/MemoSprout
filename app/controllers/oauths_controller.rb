@@ -10,21 +10,21 @@ class OauthsController < ApplicationController
 
     # ユーザーが認証をキャンセルした場合
     if params[:error]
-      redirect_to root_path, alert: "#{provider.titleize}アカウントでのログインがキャンセルされました"
+      redirect_to root_path, info: "#{provider.titleize}アカウントでのログインがキャンセルされました"
       return
     end
 
     # ユーザーが認証を許可した場合
     if (@user = login_from(provider))
-      redirect_to memos_path, notice: "#{provider.titleize}アカウントでログインしました"
+      redirect_to memos_path, success: "#{provider.titleize}アカウントでログインしました"
     else
       begin
         @user = create_from(provider)
         reset_session # protect from session fixation attack（セッション固定攻撃から保護する）
         auto_login(@user)
-        redirect_to memos_path, notice: "#{provider.titleize}アカウントを作成しログインしました"
+        redirect_to memos_path, success: "#{provider.titleize}アカウントを作成しログインしました"
       rescue StandardError => e
-        flash[:alert] = "#{provider.titleize}アカウントでのログインに失敗しました: #{e.message}"
+        flash[:error] = "#{provider.titleize}アカウントでのログインに失敗しました: #{e.message}"
         redirect_to root_path
       end
     end
