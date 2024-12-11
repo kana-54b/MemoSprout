@@ -1,10 +1,17 @@
+<!-- 呼び出し元 memos/new.html.erb, memos/edit.html.erb -->
+
 <% parsed_content = JSON.parse(@memo.memo_content) rescue {} %>
   どんなことがありましたか？<br>
 
   <%= form_with model: @memo, url: form_url, data: { turbo: false } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <h2 class="text-sm">（※アップデートで感情の選択ができるようになります）</h2><br>
-    <%= f.select :emotion, [["嬉しかったこと・いいね", "happy"]], { selected: "happy" }, class: "select select-error w-full max-w-xs" %>
+
+    <!-- 感情選択 -->
+    <div class="emotion-select">
+        <%= form_with url: update_placeholders_memos_path, method: :post, data: { turbo_frame: "placeholders_frame" } do |f| %>
+        <%= f.select :emotion, emotion_options, { selected: "happy" }, class: "select select-error w-full max-w-xs", id: "emotion_select", name: "emotion" %>
+      <% end %>
+    </div>
 
     <br><br><br><br>
     いつ（When）<br>
@@ -13,7 +20,7 @@
     <br><br><br><br>
     <%= f.fields_for :memo_content do |key| %>
       何（What）(*)<br>
-      <%= key.text_area 'what', value: parsed_content['what'], placeholder: "どんなことが嬉しかったの？", class: "input input-bordered w-full max-w-xs" %>
+      <%= key.text_area 'what', placeholder: memo.placeholder_for_all("what", (@memo.emotion || :happy).to_sym), class: "input input-bordered w-full max-w-xs", id: "memo_what" %>
 
       <br><br><br><br>
       なぜ(Why)(*)<br>

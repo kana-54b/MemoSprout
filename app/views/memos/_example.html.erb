@@ -16,7 +16,7 @@
           <p>どんなことがありましたか？</p>
           
           <%= form_with url: '#', data: { turbo: false } do |f| %>
-            <%= f.select :emotion, [["嬉しかったこと・いいね", "happy"]], { selected: "happy" }, class: "select select-error sm:w-[60%]" %>
+            <%= f.select :emotion, emotion_options, { selected: "happy" }, class: "select select-error sm:w-[60%]" %>
             
             <br><br>
             <p>いつ（When）</p>

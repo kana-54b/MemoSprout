@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :memos do
     collection do
+      post :update_placeholders
       match :confirm, via: %i[get post]
     end
   end
