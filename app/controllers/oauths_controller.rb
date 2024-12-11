@@ -22,7 +22,7 @@ class OauthsController < ApplicationController
         @user = create_from(provider)
         reset_session # protect from session fixation attack（セッション固定攻撃から保護する）
         auto_login(@user)
-        redirect_to memos_path, success: "#{provider.titleize}アカウントを作成しログインしました"
+        redirect_to memos_path, success: "#{provider.titleize}アカウントでログインしました"
       rescue StandardError => e
         flash[:error] = "#{provider.titleize}アカウントでのログインに失敗しました: #{e.message}"
         redirect_to root_path
