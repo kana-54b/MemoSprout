@@ -14,7 +14,8 @@ class Memo < ApplicationRecord
     end
   end
 
-  def memo_content=(value) # memo_contentデータの作成前にJSON形式に変換
+  ### memo_contentデータの作成前にJSON形式に変換 ###
+  def memo_content=(value)
     if value.is_a?(Hash)
       super(value.to_json)
     else
@@ -22,11 +23,13 @@ class Memo < ApplicationRecord
     end
   end
 
-  def favorited_by?(user) # current_userがお気に入り登録しているかを確認
+  ### current_userがお気に入り登録しているかを確認 ###
+  def favorited_by?(user)
     memo_favorite&.user_id == user.id
   end
 
-  def self.streak_days(user) # 連続記録
+  ### メモの連続記録 ###
+  def self.streak_days(user)
     today = Date.today
     streak_count = 0 # 連続記録をカウントする
     previous_date = today + 1 # 初期値を明日に設定
@@ -56,7 +59,64 @@ class Memo < ApplicationRecord
     streak_count
   end
 
-  def self.today_memo?(user) # 今日のメモが存在するか？
+  ### 今日のメモが存在するか？ ###
+  def self.today_memo?(user)
     user.memos.exists?(created_at: Date.today.all_day)
+  end
+
+  ### プレースホルダー ###
+  def self.placeholders
+    {
+      happy: {
+        what: "どんなことが嬉しかったのー？",
+        why: "どうして嬉しかったのー？",
+        why_more: "具体的にはそれのどんなところー？",
+        how: "どうやって実現したの？何かアクションをしたー？",
+        summary: "自分の言葉で書き出してみようー"
+      },
+      sad: {
+        what: "どんなことが悲しかったの？",
+        why: "どうして悲しかったの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "それにどう対処したのか？",
+        summary: "その経験から学んだことを整理しよう"
+      },
+      angry: {
+        what: "どんなことに怒ったの？",
+        why: "どうして怒ったの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "その怒りをどう表現したのか？",
+        summary: "怒りの後、どう感じたのか整理しよう"
+      },
+      funny: {
+        what: "どんなことが面白かったの？",
+        why: "どうしてそれが面白いと思ったの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "どうやって実現したの？何かアクションをした？",
+        summary: "面白かった理由を自分なりにまとめてみよう！"
+      },
+      other: {
+        what: "どんな出来事があったの？",
+        why: "それをどんな風に感じたの？",
+        why_more: "その出来事についてもっと詳しく！",
+        how: "どのように行動したり、対処したの？",
+        summary: "出来事や気持ちを整理してみよう！"
+      }
+    }
+  end
+
+  ### 感情別のプレースホルダーを返す ###
+  def placeholder_for_all(key, emotion)
+    emotion = emotion.to_sym if emotion.is_a?(String)
+    key = key.to_sym  # keyをシンボルに変換
+    Rails.logger.debug "🥕デバッグ: key = #{key}, emotion = #{emotion.inspect}"
+    placeholders = Memo.placeholders
+    Rails.logger.debug "🥑デバッグ: placeholders.keys = #{placeholders.keys.inspect}"
+    Rails.logger.debug "🍆デバッグ: placeholders[emotion]&.keys = #{placeholders[emotion]&.keys.inspect}"
+    return "感情が設定されていません" if emotion.nil?
+
+    result = placeholders.dig(emotion, key) || "未定義のプレースホルダーです"
+    Rails.logger.debug "👻デバッグ: プレースホルダー = #{result.inspect}"
+    result
   end
 end
