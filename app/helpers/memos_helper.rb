@@ -9,6 +9,10 @@ module MemosHelper
     ]
   end
 
+  def emotion_label(emotion_key) # emotion_keyに対応する日本語のラベルを返す
+    emotion_options.to_h.invert[emotion_key]
+  end
+
   def memo_example
     {
       what: "おともだちと遊んだこと",
