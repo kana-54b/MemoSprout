@@ -7,11 +7,7 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <!-- 感情選択 -->
-    <div class="emotion-select">
-        <%= form_with url: update_placeholders_memos_path, method: :post, data: { turbo_frame: "placeholders_frame" } do |f| %>
-        <%= f.select :emotion, emotion_options, { selected: "happy" }, class: "select select-error w-full max-w-xs", id: "emotion_select", name: "emotion" %>
-      <% end %>
-    </div>
+    <%= f.select :emotion, emotion_options, { selected: "happy" }, class: "select select-error w-full max-w-xs", id: "emotion_select" %>
 
     <br><br><br><br>
     いつ（When）<br>
