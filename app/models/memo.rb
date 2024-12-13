@@ -14,7 +14,8 @@ class Memo < ApplicationRecord
     end
   end
 
-  def memo_content=(value) # memo_contentデータの作成前にJSON形式に変換
+  ### memo_contentデータの作成前にJSON形式に変換 ###
+  def memo_content=(value)
     if value.is_a?(Hash)
       super(value.to_json)
     else
@@ -22,11 +23,13 @@ class Memo < ApplicationRecord
     end
   end
 
-  def favorited_by?(user) # current_userがお気に入り登録しているかを確認
+  ### current_userがお気に入り登録しているかを確認 ###
+  def favorited_by?(user)
     memo_favorite&.user_id == user.id
   end
 
-  def self.streak_days(user) # 連続記録
+  ### メモの連続記録 ###
+  def self.streak_days(user)
     today = Date.today
     streak_count = 0 # 連続記録をカウントする
     previous_date = today + 1 # 初期値を明日に設定
@@ -56,7 +59,8 @@ class Memo < ApplicationRecord
     streak_count
   end
 
-  def self.today_memo?(user) # 今日のメモが存在するか？
+  ### 今日のメモが存在するか？ ###
+  def self.today_memo?(user)
     user.memos.exists?(created_at: Date.today.all_day)
   end
 end

@@ -46,12 +46,12 @@ class MemosController < ApplicationController
     end
 
 
-    # JSONデータから`what`と`emotion`を取り出す
+    # Xシェア
     memo_data = JSON.parse(@memo.memo_content)
     what = memo_data["what"].gsub(/\R/, "") if memo_data["what"].present? # 改行を削除
     emotion = memo_data["emotion"]
 
-    emoji = emotion ? { happy: "😀", angry: "😤", sad: "😞", funny: "😆" }[emotion.to_sym] || "✏️" : "✏️"
+    emoji = emotion ? { happy: "😀", angry: "😤", sad: "😞", funny: "😆", other: "😌" }[emotion.to_sym] || "✏️" : "✏️"
 
     # シェアテキストを生成
     @share_text = "#{emoji} : 「#{what}」について\n掘り下げて思考の芽を生やしました🌱\n#{root_url}\n#MemoSprout"
