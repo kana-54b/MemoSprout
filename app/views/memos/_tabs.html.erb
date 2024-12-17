@@ -1,0 +1,36 @@
+<!-- タブ：喜しかったこと -->
+<div role="tablist" class="tabs tabs-lifted">
+  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="喜" checked="checked" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <% @memo.emotion = :happy %>
+    <%= render "memos/tabs/happy" %>
+  </div>
+
+<!-- タブ：怒ったこと -->
+  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="怒" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <% @memo.emotion = :angry %>
+    <%= render "memos/tabs/angry" %>
+  </div>
+
+<!-- タブ：悲しかったこと -->
+  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="哀" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <% @memo.emotion = :sad %>
+    <%= render "memos/tabs/sad", emotion: :sad %>
+  </div>
+
+<!-- タブ：楽しかったこと -->
+  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="楽" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <%= @memo.emotion = :funny %>
+    <%= render "memos/tabs/funny" %>
+  </div>
+
+<!-- タブ：その他 -->
+  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="その他" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <%= @memo.emotion = :other %>
+    <%= render "memos/tabs/other" %>
+  </div>
+</div>
