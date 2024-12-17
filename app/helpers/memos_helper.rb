@@ -9,11 +9,11 @@ module MemosHelper
     ]
   end
 
-  def emotion_label(emotion_key) # emotion_keyに対応する日本語のラベルを返す
+  def emotion_label(emotion_key) # 確認ページ：選択した感情のラベルを返す
     emotion_options.to_h.invert[emotion_key]
   end
 
-  def memo_example
+  def memo_example # 使い方・書き方例モーダル：メモの例
     {
       what: "おともだちと遊んだこと",
       why: "楽しかったから",
