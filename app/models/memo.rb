@@ -63,4 +63,54 @@ class Memo < ApplicationRecord
   def self.today_memo?(user)
     user.memos.exists?(created_at: Date.today.all_day)
   end
+
+  ### プレースホルダー ###
+  def self.placeholders
+    {
+      happy: {
+        what: "どんなことが嬉しかったの？",
+        why: "どうして嬉しかったの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "どうやって実現したの？何かアクションをした？",
+        summary: "自分の言葉で整理してみよう!"
+      },
+      angry: {
+        what: "どんなことに怒ったの？",
+        why: "どうして怒ったの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "それにどう対処したの？何かアクションをした？",
+        summary: "自分の言葉で整理してみよう!"
+      },
+      sad: {
+        what: "どんなことが悲しかったの？",
+        why: "どうして悲しかったの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "それにどう対処したの？何かアクションをした？",
+        summary: "自分の言葉で整理してみよう!"
+      },
+      funny: {
+        what: "どんなことが面白かったの？",
+        why: "どうしてそれが面白いと思ったの？",
+        why_more: "具体的に、どの部分がツボだったの？",
+        how: "どうやって実現したの？何かアクションをした？",
+        summary: "自分の言葉で整理してみよう!"
+      },
+      other: {
+        what: "どんな出来事があったの？",
+        why: "どうしてそう感じたの？",
+        why_more: "具体的にはそれのどんなところ？",
+        how: "どのように行動したり、対処したの？",
+        summary: "自分の言葉で整理してみよう!"
+      }
+    }
+  end
+
+  ### 感情別のプレースホルダーを返す ###
+  def placeholder_for_all(key, emotion)
+    placeholders = Memo.placeholders
+    emotion = emotion&.to_sym
+    key = key.to_sym  # keyをシンボルに変換
+
+    placeholders.dig(emotion, key) || "未定義のプレースホルダーです"
+  end
 end
