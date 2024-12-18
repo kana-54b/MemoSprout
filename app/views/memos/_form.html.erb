@@ -5,6 +5,7 @@
 
   <%= form_with model: @memo, url: form_url, data: { turbo: false } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
+    <%= f.hidden_field :emotion, value: @memo.emotion %> <!-- フォームに感情を隠しフィールドで渡す -->
 
     <br><br><br><br>
     いつ（When）<br>
