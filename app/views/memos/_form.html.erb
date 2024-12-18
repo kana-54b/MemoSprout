@@ -5,9 +5,7 @@
 
   <%= form_with model: @memo, url: form_url, data: { turbo: false } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-
-    <!-- 感情選択 -->
-    <%= f.select :emotion, emotion_options, { selected: "happy" }, class: "select select-error w-full max-w-xs", id: "emotion_select" %>
+    <%= f.hidden_field :emotion, value: @memo.emotion %> <!-- フォームに感情を隠しフィールドで渡す -->
 
     <br><br><br><br>
     いつ（When）<br>
@@ -16,23 +14,23 @@
     <br><br><br><br>
     <%= f.fields_for :memo_content do |key| %>
       何（What）(*)<br>
-      <%= key.text_area 'what', placeholder: memo.placeholder_for_all("what", (@memo.emotion || :happy).to_sym), class: "input input-bordered w-full max-w-xs", id: "memo_what" %>
+      <%= key.text_area 'what', value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
 
       <br><br><br><br>
       なぜ(Why)(*)<br>
-      <%= key.text_area 'why', value: parsed_content['why'], placeholder: "どうして嬉しかったの？", class: "input input-bordered w-full max-w-xs" %>
+      <%= key.text_area 'why', value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
 
       <br><br><br><br>
       なぜをもっと深掘り(*)<br>
-      <%= key.text_area 'why_more', value: parsed_content['why_more'], placeholder: "具体的にはそれのどんなところが？", class: "input input-bordered w-full max-w-xs" %>
+      <%= key.text_area 'why_more', value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
 
       <br><br><br><br>
       どのように(How)(*)<br>
-      <%= key.text_area 'how', value: parsed_content['how'],  placeholder: "どうやって実現したの？何かアクションをした？", class: "input input-bordered w-full max-w-xs" %>
+      <%= key.text_area 'how', value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
 
       <br><br><br><br>
       まとめ・気付き(*)<br>
-      <%= key.text_area 'summary', value: parsed_content['summary'], placeholder: "自分の言葉で書き出してみよう", class: "input input-bordered w-full max-w-xs h-32" %>
+      <%= key.text_area 'summary', value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "input input-bordered w-full max-w-xs h-32" %>
       <% end %>
 
     <br><br><br>

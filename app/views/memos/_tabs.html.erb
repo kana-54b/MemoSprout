@@ -1,0 +1,10 @@
+<!-- タブ：感情一覧 -->
+<div role="tablist" class="tabs tabs-lifted">
+  <% emotions = { happy: "喜", angry: "怒", sad: "哀", funny: "楽", other: "その他" } %>
+  <% emotions.each do |emotion, label| %>
+    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="<%= label %>" <%= 'checked="checked"' if emotion == :happy %> />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <%= render "emotion_form", emotion: emotion %>
+    </div>
+  <% end %>
+</div>
