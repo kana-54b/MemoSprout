@@ -28,6 +28,8 @@ gem "meta-tags"
 gem "faker"
 # configration management
 gem "config"
+# Internationalization
+gem "rails-i18n"
 
 
 # Use Redis adapter to run Action Cable in production
