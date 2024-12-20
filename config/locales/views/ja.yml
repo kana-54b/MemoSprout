@@ -30,6 +30,22 @@ ja:
 
         思考整理や新たな発見に
         つながるかもしれません。
+    _form:
+      before: "一つずつ掘り下げてみましょう"
+      when: "いつ"
+      what: "何"
+      why: "なぜ"
+      why_more: "なぜをもっと深掘り"
+      how: "どのように"
+      summary: "まとめ・気付き"
+      confirm: "入力内容を確認する"
+      update: "更新"
+    _tabs:
+      happy: "喜"
+      angry: "怒"
+      sad: "哀"
+      funny: "楽"
+      other: "その他"
   shared:
     _footer:
       terms: "利用規約"
