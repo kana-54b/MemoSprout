@@ -1,4 +1,25 @@
 ja:
+  shared:
+    _footer:
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
+    _header_before_login:
+      catchphrase: "記録して振り返り、思考を育てる"
+      login: "ログイン"
+      memo_list: "メモ一覧"
+      how_to_use: "使い方"
+      favorite: "お気に入り"
+      share_app: "アプリをシェア"
+    _header:
+      guest_logged_in: "ゲストログイン中"
+      logged_in: "ログイン中"
+      create_memo: "メモ作成"
+      memo_list: "メモ一覧"
+      how_to_use: "使い方"
+      favorite: "お気に入り"
+      share_app: "アプリをシェア"
+      logout: "ログアウト"
   top:
     index:
       title: "TOPページ"
