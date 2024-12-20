@@ -1,11 +1,13 @@
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
-      <% content_for :title, "メモ作成" %>
-      <h1 class=text-3xl>メモ作成</h1><br>
+      <% content_for :title, t('.title') %>
+
+      <!-- メモ作成 -->
+      <h1 class=text-3xl><%= t('.title') %></h1><br>
       <br><br>
-      <button class="btn btn-outline btn-success" onclick="my_modal_3.showModal()">書き方例</button>
-      <%#= render "example" %> <!-- 書き方例モーダル -->
+      <button class="btn btn-outline btn-success" onclick="my_modal_3.showModal()"><%= t('.example') %></button>
+      <%#= render "example" %> <!-- 書き方例 はヘッダーに記述のファイルを利用 -->
       <br><br><br>
       <%= render "tabs" %> <!-- 感情別タブ -->
       <br><br>

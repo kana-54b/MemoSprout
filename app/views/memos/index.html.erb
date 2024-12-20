@@ -1,34 +1,47 @@
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
-      <% content_for :title, "メモ一覧" %>
+      <% content_for :title, t('.title') %>
 
-      <h1 class="text-3xl">Memo一覧</h1><br>
+      <!-- メモ一覧 -->
+      <h1 class="text-3xl"><%= t('.title') %></h1><br>
       <% if @memos.present? %>
-        <div class="border p-3 mb-10"> <!-- 最終更新のメモ -->
-          最新の記録<br><br>
+        <div class="border p-3 mb-10">
+          <!-- 最終更新のメモ -->
+          <%= t('.last_update_memo') %>
+          <br><br>
           <%= @latest_memo.date %><br>
           <div class="text-xl">
             <%= JSON.parse(@latest_memo.memo_content)["what"] %>
           </div><br>
+            <!-- 「まとめ・気付き」 -->
+            <%= t('.summary') %>
           <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
         </div>
 
         <br><br>
         <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
-        <% @memos.each do |memo| %> <!-- メモ一覧 -->
+
+        <!-- メモ一覧 -->
+        <% @memos.each do |memo| %>
           <div id="memo-<%= memo.id %>">
             <div class="border p-3">
               <div class="flex justify-start">
-                <%= memo.date || "日付は未選択です" %>
+                <%= memo.date || t('.no_date') %>
               </div>
               <!-- タイトル（Whatの内容）-->
               <%= link_to JSON.parse(memo.memo_content)["what"], memo_path(memo), id: memo.id, class: "btn glass btn-wide btn-lg" %>
+
               <div class="flex justify-end">
-                <%= render "shared/favorite_star", memo: memo %> <!-- お気に入りの⭐️ -->
+                <!-- アイコン：お気に入りの☆ -->
+                <%= render "shared/favorite_star", memo: memo %>
+
+                <!-- アイコン：編集 -->
                 <%= link_to edit_memo_path(memo), class: "mx-2" do %>
                   <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
+
+                <!-- アイコン：削除 -->
                 <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？\n\n※このメモが連続記録日数に含まれている場合、\n　記録が途切れる可能性があります。" }, class: "mx-2" do %>
                   <i class="fa-solid fa-trash"></i>
                 <% end %>
@@ -38,12 +51,16 @@
         <% end %><br><br>
         <%= paginate @memos %> <!-- ページネーション -->
 
-      <% else %> <!-- メモがない場合 -->
-      <%= render "count_memos" %><!-- メモ総数と連続記録日数 -->
-        記録はまだありません。<br>
-        メモを作成してみましょう！<br><br>
-        <%= link_to "新規作成", new_memo_path, class: "btn" %>
+      <!-- メモがない場合 -->
+      <% else %>
+      <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
+        <%= simple_format t('.no_memo') %><br>
+        <%= link_to t('.create_new'), new_memo_path, class: "btn" %>
       <% end %>
+
+
+
+      
       <br><br>
     </div>
   </div>
