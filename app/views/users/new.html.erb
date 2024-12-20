@@ -1,8 +1,10 @@
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
-      <% content_for :title, "ユーザー登録" %>
-      ユーザー情報を入力してください。
+      <% content_for :title, t('.title') %>
+
+      <!-- ユーザー登録 -->
+      <h1 class=text-3xl><%= t('.title') %></h1>
       <br><br>
       <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
         <%= form_with model: @user do |f| %>
@@ -32,7 +34,7 @@
           <%= f.label :password_confirmation, "#{I18n.t('activerecord.attributes.user.password_confirmation')} (*)", class: "label" %>
           <%= f.password_field :password_confirmation, class: "input input-bordered w-full max-w-xs" %>
           <br><br><br>
-          <%= f.submit "登録", class: "btn btn-error" %>
+          <%= f.submit t('.submit'), class: "btn btn-error" %>
         <% end %>
       </div>
     </div>
