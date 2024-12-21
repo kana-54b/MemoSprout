@@ -1,21 +1,28 @@
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
-      <% content_for :title, JSON.parse(@memo.memo_content)["what"] %>
+      <% content_for :title, JSON.parse(@memo.memo_content)["what"] + t('.detail') %>
 
-      <h1 class=text-3xl><%= "#{JSON.parse(@memo.memo_content)["what"]}の詳細" %></h1><br>
+      <h1 class=text-3xl><%= "#{JSON.parse(@memo.memo_content)["what"]}" %><%= t('.detail') %></h1><br>
       <br><br>
-      <%= link_to "編集", edit_memo_path(@memo), class: "btn btn-success"  %>
-      ・
-      <%= link_to "削除", memo_path(@memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error" %>
-      ・
-      <%= link_to "", 
-        target: "_blank", 
-        rel: "noopener noreferrer", 
-        href: "https://twitter.com/intent/tweet?text=#{CGI.escape(@share_text)}",
-        class: "btn btn-info" do %>
-        <i class='fa-brands fa-x-twitter'></i>シェア
-      <% end %>
+        <!-- アイコン：編集 -->
+        <%= link_to edit_memo_path(@memo), class: "mx-2" do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+
+        <!-- アイコン：削除 -->
+        <%= link_to memo_path(@memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2" do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+
+        <!-- アイコン：Xシェア -->
+        <%= link_to "", 
+          target: "_blank", 
+          rel: "noopener noreferrer", 
+          href: "https://twitter.com/intent/tweet?text=#{CGI.escape(@share_text)}",
+          class: "mx-2" do %>
+          <i class='fa-brands fa-x-twitter'></i>
+        <% end %>
 
       <%= form_with model: @memo, url: memos_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
@@ -29,7 +36,7 @@
 
           <br><br><br>
           <div class="text-gray-400">
-          いつ（When）<br>
+          <%= t('.when') %>（When）<br>
           </div>
           <div class="font-extrabold">
           <%= @memo.date %>
@@ -39,7 +46,8 @@
           <br><br>
           <%= f.fields_for :memo_content do |key| %>
             <div class="text-gray-400">
-            何（What）<br>
+            <!-- 何 -->
+            <%= t('.what') %>（What）<br>
             </div>
             <div class="font-extrabold">
             <%= JSON.parse(@memo.memo_content)["what"] %>
@@ -48,7 +56,8 @@
 
             <br><br>
             <div class="text-gray-400">
-            なぜ(Why)<br>
+            <!-- なぜ -->
+            <%= t('.why') %>(Why)<br>
             </div>
             <div class="font-extrabold">
             <%= JSON.parse(@memo.memo_content)["why"] %>
@@ -57,7 +66,8 @@
             
             <br><br>
             <div class="text-gray-400">
-            なぜをもっと深掘り<br>
+            <!-- なぜをもっと深掘り -->
+            <%= t('.why_more') %><br>
             </div>
             <div class="font-extrabold">
             <%= JSON.parse(@memo.memo_content)["why_more"] %>
@@ -66,7 +76,8 @@
 
             <br><br>
             <div class="text-gray-400">
-            どのように(How)<br>
+            <!-- どのように -->
+            <%= t('.how') %>(How)<br>
             </div>
             <div class="font-extrabold">
             <%= JSON.parse(@memo.memo_content)["how"] %>
@@ -75,13 +86,13 @@
             
             <br><br>
             <div class="text-gray-400">
-            まとめ・気付き<br>
+            <!-- まとめ・気付き -->
+            <%= t('.summary') %><br>
             </div>
             <div class="font-extrabold">
             <%= simple_format JSON.parse(@memo.memo_content)["summary"] %>
             </div>
             <%= key.hidden_field 'summary', value: JSON.parse(@memo.memo_content)["summary"] %>
-            <br>
           <% end %>
         <% end %>
         <br>

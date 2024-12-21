@@ -65,14 +65,32 @@ ja:
       last_update_memo: "最終更新のメモ"
       summary: "まとめ・気付き"
       no_date: "日付なし"
+      caution: |
+        本当に削除しますか？
+        
+        ※このメモが連続記録日数に含まれている場合、
+        記録が途切れる可能性があります。
       no_memo: |
         記録はまだありません。
         メモを作成してみましょう！
       create_new: "新規作成"
-
     new:
       title: "メモ作成"
       example: "書き方例"
+    show:
+      detail: "の詳細"
+      caution: |
+        本当に削除しますか？
+        
+        ※このメモが連続記録日数に含まれている場合、
+        記録が途切れる可能性があります。
+      edit: "編集"
+      when: "いつ"
+      what: "何"
+      why: "なぜ"
+      why_more: "なぜをもっと深掘り"
+      how: "どのように"
+      summary: "まとめ・気付き"
   shared:
     _footer:
       terms: "利用規約"
