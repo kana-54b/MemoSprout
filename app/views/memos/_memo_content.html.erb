@@ -1,0 +1,71 @@
+<!-- 呼び出し元 memos/show.html.erb, memos/confirm.html.erb -->
+
+<div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
+  <br>
+  <br>
+  <div class="badge badge-error badge-outline badge-lg w-full max-w-xs">
+  <%= emotion_label(@memo.emotion) %>
+  </div>
+  <%= f.hidden_field :emotion, value: @memo.emotion %>
+
+  <br><br><br>
+  <div class="text-gray-400">
+  <!-- いつ -->
+  <%= t('memos.show.when') %>（When）<br>
+  </div>
+  <div class="font-extrabold">
+  <%= @memo.date %>
+  </div>
+  <%= f.hidden_field :date, value: @memo.date %>
+
+  <br><br>
+  <%= f.fields_for :memo_content do |key| %>
+    <div class="text-gray-400">
+    <!-- 何 -->
+    <%= t('memos.show.what') %>（What）<br>
+    </div>
+    <div class="font-extrabold">
+    <%= JSON.parse(@memo.memo_content)["what"] %>
+    </div>
+    <%= key.hidden_field 'what', value: JSON.parse(@memo.memo_content)["what"] %>
+
+    <br><br>
+    <div class="text-gray-400">
+    <!-- なぜ -->
+    <%= t('memos.show.why') %>(Why)<br>
+    </div>
+    <div class="font-extrabold">
+    <%= JSON.parse(@memo.memo_content)["why"] %>
+    </div>
+    <%= key.hidden_field 'why', value: JSON.parse(@memo.memo_content)["why"] %>
+    
+    <br><br>
+    <div class="text-gray-400">
+    <!-- なぜをもっと深掘り -->
+    <%= t('memos.show.why_more') %><br>
+    </div>
+    <div class="font-extrabold">
+    <%= JSON.parse(@memo.memo_content)["why_more"] %>
+    </div>
+    <%= key.hidden_field 'why_more', value: JSON.parse(@memo.memo_content)["why_more"] %>
+
+    <br><br>
+    <div class="text-gray-400">
+    <!-- どのように -->
+    <%= t('memos.show.how') %>(How)<br>
+    </div>
+    <div class="font-extrabold">
+    <%= JSON.parse(@memo.memo_content)["how"] %>
+    </div>
+    <%= key.hidden_field 'how', value: JSON.parse(@memo.memo_content)["how"] %>
+    
+    <br><br>
+    <div class="text-gray-400">
+    <!-- まとめ・気付き -->
+    <%= t('memos.show.summary') %><br>
+    </div>
+    <div class="font-extrabold">
+    <%= simple_format JSON.parse(@memo.memo_content)["summary"] %>
+    </div>
+    <%= key.hidden_field 'summary', value: JSON.parse(@memo.memo_content)["summary"] %>
+  <% end %>
