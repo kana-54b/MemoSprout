@@ -46,16 +46,6 @@ ja:
       sad: "哀"
       funny: "楽"
       other: "その他"
-    confirm:
-      title: "入力内容確認"
-      is_ok?: "この内容でよろしいですか？"
-      when: "いつ"
-      what: "何"
-      why: "なぜ"
-      why_more: "なぜをもっと深掘り"
-      how: "どのように"
-      summary: "まとめ・気付き"
-      save: "メモ保存"
     edit:
       title: "メモ編集"
       example: "書き方例"
