@@ -10,7 +10,7 @@ class Memo < ApplicationRecord
     data = JSON.parse(memo_content) rescue {}
 
     if data["what"].blank? || data["why"].blank? || data["why_more"].blank? || data["how"].blank? || data["summary"].blank?
-      errors.add(:base, "(*)は必須項目です")
+      errors.add(:base, :required_fields) # 「(*)は必須項目です」
     end
   end
 
@@ -111,6 +111,6 @@ class Memo < ApplicationRecord
     emotion = emotion&.to_sym
     key = key.to_sym  # keyをシンボルに変換
 
-    placeholders.dig(emotion, key) || "未定義のプレースホルダーです"
+    placeholders.dig(emotion, key)
   end
 end

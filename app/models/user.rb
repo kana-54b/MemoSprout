@@ -6,9 +6,9 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  validates :email, presence: { message: "メールアドレスを入力してください" }, uniqueness: { message: "このメールアドレスはすでに使用されています" }
-  validates :password, length: { minimum: 4, message: "パスワードは4文字以上にしてください" }, if: -> { new_record? || changes[:crypted_password] }
-  validates :password, confirmation: { message: "確認用パスワードが一致していません" }, if: -> { new_record? || changes[:crypted_password] }
+  validates :email, presence: { message: :blank }, uniqueness: { message: :taken } # 「を入力してください」「は既に使用されています」
+  validates :password, length: { minimum: 4, message: :too_short }, if: -> { new_record? || changes[:crypted_password] } # 「は%{}文字以上で入力してください」
+  validates :password, confirmation: { message: :confirmation }, if: -> { new_record? || changes[:crypted_password] } # 「…が一致しません」
   validate :first_name_or_last_name_present
 
   def favorite_memo?(memo)
@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   def first_name_or_last_name_present
     if first_name.blank? && last_name.blank?
-      errors.add(:base, "姓もしくは名のどちらかの入力は必須です")
+      errors.add(:base, :blank_names) # 「姓もしくは名のどちらかの入力は必須です」
     end
   end
 end

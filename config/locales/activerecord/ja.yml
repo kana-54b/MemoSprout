@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      user:
+        one: "ユーザー"
+        other: "ユーザー"
+    attributes:
+      user:
+        first_name: "名"
+        last_name: "姓"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（再入力）"
+    helpers:
+      hints:
+        user:
+          name: "（※姓または名のいずれかは入力が必要です）"
+          password: "（※4文字以上）"
+    errors:
+      messages:
+        required_fields: "(*)は必須項目です"
+      models:
+        user:
+          blank_names: "姓もしくは名のどちらかの入力は必須です"
+        attributes:
+          email:
+            blank: "を入力してください"
+            taken: "は既に登録されています"
+          password:
+            blank: "を入力してください"
+            too_short: "は%{count}文字以上で入力してください"
+          password_confirmation:
+            confirmation: "が一致しません"

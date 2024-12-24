@@ -1,0 +1,133 @@
+ja:
+  memos:
+    _count_memos:
+      total_memos: "総メモ数"
+      streak_days: "連続記録日数"
+      note: 連続記録日数について
+      description: |
+        記録は「実際の作成日」でカウントされます。
+        メモ作成時に選んだ日付は影響しません。
+        　
+        毎日1回、記録を作成して連続記録を目指しましょう！
+      with_count: "今日の記録はカウントされています"
+      no_count: "今日の記録はまだありません。記録更新を目指しましょう！"
+    _example:
+      choice: "感情を選択する"
+      description_1: |
+        記録したい出来事に対する
+        感情を選択しましょう。
+      detail: "詳細を入力する"
+      description_2_1: |
+        フォームに沿って
+        出来事の詳細を記録します。
+      description_2_2: |
+        「なぜ？」を掘り下げて
+        自身の考えを見つめ直します。
+      summary: "まとめ"
+      description_3: |-
+        自分なりの答えや気づきを
+        記録しましょう。
+
+        思考整理や新たな発見に
+        つながるかもしれません。
+    _form:
+      before: "一つずつ掘り下げてみましょう"
+      when: "いつ"
+      what: "何"
+      why: "なぜ"
+      why_more: "なぜをもっと深掘り"
+      how: "どのように"
+      summary: "まとめ・気付き"
+      confirm: "入力内容を確認する"
+      update: "更新"
+    _tabs:
+      happy: "喜"
+      angry: "怒"
+      sad: "哀"
+      funny: "楽"
+      other: "その他"
+    edit:
+      title: "メモ編集"
+      example: "書き方例"
+      update: "更新"
+    index:
+      title: "メモ一覧"
+      last_update_memo: "最終更新のメモ"
+      summary: "まとめ・気付き"
+      no_date: "日付なし"
+      caution: |
+        本当に削除しますか？
+        
+        ※このメモが連続記録日数に含まれている場合、
+        記録が途切れる可能性があります。
+      no_memo: |
+        記録はまだありません。
+        メモを作成してみましょう！
+      create_new: "新規作成"
+    new:
+      title: "メモ作成"
+      example: "書き方例"
+    show:
+      detail: "の詳細"
+      caution: |
+        本当に削除しますか？
+        
+        ※このメモが連続記録日数に含まれている場合、
+        記録が途切れる可能性があります。
+      edit: "編集"
+      when: "いつ"
+      what: "何"
+      why: "なぜ"
+      why_more: "なぜをもっと深掘り"
+      how: "どのように"
+      summary: "まとめ・気付き"
+  shared:
+    _footer:
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
+    _header_before_login:
+      catchphrase: "記録して振り返り、思考を育てる"
+      login: "ログイン"
+      memo_list: "メモ一覧"
+      how_to_use: "使い方"
+      favorite: "お気に入り"
+      share_app: "アプリをシェア"
+    _header:
+      catchphrase: "記録して振り返り、思考を育てる"
+      guest_logged_in: "ゲストログイン中"
+      logged_in: "ログイン中"
+      create_memo: "メモ作成"
+      memo_list: "メモ一覧"
+      how_to_use: "使い方"
+      favorite: "お気に入り"
+      share_app: "アプリをシェア"
+      logout: "ログアウト"
+  top:
+    index:
+      title: "TOPページ"
+      introduction: |
+        その日の出来事を一言で記録し、なぜそう感じたかを深掘りすることで
+        思考を整理するアプリです。
+        「なぜ？」「どこが？」と具体的に問いかけることで、思考の明確化を促します。
+        思考整理を習慣化して、自分の新しい価値観に気付いてみませんか？
+      guest_login: "登録なしで使ってみる"
+      or: "または"
+      email: メールアドレス"
+      password: パスワード"
+      Forgot password?: パスワードをお忘れの方はこちら"
+      login: "　　ログイン　　"
+      sign_up: "新規登録ページへ"
+      description: "このアプリでできること"
+      description_1: |
+        その日の出来事を一言で記録し、
+        なぜそのように感じたのかを深掘りします。
+      description_2: |
+        なぜそのように感じたのか、
+        具体的に問いかけることで思考を整理します。
+      description_3: |
+        その日の出来事を振り返り、自分の価値観を見つめ直しましょう。
+  users:
+    new:
+      title: "ユーザー登録"
+      submit: "登録"

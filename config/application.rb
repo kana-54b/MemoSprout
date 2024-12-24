@@ -29,5 +29,10 @@ module MemoSprout
     config.active_record.default_timezone = :local
 
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # I18nライブラリに訳文の探索場所を指示する
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
+    # ロケールの設定
+    config.i18n.default_locale = :ja
   end
 end
