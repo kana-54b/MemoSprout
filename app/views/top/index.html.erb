@@ -26,12 +26,13 @@
           <br><div class="divider text-gray-500 text-sm"><%= t('.or') %></div><br>
 
           <%= form_with url: login_path, method: :post, local: true do |f| %>
-            <%= f.label :email, t('.email'), class: "label" %>
-            <%= f.email_field :email, placeholder: "memosprout@example.com", class: "input input-bordered w-full max-w-xs" %>
+            <%= f.label :email, t('activerecord.attributes.user.email'), class: "label" %>
+            <%= f.email_field :email, placeholder: "memosprout@example.com", autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
             <br>
+
             <br>
-            <%= f.label :password, t('.password'), class: "label" %>
-            <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+            <%= f.label :password, t('activerecord.attributes.user.password'), class: "label" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
             <br><br>
             <div class="tooltip" data-tip="アップデートをお待ちください">
               <!-- パスワードをお忘れの方はこちら -->
