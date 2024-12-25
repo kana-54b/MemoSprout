@@ -22,12 +22,12 @@
           <br>
           <!-- メールアドレス -->
           <%= f.label :email, "#{I18n.t('activerecord.attributes.user.email')} (*)", class: "label" %>
-          <%= f.email_field :email, class: "input input-bordered w-full max-w-xs" %>
+          <%= f.email_field :email, autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
           <br>
           <br>
           <!-- パスワード / (※4文字以上) -->
           <%= f.label :password, "#{I18n.t('activerecord.attributes.user.password')} (*)#{I18n.t('activerecord.helpers.hints.user.password')}", class: "label" %>
-          <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
           <br>
           <br>
           <!-- パスワード（再入力） -->
