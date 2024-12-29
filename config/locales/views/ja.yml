@@ -46,6 +46,9 @@ ja:
       sad: "哀"
       funny: "楽"
       other: "その他"
+    confirm:
+      is_ok?: "この内容でよろしいですか？"
+      save: "保存"
     edit:
       title: "メモ編集"
       example: "書き方例"
