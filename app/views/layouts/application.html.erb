@@ -19,13 +19,22 @@
 
     <%= yield :head %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.svg">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="manifest" HREF="/manifest.json">
+    <meta name="theme-color" content="#3E6607">
+    <meta name="msapplication-TileImage" content="/android-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#FFFEFC">
+
+    <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/3ddcc67dd4.js" crossorigin="anonymous"></script>
+
+    <!-- Turboとアセット -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <!-- メタタグ -->
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
