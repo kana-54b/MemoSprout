@@ -10,7 +10,7 @@ module ApplicationHelper
     separator: "|", # titleとdescriptionの間に入る記号
       icon: [
         { href: image_url("favicon.ico") },
-        { href: image_url("apple-touch-icon.png"), rel: "apple-touch-icon", sizes: "180x180" } # スマホ用
+        { href: "/apple-icon-180x180.png", rel: "apple-touch-icon", sizes: "180x180" }
       ],
       og: {
         site_name: "Memo Sprout",
@@ -18,7 +18,7 @@ module ApplicationHelper
         description: "一言入力で新たな思考の芽を生やすメモアプリ",
         type: "website", # websiteかarticle
         url: request.original_url,
-        image: image_url("sample_ogp.png"), # OGP
+        image: image_url("ogp.png"), # OGP
         locale: "ja_JP"
       },
       twitter: {
