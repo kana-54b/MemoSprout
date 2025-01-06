@@ -11,6 +11,11 @@ module MemoSprout
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
+    # Rails7.2現在　to_timeメソッドの動作を指定。将来的なRailsの挙動変更に対する対応。
+    config.active_support.to_time_preserves_timezone = :offset
+    # 将来のRails 8.1の挙動に合わせる場合は以下を使用
+    # config.active_support.to_time_preserves_timezone = :zone
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
@@ -22,7 +27,7 @@ module MemoSprout
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # タイムゾーンを東京に設定
+    # アプリ全体でのデフォルトタイムゾーンを東京に設定
     config.time_zone = "Asia/Tokyo"
 
     # データベースのタイムゾーンを東京に設定
