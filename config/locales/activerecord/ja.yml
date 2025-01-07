@@ -24,6 +24,7 @@ ja:
           blank_names: "姓もしくは名のどちらかの入力は必須です"
         attributes:
           email:
+            invalid: "無効なメールアドレスです"
             blank: "を入力してください"
             taken: "は既に登録されています"
           password:
