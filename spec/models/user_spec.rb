@@ -41,4 +41,25 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
     expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
   end
+
+  describe "#favorite_memo?" do
+    let(:user) { create(:user) } # FactoryBotでユーザーを作成
+    let(:memo) { create(:memo, user: user) } # FactoryBotでメモを作成
+
+    context "お気に入り登録されている場合" do
+      before do
+        create(:memo_favorite, memo: memo, user: user) # お気に入り登録
+      end
+
+      it "trueを返すこと" do
+        expect(user.favorite_memo?(memo)).to be_truthy
+      end
+    end
+
+    context "お気に入り登録されていない場合" do
+      it "falseを返すこと" do
+        expect(user.favorite_memo?(memo)).to be_falsey
+      end
+    end
+  end
 end
