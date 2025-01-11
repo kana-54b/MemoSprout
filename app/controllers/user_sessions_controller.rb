@@ -1,7 +1,9 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
-  def new; end
+  def new
+    redirect_to root_path
+  end
 
   def create # ログイン
     @user = login(params[:email], params[:password])
