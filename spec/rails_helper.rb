@@ -68,4 +68,7 @@ RSpec.configure do |config|
 
   # FactoryBotのメソッドを使えるようにする
   config.include FactoryBot::Syntax::Methods
+
+  # spec/supportディレクトリ内のすべてのヘルパーファイルを読み込む
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end
