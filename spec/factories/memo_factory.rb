@@ -24,7 +24,7 @@ FactoryBot.define do
         why_more: "テスト なぜの深堀り",
         how: "テスト どのように",
         summary: "テスト まとめ"
-      }.to_json
+      }
     end
   end
 end
