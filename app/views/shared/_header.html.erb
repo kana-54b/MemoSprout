@@ -11,9 +11,10 @@
       <h2 class="text-sm leading-8 text-gray-900 whitespace-nowrap hidden sm:block">- <%= t('shared._header.catchphrase') %> -</h2>
     </div>
     <div class="flex-none  ml-auto">
-      <h2 class="text-error text-sm leading-8 p-3">
-        <!-- ゲストログイン中 : ログイン中 -->
-        <%= logged_in? && current_user.email.start_with?("guest_") ? t('shared._header.guest_logged_in') : t('shared._header.logged_in') %>
+      <h2 class="text-error text-sm leading-8">
+        <img src="<%= asset_path(logged_in? && current_user.email.start_with?("guest_") ? 'guest_login.png' : 'login.png') %>" 
+            alt="<%= logged_in? && current_user.email.start_with?("guest_") ? 'ゲストログイン中' : 'ログイン中' %>" 
+            class="h-10 w-auto object-contain m-0 p-0" />
       </h2>
       <ul class="menu menu-horizontal px-1">
         <li>
