@@ -94,6 +94,5 @@ RSpec.describe "Memos", type: :request do
         expect(Memo.exists?(memo.id)).to be_falsey
       end
     end
-
   end
 end
