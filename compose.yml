@@ -24,8 +24,9 @@ services:
     stdin_open: true
     volumes:
       - .:/memo_sprout
-      - bundle_data:/usr/local/bundle:cached
+      - bundle_data:/usr/local/bundle
       - node_modules:/memo_sprout/node_modules
+      - postgresql_data:/var/lib/postgresql/data
     environment:
       TZ: Asia/Tokyo
     ports:

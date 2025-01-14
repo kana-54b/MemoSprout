@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: :invalid }
   validates :email, presence: { message: :blank }, uniqueness: { message: :taken } # 「を入力してください」「は既に使用されています」
   validates :password, length: { minimum: 4, message: :too_short }, if: -> { new_record? || changes[:crypted_password] } # 「は%{}文字以上で入力してください」
   validates :password, confirmation: { message: :confirmation }, if: -> { new_record? || changes[:crypted_password] } # 「…が一致しません」

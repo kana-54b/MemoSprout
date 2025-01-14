@@ -21,15 +21,13 @@ gem "jbuilder"
 # User registration
 gem "sorcery", "~> 0.17.0"
 # pagination
-gem "kaminari"
+gem "kaminari", "~> 1.2.2"
 # OGP
-gem "meta-tags"
-# create fake data
-gem "faker"
+gem "meta-tags", "~> 2.22.1"
 # configration management
-gem "config"
+gem "config", "~> 5.5.2"
 # Internationalization
-gem "rails-i18n"
+gem "rails-i18n", "~> 8.0.1"
 
 
 # Use Redis adapter to run Action Cable in production
@@ -59,6 +57,15 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # test
+  gem "rspec-rails", "~> 7.1"
+
+  # create fake data
+  gem "faker", "~> 3.5.1"
+
+  # Factory Bot
+  gem "factory_bot_rails", "~> 6.4.4"
 end
 
 group :development do
@@ -70,4 +77,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "rails-controller-testing"
 end
