@@ -1,22 +1,46 @@
+<% content_for :title %>
+<div
+  class="hero min-h-screen"
+  style="background-image: url('<%= asset_path('background.png') %>');">
+  <div class="hero-overlay bg-opacity-50"></div>
+  <div class="hero-content text-neutral-content text-center flex-col">
+    <h1 class="mb-5 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
+    <div class="max-w-sm md:max-w-2xl">
+
+      <p class="mb-5">
+        <!-- アプリ説明文 -->
+        <%= simple_format(t('.introduction')) %>
+      </p>
+    </div>
+                <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
+        <!-- 登録なしで使ってみる -->
+        <%= form_with url: guest_login_path, method: :post, local: true, class: "my-5" do |f| %>
+          <%= f.button t('.guest_login'), class: "btn btn-success" %>
+        <% end %>
+                <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
-      <% content_for :title %><br>
 
-      <div class="mt-6 text-lg leading-8 text-gray-600">
-        <!-- アプリ説明文 -->
-        <%= simple_format(t('.introduction')) %>
-      </div>
-      <br><br>
+
+
+
+
+
+
+
       <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
-      <br>
-        <!-- 登録なしで使ってみる -->
-        <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
-          <%= f.button t('.guest_login'), class: "btn btn-success" %>
-        <% end %>
-        <br>
-        <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
-        <br>
+
           <!-- Google認証ボタン -->
           <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
             <%= image_tag "web_light_sq_SI.svg", alt: "Sign in with Google", class: "google-button" %>
@@ -36,7 +60,7 @@
             <br><br>
             <div class="tooltip" data-tip="アップデートをお待ちください">
               <!-- パスワードをお忘れの方はこちら -->
-              <%= link_to t('.Forgot password?'), "#", class: "btn btn-link" %>
+              <%= link_to t('.forgot_password?'), "#", class: "link link-primary text-xs" %>
             </div>
             <br><br>
             <%= submit_tag t('.login'), class: "btn btn-warning" %>
@@ -44,7 +68,15 @@
           <br><br>
           <%= link_to t('.sign_up'), new_user_path, class: "btn btn-error" %>
           <br><br>
-        </div>
+                    <!-- または -->
+          <br><div class="divider text-gray-500 text-sm"><%= t('.or') %></div><br>
+                  <!-- 登録なしで使ってみる -->
+        <%= form_with url: guest_login_path, method: :post, local: true, class: "my-5" do |f| %>
+          <%= f.button t('.guest_login'), class: "btn btn-success" %>
+        <% end %>
+
+
+
       <% end %>
       <br>
       <br>
