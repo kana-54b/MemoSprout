@@ -15,52 +15,51 @@
 </div>
 
 <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
-  <div class="hero bg-gray-100 min-h-screen">
+  <div class="hero bg-base-200 h-5/6">
     <div class="hero-content flex-col lg:flex-row-reverse">
-      <div class="md:text-center">
-        <!-- 画像 -->
-        <%= image_tag 'login_image.png', class: 'lg:scale-50 rounded-lg hidden lg:block' %>
+      <!-- 大きい画面の場合のみ表示する画像 -->
+      <div class="md:text-center lg:scale-50 rounded-lg hidden lg:block">
+        <%= image_tag 'login_image.png' %>
       </div>
 
-
+      <!-- ログインフォーム -->
       <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl lg:ml-52">
-          <div class="card-body form-control">
-            <!-- Google認証ボタン -->
-            <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
-              <%= image_tag "web_light_sq_SI.svg", alt: "Sign in with Google", class: "google-button" %>
-            <% end %>
+        <div class="card-body form-control">
+          <!-- Google認証ボタン -->
+          <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
+            <%= image_tag "web_light_sq_SI.svg", alt: "Sign in with Google", class: "google-button" %>
+          <% end %>
 
-            <!-- または -->
-            <div class="divider text-gray-500 text-sm my-7"><%= t('.or') %></div>
+          <!-- または -->
+          <div class="divider text-gray-500 text-sm my-7"><%= t('.or') %></div>
 
-            <%= form_with url: login_path, method: :post, locale: true do |f| %>
-              <%= f.label :email, t('activerecord.attributes.user.email'), class: "label text-sm" %>
-              <%= f.email_field :email, placeholder: "email", autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
+          <!-- フォーム -->
+          <%= form_with url: login_path, method: :post, locale: true do |f| %>
+            <%= f.label :email, t('activerecord.attributes.user.email'), class: "label text-sm" %>
+            <%= f.email_field :email, placeholder: "email", autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
 
-              <%= f.label :password, t('activerecord.attributes.user.password'), class: "label text-sm" %>
-              <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
+            <%= f.label :password, t('activerecord.attributes.user.password'), class: "label text-sm" %>
+            <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
 
-              <!-- パスワードをお忘れの方はこちら -->
-              <div class="tooltip tooltip-bottom" data-tip="アップデートをお待ちください">
-                <%= link_to t('.forgot_password?'), "#", class: "label link link-hover text-xs" %>
-              </div>
+            <!-- パスワードをお忘れの方 -->
+            <div class="tooltip tooltip-bottom" data-tip="アップデートをお待ちください">
+              <%= link_to t('.forgot_password?'), "#", class: "label link link-hover text-xs" %>
+            </div>
 
-              <%= submit_tag t('.login'), class: "btn btn-primary mt-8 mb-3 btn-block" %>
-            <% end %>
-            <!-- 新規登録ページへ -->
-            <%= link_to t('.sign_up'), new_user_path, class: "link text-sm text-center" %>
+            <%= submit_tag t('.login'), class: "btn btn-primary mt-8 mb-3 btn-block" %>
+          <% end %>
 
-            <!-- または -->
-            <div class="divider text-gray-500 text-sm my-7"><%= t('.or') %></div>
+          <!-- 新規登録ページへ -->
+          <%= link_to t('.sign_up'), new_user_path, class: "link text-sm text-center" %>
 
-            <!-- 登録なしで使ってみる -->
-            <%= form_with url: guest_login_path, method: :post, local: true, class: "btn btn-success my-2" do |f| %>
-              <%= f.button t('.guest_login') %>
-            <% end %>
+          <!-- または -->
+          <div class="divider text-gray-500 text-sm my-7"><%= t('.or') %></div>
 
-
-          </div>
-
+          <!-- 登録なしで使ってみる -->
+          <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
+            <%= f.button t('.guest_login'), class: "btn btn-success my-2 w-full" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -68,76 +67,63 @@
 
 
 
-<div class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
 
-      <div class="bg-[#f4f4f4] rounded-lg p-6"> <!-- 角丸と背景色 -->
-        <!-- このアプリでできること -->
-        <%= t('.description') %>
-        <br>
-        <br>
-        <div class="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4 w-96 ">
-          <div class="carousel-item">
-            <div class="card bg-base-100 w-96 shadow-xl rounded-box">
-              <figure>
-                <img
-                  src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-                  alt="Shoes" />
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title">①</h2>
-                <p>
-                  <br><br>
-                    <!--  その日の出来事を…深掘りします。 -->
-                    <%= simple_format(t('.description_1')) %>
-                  <br><br>
-                  <p><div align="right">※ スライド  →</div></p>
-                  <br><br>
-                </p>
-              </div>
-            </div>
-          </div>
 
-            <div class="carousel-item">
-            <div class="card bg-base-100 w-96 shadow-xl">
-              <figure>
-                <img
-                  src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-                  alt="Shoes" />
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title">②</h2>
-                <p>
-                  <br><br>
-                    <!--  なぜそのように感じたのか…整理します。 -->
-                    <%= simple_format(t('.description_2')) %>
-                  <br><br><br>
-                </p>
-              </div>
-            </div>
-          </div>
 
-            <div class="carousel-item">
-            <div class="card bg-base-100 w-96 shadow-xl">
-              <figure>
-                <img
-                  src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-                  alt="Shoes" />
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title">③</h2>
-                <p>
-                  <br><br>
-                    <!--  その日の出来事を…見つめ直しましょう。 -->
-                    <%= simple_format(t('.description_3')) %>
-                  <br><br><br>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+
+
+
+<div class="bg-gray-300">
+  <!-- グリッドコンテナ -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
+    <!-- カード1 -->
+    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end mt-8">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">複数の感情に対応</h2>
+        <p>喜怒哀楽を含むさまざまな感情に寄り添う記録ができる。</p>
+        <%= image_tag 'light.png', class: "w-2/5 mt-6" %>
       </div>
     </div>
-  </div>
+    <!-- カード2 -->
+    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start lg:mt-8">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">本当の気持ちを見つける</h2>
+        <p>出来事を掘り下げることで、自分でも気づかなかった本音や考えを発見できる。</p>
+        <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
+    <!-- カード3 -->
+    <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">習慣化をサポート</h2>
+        <p>1日1投稿で記録を続ける楽しさを提供。連続記録機能で達成感を実感。</p>
+        <%= image_tag 'people.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
+    <!-- カード4 -->
+    <div class="card bg-base-200 w-full lg:w-9/12 shadow-2xl justify-self-end">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">お気に入り機能</h2>
+        <p>自分にとって特別な記録を簡単に保存して振り返ることが可能。</p>
+        <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
+    <!-- カード5 -->
+    <div class="card bg-base-200 w-full lg:w-9/12 shadow-2xl justify-self-start">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">シェア機能</h2>
+        <p>投稿した内容を安全に管理しつつ、他人と共有できる。</p>
+        <%= image_tag 'people.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
+    <!-- カード6 -->
+    <div class="card bg-base-200 w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto mb-8">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">習慣化をサポート</h2>
+        <p>1日1投稿で記録を続ける楽しさを提供。連続記録機能で達成感を実感。</p>
+        <%= image_tag 'light.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
+
+  </div><!-- グリッドコンテナ終了 -->
 </div>
