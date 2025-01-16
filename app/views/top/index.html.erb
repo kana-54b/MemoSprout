@@ -25,6 +25,7 @@
 
       <!-- ログインフォーム -->
       <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl lg:ml-52">
+        <p class="text-sm text-center"><br>サービスをご利用いただくにはログインが必要です。</p>
         <div class="card-body form-control">
           <!-- Google認証ボタン -->
           <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
@@ -68,11 +69,11 @@
 
 <div class="bg-gray-300">
   <!-- グリッドコンテナ -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
     <!-- カード1 -->
     <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end mt-8">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">どんな気持ちも大切に</h2>
+        <h2 class="card-title my-3">どんな気持ちも大切に</h2>
         <p>嬉しいことも、悲しいことも。<br>複数の感情に対応し<br>あなたの感じたすべてを記録に残せます。</p>
         <%= image_tag 'memo.png', class: "w-3/12 mt-6" %>
       </div>
@@ -80,7 +81,7 @@
     <!-- カード2 -->
     <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start lg:mt-8">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">本当の気持ちを見つける</h2>
+        <h2 class="card-title my-3">本当の気持ちを見つける</h2>
         <p>出来事を掘り下げることで<br>自分でも気づかなかった<br>本音や考えを発見できます。</p>
         <%= image_tag 'note.png', class: "w-2/5 mt-6" %>
       </div>
@@ -88,7 +89,7 @@
     <!-- カード3 -->
     <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">習慣化をサポート</h2>
+        <h2 class="card-title my-3">習慣化をサポート</h2>
         <p>1日1投稿で連続記録を更新しましょう。<br>習慣化することで<br>毎日がもっと充実します。</p>
         <%= image_tag 'light.png', class: "w-2/5 mt-6" %>
       </div>
@@ -96,7 +97,7 @@
     <!-- カード4 -->
     <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">お気に入り機能</h2>
+        <h2 class="card-title my-3">お気に入り機能</h2>
         <p>あなたにとって特別な記録を選んで保存。思い出を振り返る楽しさを味わえます。</p>
         <%= image_tag 'check.png', class: "w-4/12 mt-6" %>
       </div>
@@ -104,7 +105,7 @@
     <!-- カード5 -->
     <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">自分だけの時間</h2>
+        <h2 class="card-title my-3">自分だけの時間</h2>
         <p>頭の中を整理し、<br>感じたことを書き留める。<br><br>自分自身と向き合うひとときを<br>作りましょう。</p>
         <%= image_tag 'coffee.png', class: "w-2/5 mt-6" %>
       </div>
@@ -112,10 +113,15 @@
     <!-- カード6 -->
     <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto mb-8">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">書くことが、心の整理のカギ</h2>
+        <h2 class="card-title my-3">書くことが、心の整理のカギ</h2>
         <p>記録は、あなたの気持ちや考えを<br>整理する最初の一歩。<br>頭の中を言葉にしてみませんか？</p>
         <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
       </div>
     </div>
   </div><!-- グリッドコンテナ終了 -->
+<div class="grid justify-items-center bg-gray-300">
+  <div class="py-10 mb-10"> <!-- ここで上下余白を加える -->
+    <%= link_to 'メモを作成する', '#login-section', class: 'btn btn-wide' %>
+  </div>
+</div>
 </div>
