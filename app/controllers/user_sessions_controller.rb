@@ -26,7 +26,7 @@ class UserSessionsController < ApplicationController
       password_confirmation: "password"
     )
     auto_login(guest_user)
-    redirect_to memos_path(user_id: guest_user.id), success: "ゲストログインしました"
+    redirect_to memos_path, success: "ゲストログインしました"
   end
 
   def destroy
