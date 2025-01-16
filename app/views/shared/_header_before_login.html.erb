@@ -16,7 +16,12 @@
     <div class="ml-auto">
       <ul class="menu menu-horizontal px-1 flex-none">
         <li class="text-xs sm:text-base px-2 sm:px-4">
-          <%= link_to t('shared._header_before_login.login'), '#login-section' %>
+          <!-- ログインフォームへのリンク -->
+          <% if request.path == root_path %>
+            <%= link_to t('shared._header_before_login.login'), '#login-section' %>
+          <% else %>
+            <%= link_to t('shared._header_before_login.login'), '/' %>
+          <% end %>
         </li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
