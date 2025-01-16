@@ -1,7 +1,5 @@
 <% content_for :title %>
-<div
-  class="hero min-h-screen"
-  style="background-image: url('<%= asset_path('background.png') %>');">
+<div class="hero min-h-screen" style="background-image: url('<%= asset_path('background.png') %>');">
   <div class="hero-overlay bg-opacity-50"></div>
   <div class="hero-content text-neutral-content text-center flex-col">
     <h1 class="mb-5 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
@@ -16,6 +14,7 @@
 
 <div id="login-section">  <!-- アンカー -->
 </div><!-- アンカー終了 -->
+
 <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
   <div class="hero bg-base-200 h-5/6">
     <div class="hero-content flex-col lg:flex-row-reverse">
@@ -67,65 +66,56 @@
   </div>
 <% end %>
 
-
-
-
-
-
-
-
-
 <div class="bg-gray-300">
   <!-- グリッドコンテナ -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
     <!-- カード1 -->
     <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end mt-8">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">複数の感情に対応</h2>
-        <p>喜怒哀楽を含むさまざまな感情に寄り添う記録ができる。</p>
-        <%= image_tag 'light.png', class: "w-2/5 mt-6" %>
+        <h2 class="card-title">どんな気持ちも大切に</h2>
+        <p>嬉しいことも、悲しいことも。<br>複数の感情に対応し<br>あなたの感じたすべてを記録に残せます。</p>
+        <%= image_tag 'memo.png', class: "w-3/12 mt-6" %>
       </div>
     </div>
     <!-- カード2 -->
     <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start lg:mt-8">
       <div class="card-body items-center text-center">
         <h2 class="card-title">本当の気持ちを見つける</h2>
-        <p>出来事を掘り下げることで、自分でも気づかなかった本音や考えを発見できる。</p>
-        <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
+        <p>出来事を掘り下げることで<br>自分でも気づかなかった<br>本音や考えを発見できます。</p>
+        <%= image_tag 'note.png', class: "w-2/5 mt-6" %>
       </div>
     </div>
     <!-- カード3 -->
     <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto">
       <div class="card-body items-center text-center">
         <h2 class="card-title">習慣化をサポート</h2>
-        <p>1日1投稿で記録を続ける楽しさを提供。連続記録機能で達成感を実感。</p>
-        <%= image_tag 'people.png', class: "w-2/5 mt-6" %>
-      </div>
-    </div>
-    <!-- カード4 -->
-    <div class="card bg-base-200 w-full lg:w-9/12 shadow-2xl justify-self-end">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">お気に入り機能</h2>
-        <p>自分にとって特別な記録を簡単に保存して振り返ることが可能。</p>
-        <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
-      </div>
-    </div>
-    <!-- カード5 -->
-    <div class="card bg-base-200 w-full lg:w-9/12 shadow-2xl justify-self-start">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">シェア機能</h2>
-        <p>投稿した内容を安全に管理しつつ、他人と共有できる。</p>
-        <%= image_tag 'people.png', class: "w-2/5 mt-6" %>
-      </div>
-    </div>
-    <!-- カード6 -->
-    <div class="card bg-base-200 w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto mb-8">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">習慣化をサポート</h2>
-        <p>1日1投稿で記録を続ける楽しさを提供。連続記録機能で達成感を実感。</p>
+        <p>1日1投稿で連続記録を更新しましょう。<br>習慣化することで<br>毎日がもっと充実します。</p>
         <%= image_tag 'light.png', class: "w-2/5 mt-6" %>
       </div>
     </div>
-
+    <!-- カード4 -->
+    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">お気に入り機能</h2>
+        <p>あなたにとって特別な記録を選んで保存。思い出を振り返る楽しさを味わえます。</p>
+        <%= image_tag 'check.png', class: "w-4/12 mt-6" %>
+      </div>
+    </div>
+    <!-- カード5 -->
+    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">自分だけの時間</h2>
+        <p>頭の中を整理し、<br>感じたことを書き留める。<br><br>自分自身と向き合うひとときを<br>作りましょう。</p>
+        <%= image_tag 'coffee.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
+    <!-- カード6 -->
+    <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto mb-8">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">書くことが、心の整理のカギ</h2>
+        <p>記録は、あなたの気持ちや考えを<br>整理する最初の一歩。<br>頭の中を言葉にしてみませんか？</p>
+        <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
+      </div>
+    </div>
   </div><!-- グリッドコンテナ終了 -->
 </div>
