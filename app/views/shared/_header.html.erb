@@ -8,23 +8,29 @@
       <% end %>
 
       <!-- 記録して振り返り、思考を育てる（モバイル非表示） -->
-      <h2 class="text-sm leading-8 text-gray-900 whitespace-nowrap hidden sm:block">- <%= t('shared._header.catchphrase') %> -</h2>
-    </div>
-    <div class="flex-none  ml-auto">
-      <h2 class="text-error text-sm leading-8 p-3">
-        <!-- ゲストログイン中 : ログイン中 -->
-        <%= logged_in? && current_user.email.start_with?("guest_") ? t('shared._header.guest_logged_in') : t('shared._header.logged_in') %>
+      <h2 class="text-base leading-8 text-gray-900 whitespace-nowrap hidden md:block">
+        - <%= t('shared._header.catchphrase') %> -
       </h2>
-      <ul class="menu menu-horizontal px-1">
+    </div>
+
+    <div class="ml-auto">
+      <!-- 「ログイン中」もしくは「ゲストログイン中」の画像 -->
+      <h2 class="text-error text-sm leading-8">
+        <img src="<%= asset_path(logged_in? && current_user.email.start_with?("guest_") ? 'guest_login.png' : 'login.png') %>" 
+            alt="<%= logged_in? && current_user.email.start_with?("guest_") ? 'ゲストログイン中' : 'ログイン中' %>" 
+            class="h-10 w-auto object-contain m-0 p-0" />
+      </h2>
+      
+      <ul class="menu menu-horizontal px-1 flex-none">
         <li>
-          <%= link_to new_memo_path do %>
+          <%= link_to new_memo_path, class: "text-xs sm:text-base px-2 sm:px-4" do %>
             <!-- メモ作成 -->
             <i class="fa-solid fa-plus"></i><%= t('shared._header.create_memo') %>
           <% end %>
         </li>
         <li>
           <details class="relative"> <!-- relative：子要素の絶対位置を指定 -->
-            <summary>Menu</summary>
+            <summary class="text-xs sm:text-base px-2 sm:px-4">Menu</summary>
             <ul class="bg-base-100 rounded-t-none p-2 w-44 min-w-max absolute right-0">
               <li>
                 <!-- メモ一覧 -->

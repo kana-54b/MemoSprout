@@ -18,11 +18,12 @@ module ApplicationHelper
         description: "一言入力で新たな思考の芽を生やすメモアプリ",
         type: "website", # websiteかarticle
         url: request.original_url,
-        image: image_url("ogp.png"), # OGP
+        image: "#{request.base_url}/ogp.png", # OGP
         locale: "ja_JP"
       },
       twitter: {
         card: "summary_large_image", # OGPの種類
+        image: "#{request.base_url}/ogp.png",
         site: "@t_kana_54b"
       }
     }
