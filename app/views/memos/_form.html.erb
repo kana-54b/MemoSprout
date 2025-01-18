@@ -1,11 +1,10 @@
 <!-- 呼び出し元 memos/new.html.erb, memos/edit.html.erb -->
-<br>
 <% parsed_content = JSON.parse(@memo.memo_content) rescue {} %>
 
 <!-- 感情に応じたキーワード -->
 <% selected_emotion = emotion_options.find { |_, value| value == @memo.emotion } %>
 <% if selected_emotion %>
-  <div class="emotion-keywords">
+  <div class="emotion-keywords mt-8">
     <p><%= selected_emotion[0] %></p>
   </div>
 <% end %>
@@ -16,39 +15,55 @@
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :emotion, value: @memo.emotion %> <!-- フォームに感情を隠しフィールドで渡す -->
 
-  <br><br><br><br>
   <!-- いつ -->
-  <%= t('memos._form.when') %>（When）<br>
-  <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "input input-bordered w-full max-w-xs" %>
+  <div class="my-16">
+    <label class="block">
+      <%= t('memos._form.when') %>（When）
+    </label>
+    <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "input input-bordered w-full max-w-xs" %>
+  </div>
 
-  <br><br><br><br>
   <%= f.fields_for :memo_content do |key| %>
     <!-- 何 -->
-    <%= t('memos._form.what') %>（What）(*)<br>
-    <%= key.text_area 'what', value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    <div class="mb-16">
+      <label class="block">
+        <%= t('memos._form.what') %>（What）(*)
+      </label>
+      <%= key.text_area 'what', value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    </div>
 
-    <br><br><br><br>
     <!-- なぜ -->
-    <%= t('memos._form.why') %>(Why)(*)<br>
-    <%= key.text_area 'why', value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    <div class="mb-16">
+      <label class="block">
+        <%= t('memos._form.why') %>(Why)(*)
+      </label>
+      <%= key.text_area 'why', value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    </div>
 
-    <br><br><br><br>
     <!-- なぜをもっと深掘り -->
-    <%= t('memos._form.why_more') %>(*)<br>
-    <%= key.text_area 'why_more', value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    <div class="mb-16">
+      <label class="block">
+        <%= t('memos._form.why_more') %>(Why_more)(*)
+      </label>
+      <%= key.text_area 'why_more', value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    </div>
 
-    <br><br><br><br>
     <!-- どのように -->
-    <%= t('memos._form.how') %>(*)<br>
-    <%= key.text_area 'how', value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    <div class="mb-16">
+      <label class="block">
+        <%= t('memos._form.how') %>(How)(*)
+      </label>
+      <%= key.text_area 'how', value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+    </div>
 
-    <br><br><br><br>
     <!-- まとめ・気付き -->
-    <%= t('memos._form.summary') %>(*)<br>
-    <%= key.text_area 'summary', value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "input input-bordered w-full max-w-xs h-32" %>
-    <% end %>
+    <div class="mb-16">
+      <label class="block">
+        <%= t('memos._form.summary') %>(*)
+      </label>
+      <%= key.text_area 'summary', value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "input input-bordered w-full max-w-xs h-32" %>
+    </div>
+  <% end %>
 
-  <br><br><br>
-  <%= f.submit @memo.new_record? ? t('memos._form.confirm') : t('memos._form.update'), class: "btn btn-error" %>
-  <br>
+  <%= f.submit @memo.new_record? ? t('memos._form.confirm') : t('memos._form.update'), class: "btn btn-error mb-8" %>
 <% end %>
