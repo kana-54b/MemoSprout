@@ -1,21 +1,15 @@
-<div class="py-24 sm:py-32">
+<div class="py-20 mb-12">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <% content_for :title,  t('.title') %>
-      <br><br><br>
       <%= form_with model: @memo, url: memos_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-          <br>
           <!-- この内容でよろしいですか？ -->
-          <%= t('.is_ok?') %>
-          <br><br>
+          <div class="mb-8"><%= t('.is_ok?') %></div>
           <!-- フォームの内容 -->
           <%= render 'memo_content', f: f %>
-          <br><br><br>
-          <%= f.submit t('.save'), class: "btn btn-error" %>
-          <br>
+          <%= f.submit t('.save'), class: "btn btn-error my-8" %>
         <% end %>
-        <br>
       </div>
     </div>
   </div>
