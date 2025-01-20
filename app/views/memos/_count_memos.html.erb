@@ -1,39 +1,49 @@
-<!-- 呼び出し元は memos#index-->
+<!-- 呼び出し元は memos#index -->
+
 <div id="count_memos">
-  <br>
   <!-- 累計メモ数-->
-  <%= t('memos._count_memos.total_memos') %>　<%= @total_memos %>件<br><br>
+  <div class="my-4">
+    <%= t('memos._count_memos.total_memos') %>　<%= @total_memos %>件
+  </div>
 
   <!-- 連続記録日数-->
-  <%= t('memos._count_memos.streak_days') %>
+  <div class="block">
+    <%= t('memos._count_memos.streak_days') %>
 
-  <!-- モーダル -->
-  <button onclick="my_modal_2.showModal()">
-    <i class="fa-regular fa-circle-question"></i>
-  </button>
-  <dialog id="my_modal_2" class="modal">
-    <div class="modal-box">
+    <!-- モーダル -->
+    <button onclick="my_modal_2.showModal()">
+      <i class="fa-regular fa-circle-question"></i>
+    </button>
+    <dialog id="my_modal_2" class="modal">
+      <div class="modal-box">
 
-      <!-- 「連続記録日数について」 -->
-      <h3 class="text-lg font-bold">
-        <%= t('memos._count_memos.note') %>
-      </h3>
-      <p class="py-4">
-        <!-- 説明文（「記録は「実際の作成日」でカウントされます…」） -->
-        <%= simple_format(t('memos._count_memos.description')) %>
-      </p>
-    </div>
-    <form method="dialog" class="modal-backdrop">
-      <button>close</button>
-    </form>
-  </dialog>　<%= @streak_days %>日<br>
+        <!-- 「連続記録日数について」 -->
+        <h3 class="text-lg font-bold">
+          <%= t('memos._count_memos.note') %>
+        </h3>
+        <p class="py-4">
+          <!-- 説明文（「記録は「実際の作成日」でカウントされます…」） -->
+          <%= simple_format(t('memos._count_memos.description')) %>
+        </p>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>　<%= @streak_days %>日
+  </div>
 
-  <% if @today_memo %>
-    <!-- 「今日の記録はカウントされています」 -->
-    （<%= t('memos._count_memos.with_count') %>）
-  <% else %>
-    <!-- 「今日の記録はまだありません。記録更新を目指しましょう！」 -->
-    （<%= t('memos._count_memos.no_count') %>）
-  <% end %>
-  <br><br><br>
+  <div class="mb-4">
+    <% if @today_memo %>
+      <!-- 「（今日の記録はカウントされています）」 -->
+      <%= t('memos._count_memos.with_count') %>
+    <% else %>
+
+      <!-- 「（今日の記録はまだありません。記録更新を目指しましょう！）」 -->
+      <div class="block md:inline">
+        <% t('memos._count_memos.no_count').split("\n").each do |line| %>
+          <span class="block md:inline"><%= line %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
