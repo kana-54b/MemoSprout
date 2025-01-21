@@ -1,13 +1,8 @@
 <!-- 呼び出し元は memos#index -->
 
 <div id="count_memos">
-  <!-- 累計メモ数-->
-  <div class="my-4">
-    <%= t('memos._count_memos.total_memos') %>　<%= @total_memos %>件
-  </div>
-
-  <!-- 連続記録日数-->
-  <div class="block">
+  <!-- 連続記録日数 -->
+  <div class="block pt-6">
     <%= t('memos._count_memos.streak_days') %>
 
     <!-- モーダル -->
@@ -15,7 +10,7 @@
       <i class="fa-regular fa-circle-question"></i>
     </button>
     <dialog id="my_modal_2" class="modal">
-      <div class="modal-box">
+      <div class="modal-box p-10">
 
         <!-- 「連続記録日数について」 -->
         <h3 class="text-lg font-bold">
@@ -29,15 +24,16 @@
       <form method="dialog" class="modal-backdrop">
         <button>close</button>
       </form>
-    </dialog>　<%= @streak_days %>日
+    </dialog>
+    <div class="text-lg font-bold">
+    　<%= @streak_days %>日
+    </div>
   </div>
-
-  <div class="mb-4">
+  <div class="mb-10 text">
     <% if @today_memo %>
       <!-- 「（今日の記録はカウントされています）」 -->
       <%= t('memos._count_memos.with_count') %>
     <% else %>
-
       <!-- 「（今日の記録はまだありません。記録更新を目指しましょう！）」 -->
       <div class="block md:inline">
         <% t('memos._count_memos.no_count').split("\n").each do |line| %>
@@ -45,5 +41,10 @@
         <% end %>
       </div>
     <% end %>
+  </div>
+
+  <!-- 累計メモ数 -->
+  <div class="flex justify-center">
+    <%= t('memos._count_memos.total_memos') %>　<%= @total_memos %>件
   </div>
 </div>

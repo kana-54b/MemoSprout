@@ -1,15 +1,17 @@
-<div class="py-24 sm:py-32">
+<div class="mb-20">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <% content_for :title,  t('.title')%>
 
       <!-- メモ編集 -->
-      <h1 class=text-3xl><%= t('.title') %></h1><br>
-      <br><br>
-      <button class="btn btn-outline btn-success" onclick="my_modal_3.showModal()"><%= t('.example') %></button>
+      <h1 class="text-3xl py-8"><%= t('.title') %></h1>
+
+      <!-- 書き方例 -->
+      <button class="btn btn-outline btn-success mb-10" onclick="my_modal_3.showModal()"><%= t('.example') %></button>
       <%#= render "example" %> <!-- 書き方例 はヘッダーに記述のファイルを利用 -->
-      <br><br><br>
-      <%= render "form", memo: @memo, form_url: memo_path(@memo) %>
+      <div class="bg-white rounded-lg p-6">
+        <%= render "form", memo: @memo, form_url: memo_path(@memo) %>
+      </div>
     </div>
   </div>
 </div>
