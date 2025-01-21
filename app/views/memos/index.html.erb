@@ -35,17 +35,17 @@
         <%= link_to memo_path(memo), class: "w-full block" do %>
           <div class="border flex w-full items-center hover:bg-gray-200 relative">
             <!-- 日付 -->
-            <div class="flex justify-start ml-4">
+            <div class="flex justify-start ml-4 text-sm lg:text-base">
               <%= memo.date || t('.no_date') %>
             </div>
 
             <!-- Whatの内容 -->
-            <div class="md:text-lg font-bold text-center mb-6 w-3/5 mx-auto truncate">
+            <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-base lg:text-lg ">
               <%= JSON.parse(memo.memo_content)["what"] %>
             </div>
 
             <!-- アイコン部分 -->
-            <div class="flex absolute right-0 text-lg">
+            <div class="flex absolute right-0 lg:text-lg">
               <!-- アイコン：お気に入りの☆ -->
               <%= render "shared/favorite_star", memo: memo %>
 
@@ -60,7 +60,7 @@
     <% end %>
 
     <!-- ページネーション -->
-    <div class="pt-8 text-center mx-auto">
+    <div class="pt-8 text-center">
       <%= paginate @memos %>
     </div>
 
