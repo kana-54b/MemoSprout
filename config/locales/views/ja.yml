@@ -1,4 +1,11 @@
 ja:
+  views:
+    pagination:
+      previous: "前へ"
+      next: "次へ"
+      first: "最初へ"
+      last: "最後へ"
+      truncate: "…"
   memos:
     _count_memos:
       total_memos: "総メモ数"
@@ -9,8 +16,10 @@ ja:
         メモ作成時に選んだ日付は影響しません。
         　
         毎日1回、記録を作成して連続記録を目指しましょう！
-      with_count: "今日の記録はカウントされています"
-      no_count: "今日の記録はまだありません。記録更新を目指しましょう！"
+      with_count: "（今日の記録はカウントされています）"
+      no_count: |
+        （今日の記録はまだありません。
+        記録更新を目指しましょう！）
     _example:
       choice: "感情を選択する"
       description_1: |
@@ -68,7 +77,7 @@ ja:
       no_memo: |
         記録はまだありません。
         メモを作成してみましょう！
-      create_new: "新規作成"
+      create_new: "メモを作成する"
     new:
       title: "メモ作成"
       example: "書き方例"
