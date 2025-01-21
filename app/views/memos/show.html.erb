@@ -1,10 +1,10 @@
-<div class="py-24 sm:py-32">
+<div class="py-12">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <% content_for :title, JSON.parse(@memo.memo_content)["what"] + t('.detail') %>
 
-      <h1 class=text-3xl><%= "#{JSON.parse(@memo.memo_content)["what"]}" %><%= t('.detail') %></h1><br>
-      <br><br>
+      <h1 class="text-3xl mb-8"><%= "#{JSON.parse(@memo.memo_content)["what"]}" %><%= t('.detail') %></h1>
+      <div class="flex justify-end">
         <!-- アイコン：編集 -->
         <%= link_to edit_memo_path(@memo), class: "mx-2" do %>
           <i class="fa-solid fa-pen-to-square"></i>
@@ -23,14 +23,15 @@
           class: "mx-2" do %>
           <i class='fa-brands fa-x-twitter'></i>
         <% end %>
+      </div>
 
       <%= form_with model: @memo, url: memos_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <!-- フォームの内容 -->
-        <%= render 'memo_content', f: f %>
-        <% end %>
-        <br>
-      </div>
+        <div class="bg-white rounded-lg p-6">
+          <!-- フォームの内容 -->
+          <%= render 'memo_content', f: f %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

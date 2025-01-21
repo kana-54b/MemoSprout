@@ -1,16 +1,18 @@
-<div class="py-20 mb-12">
+<div class="py-20">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <% content_for :title,  t('.title') %>
       <%= form_with model: @memo, url: memos_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-          <!-- この内容でよろしいですか？ -->
-          <div class="mb-8"><%= t('.is_ok?') %></div>
+        <!-- この内容でよろしいですか？ -->
+        <div class="mb-8"><%= t('.is_ok?') %></div>
+        <div class="bg-white rounded-lg p-6"> <!-- 角丸と背景色 -->
           <!-- フォームの内容 -->
           <%= render 'memo_content', f: f %>
-          <%= f.submit t('.save'), class: "btn btn-error my-8" %>
-        <% end %>
-      </div>
+          <%= f.submit t('.save'), class: "btn btn-error mb-8" %>
+        </div>
+
+      <% end %>
     </div>
   </div>
 </div>
