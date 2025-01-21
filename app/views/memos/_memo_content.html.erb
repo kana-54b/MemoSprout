@@ -6,7 +6,7 @@
 <%= f.hidden_field :emotion, value: @memo.emotion %>
 
 <!-- いつ -->
-<div class="my-16">
+<div class="my-8 sm:my-16">
   <label class="block text-gray-400">
     <%= t('memos.show.when') %>（When）
   </label>
@@ -18,7 +18,7 @@
 
 <%= f.fields_for :memo_content do |key| %>
   <!-- 何 -->
-  <div class="mb-16">
+  <div class="my-8 sm:my-16">
     <label class="block text-gray-400">
       <%= t('memos.show.what') %>（What）
     </label>
@@ -29,7 +29,7 @@
   </div>
 
   <!-- なぜ -->
-  <div class="mb-16">
+  <div class="my-8 sm:my-16">
     <label class="block text-gray-400">
       <%= t('memos.show.why') %>(Why)
     </label>
@@ -40,7 +40,7 @@
   </div>
   
   <!-- なぜをもっと深掘り -->
-  <div class="mb-16">
+    <div class="my-8 sm:my-16">
     <label class="block text-gray-400">
       <%= t('memos.show.why_more') %>
     </label>
@@ -51,7 +51,7 @@
   </div>
 
   <!-- どのように -->
-  <div class="mb-16">
+  <div class="my-8 sm:my-16">
     <label class="block text-gray-400">
       <%= t('memos.show.how') %>(How)
     </label>
@@ -62,7 +62,7 @@
   </div>
   
   <!-- まとめ・気付き -->
-  <div class="mb-16">
+  <div class="my-8 sm:my-16">
     <label class="block text-gray-400">
       <%= t('memos.show.summary') %>
     </label>
