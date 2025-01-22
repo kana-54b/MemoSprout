@@ -13,13 +13,15 @@
       <div class="modal-box p-10">
 
         <!-- 「連続記録日数について」 -->
-        <h3 class="text-lg font-bold">
+        <h3 class="lg:text-lg font-bold my-4">
           <%= t('memos._count_memos.note') %>
         </h3>
-        <p class="py-4">
+
           <!-- 説明文（「記録は「実際の作成日」でカウントされます…」） -->
-          <%= simple_format(t('memos._count_memos.description')) %>
-        </p>
+<p class="py-4 text-sm md:text-base">
+  <%= simple_format(t('memos._count_memos.description'), {}, wrapper_tag: "span") %>
+</p>
+
       </div>
       <form method="dialog" class="modal-backdrop">
         <button>close</button>
@@ -44,7 +46,7 @@
   </div>
 
   <!-- 累計メモ数 -->
-  <div class="flex justify-center">
+  <div class="flex justify-center mb-2">
     <%= t('memos._count_memos.total_memos') %>　<%= @total_memos %>件
   </div>
 </div>
