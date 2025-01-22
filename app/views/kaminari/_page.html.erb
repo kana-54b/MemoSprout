@@ -1,6 +1,6 @@
 
 <% if page.current? %> <!-- 現在のページがアクティブの場合 -->
-  <span class="page current join-item btn btn-active"><%= page %></span> <!-- ページ番号 -->
+  <span class="page current join-item btn-active btn btn-xs md:btn-sm lg:btn-md"><%= page %></span> <!-- ページ番号 -->
 <% else %> <!-- そうでない時は -->
-  <%= link_to page, url, class: "page join-item btn", remote: remote, rel: page.rel %> <!-- ページ番号をリンクに -->
+  <%= link_to page, url, class: "page join-item btn btn-xs md:btn-sm lg:btn-md", remote: remote, rel: page.rel %> <!-- ページ番号をリンクに -->
 <% end %>

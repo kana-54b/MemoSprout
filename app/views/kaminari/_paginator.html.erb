@@ -2,14 +2,14 @@
   <%= paginator.render do -%>
     <nav class="pagination" role="navigation" aria-label="pager">
       <%= first_page_tag unless current_page.first? %> <!-- 1ページ目以外の場合は最初のページへのリンクを表示 -->
-      <%= prev_page_tag unless current_page.first? %> <!-- 1ページ目以外の場合は前のページへのリンクを表示 -->
+      <%#= prev_page_tag unless current_page.first? %> <!-- 1ページ目以外の場合は前のページへのリンクを表示 -->
       <% each_page do |page| -%>
         <% if page.display_tag? -%> <!-- 現在のページが表示するページの場合 -->
           <%= page_tag page %> <!-- ページ番号を表示 -->
         <% end -%>
       <% end -%>
       <% unless current_page.out_of_range? %> <!-- 現在のページが範囲外の場合 -->
-        <%= next_page_tag unless current_page.last? %> <!-- 最後のページ以外の場合は次のページへのリンクを表示 -->
+        <%#= next_page_tag unless current_page.last? %> <!-- 最後のページ以外の場合は次のページへのリンクを表示 -->
         <%= last_page_tag unless current_page.last? %> <!-- 最後のページ以外の場合は最後のページへのリンクを表示 -->
       <% end %>
     </nav>

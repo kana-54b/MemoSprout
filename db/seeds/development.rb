@@ -10,6 +10,7 @@
   Memo.create!(
     user_id: 1,
     date: "2024-01-01",
+    emotion: "funny",
     memo_content: {
       "what" => "テスト#{ n + 1 }",
       "why" => "なぜの内容",
