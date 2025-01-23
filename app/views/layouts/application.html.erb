@@ -38,17 +38,20 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body>
-    <body class="bg-base-200">
+  <body class="bg-base-200">
+    <header class="fixed top-0 left-0 w-full z-10">
       <% if logged_in? %>
         <%= render "shared/header" %>
       <% else %>
         <%= render "shared/header_before_login" %>
       <% end %>
-      <div class="h-20"></div>
-      <%= render "shared/flash_message" %>
+    </header>
+    <%= render "shared/flash_message" %>
+    <main>
       <%= yield %>
-      <%= render "shared/footer" %>
-    </body>
+    </main>
+    <footer class="w-full">
+        <%= render "shared/footer" %>
+    </footer>
   </body>
 </html>
