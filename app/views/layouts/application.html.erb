@@ -39,19 +39,15 @@
   </head>
 
   <body class="bg-base-200">
-    <header class="fixed top-0 left-0 w-full z-10">
-      <% if logged_in? %>
-        <%= render "shared/header" %>
-      <% else %>
-        <%= render "shared/header_before_login" %>
-      <% end %>
-    </header>
+    <% if logged_in? %>
+      <%= render "shared/header" %>
+    <% else %>
+      <%= render "shared/header_before_login" %>
+    <% end %>
     <%= render "shared/flash_message" %>
     <main>
       <%= yield %>
     </main>
-    <footer class="w-full">
-        <%= render "shared/footer" %>
-    </footer>
+    <%= render "shared/footer" %>
   </body>
 </html>
