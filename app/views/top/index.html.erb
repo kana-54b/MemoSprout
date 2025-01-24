@@ -1,127 +1,121 @@
 <% content_for :title %>
 <div class="hero min-h-screen" style="background-image: url('<%= asset_path('background.png') %>');">
   <div class="hero-overlay bg-opacity-50"></div>
-  <div class="hero-content text-neutral-content text-center flex-col">
-    <h1 class="mb-5 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
-    <div class="max-w-sm md:max-w-2xl">
-      <p class="mb-5">
-        <!-- アプリ説明文 -->
-        <%= simple_format(t('.introduction')) %>
-      </p>
+    <div class="hero-content text-neutral-content text-center flex-col">
+      <h1 class="mb-12 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
+      <div class="max-w-sm md:max-w-2xl">
+        <p class="py-4 md:text-xl">
+          <!-- アプリ説明文 -->
+          <%= simple_format(t('.introduction'), {}, wrapper_tag: "span") %>
+        </p>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="login-section">  <!-- アンカー -->
-</div><!-- アンカー終了 -->
+<div id="login-section"> <!-- アンカー -->
+  <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
+    <div class="hero bg-base-200">
+      <div class="hero-content flex-col lg:flex-row-reverse my-8 lg:h-[110vh]">
+        <!-- 大きい画面の場合のみ表示する画像 -->
+        <div class="md:text-center lg:scale-50 rounded-lg hidden lg:block">
+          <%= image_tag 'login_image.png' %>
+        </div>
 
-<% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
-  <div class="hero bg-base-200 h-5/6">
-    <div class="hero-content flex-col lg:flex-row-reverse">
-      <!-- 大きい画面の場合のみ表示する画像 -->
-      <div class="md:text-center lg:scale-50 rounded-lg hidden lg:block">
-        <%= image_tag 'login_image.png' %>
-      </div>
+        <!-- ログインフォーム -->
+        <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl lg:ml-52">
+          <p class="text-xs md:text-sm text-center mt-4"><br>サービスをご利用いただくにはログインが必要です。</p>
+          <div class="card-body form-control">
+            <!-- Google認証ボタン -->
+            <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
+              <%= image_tag "web_light_sq_SI.svg", alt: "Sign in with Google", class: "google-button" %>
+            <% end %>
+            <!-- または -->
+            <div class="divider text-gray-500 text-sm my-4"><%= t('.or') %></div>
+            <!-- フォーム -->
+            <%= form_with url: login_path, method: :post, locale: true do |f| %>
+              <%= f.label :email, t('activerecord.attributes.user.email'), class: "label text-sm" %>
+              <%= f.email_field :email, placeholder: "email", autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
 
-      <!-- ログインフォーム -->
-      <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl lg:ml-52">
-        <p class="text-sm text-center"><br>サービスをご利用いただくにはログインが必要です。</p>
-        <div class="card-body form-control">
-          <!-- Google認証ボタン -->
-          <%= link_to auth_at_provider_path(provider: :google), class: "flex justify-center" do %>
-            <%= image_tag "web_light_sq_SI.svg", alt: "Sign in with Google", class: "google-button" %>
-          <% end %>
-
-          <!-- または -->
-          <div class="divider text-gray-500 text-sm my-7"><%= t('.or') %></div>
-
-          <!-- フォーム -->
-          <%= form_with url: login_path, method: :post, locale: true do |f| %>
-            <%= f.label :email, t('activerecord.attributes.user.email'), class: "label text-sm" %>
-            <%= f.email_field :email, placeholder: "email", autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
-
-            <%= f.label :password, t('activerecord.attributes.user.password'), class: "label text-sm" %>
-            <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
-
-            <!-- パスワードをお忘れの方 -->
-            <div class="tooltip tooltip-bottom" data-tip="アップデートをお待ちください">
-              <%= link_to t('.forgot_password?'), "#", class: "label link link-hover text-xs" %>
-            </div>
-
-            <%= submit_tag t('.login'), class: "btn btn-primary mt-8 mb-3 btn-block" %>
-          <% end %>
-
-          <!-- 新規登録ページへ -->
-          <%= link_to t('.sign_up'), new_user_path, class: "link text-sm text-center" %>
-
-          <!-- または -->
-          <div class="divider text-gray-500 text-sm my-7"><%= t('.or') %></div>
-
-          <!-- 登録なしで使ってみる -->
-          <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
-            <%= f.button t('.guest_login'), class: "btn btn-success my-2 w-full" %>
-          <% end %>
+              <%= f.label :password, t('activerecord.attributes.user.password'), class: "label text-sm" %>
+              <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
+              <!-- パスワードをお忘れの方 -->
+              <div class="tooltip tooltip-bottom" data-tip="アップデートをお待ちください">
+                <%= link_to t('.forgot_password?'), "#", class: "label link link-hover text-xs" %>
+              </div>
+              <%= submit_tag t('.login'), class: "btn btn-primary mt-4 lg:mt-8 mb-3 btn-block" %>
+            <% end %>
+            <!-- 新規登録ページへ -->
+            <%= link_to t('.sign_up'), new_user_path, class: "link text-sm text-center" %>
+            <!-- または -->
+            <div class="divider text-gray-500 text-sm my-4"><%= t('.or') %></div>
+            <!-- 登録なしで使ってみる -->
+            <%= form_with url: guest_login_path, method: :post, local: true do |f| %>
+              <%= f.button t('.guest_login'), class: "btn btn-success sm:my-2 w-full" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
-<div class="bg-gray-300">
-  <!-- グリッドコンテナ -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
-    <!-- カード1 -->
-    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end mt-8">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title my-3">どんな気持ちも大切に</h2>
-        <p>嬉しいことも、悲しいことも。<br>複数の感情に対応し<br>あなたの感じたすべてを記録に残せます。</p>
-        <%= image_tag 'memo.png', class: "w-3/12 mt-6" %>
+  <div class="bg-gray-300">
+    <!-- グリッドコンテナ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 pt-8 pt-10 lg:pt-20">
+      <!-- カード1 -->
+      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-end">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title my-3">どんな気持ちも大切に</h2>
+          <p class="text-sm lg:text-base">嬉しいことも、悲しいことも。<br>複数の感情に対応し<br>あなたの感じたすべてを記録に残せます。</p>
+          <%= image_tag 'memo.png', class: "w-1/4 mt-3" %>
+        </div>
       </div>
-    </div>
-    <!-- カード2 -->
-    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start lg:mt-8">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title my-3">本当の気持ちを見つける</h2>
-        <p>出来事を掘り下げることで<br>自分でも気づかなかった<br>本音や考えを発見できます。</p>
-        <%= image_tag 'note.png', class: "w-2/5 mt-6" %>
+      <!-- カード2 -->
+      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-start">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title my-3">本当の気持ちを見つける</h2>
+          <p class="text-sm lg:text-base">出来事を掘り下げることで<br>自分でも気づかなかった<br>本音や考えを発見できます。</p>
+          <%= image_tag 'note.png', class: "w-1/3 mt-6" %>
+        </div>
       </div>
-    </div>
-    <!-- カード3 -->
-    <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title my-3">習慣化をサポート</h2>
-        <p>1日1投稿で連続記録を更新しましょう。<br>習慣化することで<br>毎日がもっと充実します。</p>
-        <%= image_tag 'light.png', class: "w-2/5 mt-6" %>
+      <!-- カード3 -->
+      <div class="card bg-white w-full md:w-9/12 md:col-span-2 shadow-2xl mx-auto">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title my-3">習慣化をサポート</h2>
+          <p class="text-sm lg:text-base">1日1投稿で連続記録を更新しましょう。<br>習慣化することで<br>毎日がもっと充実します。</p>
+          <%= image_tag 'light.png', class: "w-2/5 lg:w-1/4 mt-6" %>
+        </div>
       </div>
-    </div>
-    <!-- カード4 -->
-    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-end">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title my-3">お気に入り機能</h2>
-        <p>あなたにとって特別な記録を選んで保存。思い出を振り返る楽しさを味わえます。</p>
-        <%= image_tag 'check.png', class: "w-4/12 mt-6" %>
+      <!-- カード4 -->
+      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-end">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title my-3">お気に入り機能</h2>
+          <p class="text-sm lg:text-base lg:pt-4">あなたにとって<br>特別な記録を選んで保存。<br><br>思い出を振り返る楽しさを味わえます。</p>
+          <%= image_tag 'check.png', class: "w-1/3 mt-6" %>
+        </div>
       </div>
-    </div>
-    <!-- カード5 -->
-    <div class="card bg-white w-full lg:w-9/12 shadow-2xl justify-self-start">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title my-3">自分だけの時間</h2>
-        <p>頭の中を整理し、<br>感じたことを書き留める。<br><br>自分自身と向き合うひとときを<br>作りましょう。</p>
-        <%= image_tag 'coffee.png', class: "w-2/5 mt-6" %>
+      <!-- カード5 -->
+      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-start">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title my-3">自分だけの時間</h2>
+          <p class="text-sm lg:text-base">頭の中を整理し、<br>感じたことを書き留める。<br><br>自分自身と向き合うひとときを<br>作りましょう。</p>
+          <%= image_tag 'coffee.png', class: "w-1/3 mt-6" %>
+        </div>
       </div>
-    </div>
-    <!-- カード6 -->
-    <div class="card bg-white w-full lg:w-9/12 lg:col-span-2 shadow-2xl mx-auto mb-8">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title my-3">書くことが、心の整理のカギ</h2>
-        <p>記録は、あなたの気持ちや考えを<br>整理する最初の一歩。<br>頭の中を言葉にしてみませんか？</p>
-        <%= image_tag 'pen.png', class: "w-2/5 mt-6" %>
+      <!-- カード6 -->
+      <div class="card bg-white w-full md:w-9/12 md:col-span-2 shadow-2xl mx-auto mb-8">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title my-3">書くことが、心の整理のカギ</h2>
+          <p class="text-sm lg:text-base">記録は、あなたの気持ちや考えを<br>整理する最初の一歩。<br>頭の中を言葉にしてみませんか？</p>
+          <%= image_tag 'pen.png', class: "w-2/5 lg:w-1/4 mt-6" %>
+        </div>
       </div>
     </div>
   </div><!-- グリッドコンテナ終了 -->
-<div class="grid justify-items-center bg-gray-300">
-  <div class="py-10 mb-10"> <!-- ここで上下余白を加える -->
-    <%= link_to 'メモを作成する', '#login-section', class: 'btn btn-wide' %>
+
+  <div class="grid justify-items-center bg-gray-300">
+    <div class="py-10 mb-10">
+      <%= link_to 'メモを作成する', '#login-section', class: 'btn btn-wide' %>
+    </div>
   </div>
-</div>
-</div>
