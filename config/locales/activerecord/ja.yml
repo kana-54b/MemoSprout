@@ -14,14 +14,14 @@ ja:
     helpers:
       hints:
         user:
-          name: "（※姓または名のいずれかは入力が必要です）"
+          name: "(※姓もしくは名のどちらかは入力必須です)"
           password: "（※4文字以上）"
     errors:
       messages:
         required_fields: "(*)は必須項目です"
       models:
         user:
-          blank_names: "姓もしくは名のどちらかの入力は必須です"
+          blank_names: "姓もしくは名のどちらかは入力必須です"
         attributes:
           email:
             invalid: "無効なメールアドレスです"

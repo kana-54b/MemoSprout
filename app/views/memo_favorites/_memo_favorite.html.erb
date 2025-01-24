@@ -1,11 +1,26 @@
-<div class="border p-3">
-  <div class="flex justify-start">
-    <%= memo.date || "日付は未選択です" %>
-  </div>
-  <%= link_to JSON.parse(memo.memo_content)["what"], memo_path(memo), id: memo.id, class: "btn glass btn-wide btn-lg" %>
-  <div class="flex justify-end">
-    <%= render "shared/favorite_star", { memo: memo } %> <!-- お気に入りの⭐️ -->
-    <%= link_to "編集", edit_memo_path(memo), id: memo.id, class: "btn btn-success mx-1" %>
-    <%= link_to "削除", memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error float-right mx-1" %>
-  </div>
+<div id="memo-<%= memo.id %>">
+  <%= link_to memo_path(memo), class: "w-full block" do %>
+    <div class="border flex w-full items-center hover:bg-gray-200 relative">
+      <!-- 日付 -->
+      <div class="flex justify-start ml-4 text-sm lg:text-base">
+        <%= memo.date || t('.no_date') %>
+      </div>
+
+      <!-- Whatの内容 -->
+      <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-base lg:text-lg ">
+        <%= JSON.parse(memo.memo_content)["what"] %>
+      </div>
+
+      <!-- アイコン部分 -->
+      <div class="flex absolute right-0 lg:text-lg">
+        <!-- アイコン：お気に入りの☆ -->
+        <%= render "shared/favorite_star", memo: memo %>
+
+        <!-- アイコン：削除 -->
+        <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2 mr-4" do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
