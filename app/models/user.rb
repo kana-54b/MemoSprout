@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 4, message: :too_short }, if: -> { new_record? || changes[:crypted_password] } # 「は%{}文字以上で入力してください」
   validates :password, confirmation: { message: :confirmation }, if: -> { new_record? || changes[:crypted_password] } # 「…が一致しません」
   validate :first_name_or_last_name_present
+  validates :reset_password_token, uniqueness: true, allow_nil: true
 
   def favorite_memo?(memo)
     memo_favorites.exists?(memo_id: memo.id) # memo_idが存在するか？
