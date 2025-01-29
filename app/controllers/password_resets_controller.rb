@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     @user.deliver_reset_password_instructions! if @user # 有効期限付きのリセットコードを生成。ユーザーが存在する場合にメールを送信
-    redirect_to login_path, success: t(".email_sent") # 「パスワードリセットの手続きメールを送信しました。メールから手続きを行ってください。」
+    redirect_to root_path, success: t(".email_sent") # 「パスワードリセットの手続きメールを送信しました。メールから手続きを行ってください。」
   end
 
   def edit
@@ -32,7 +32,7 @@ class PasswordResetsController < ApplicationController
     end
 
     if @user.change_password(params[:user][:password]) # パスワードリセットに使用したトークンを削除し、パスワードを更新する
-      redirect_to login_path, success: t(".changed") # 「パスワードを変更しました。」
+      redirect_to root_path, success: t(".changed") # 「パスワードを変更しました。」
     else
       flash.now[:error] = t(".failed") # 「パスワードを変更できませんでした。」
       render :edit, status: :unprocessable_entity
