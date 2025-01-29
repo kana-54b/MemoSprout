@@ -5,7 +5,7 @@ RSpec.describe "Top", type: :request do
     it "正常にTopページが表示されること" do
       get top_index_path # HTTP Verb  path
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("このアプリでできること")
+      expect(response.body).to include("このアプリは")
     end
 
     it "正常にプライバシーポリシーページが表示されること" do
