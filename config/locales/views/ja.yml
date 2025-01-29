@@ -107,6 +107,22 @@ ja:
       why_more: "なぜをもっと深掘り"
       how: "どのように"
       summary: "まとめ・気付き"
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    edit:
+      title: パスワードリセット
+      change_password_ex: |
+        パスワードをリセットします。
+        新しいパスワードを入力してください。
+      invalid: パスワードリセットのリンクが無効または期限切れです
+    create:
+      email_sent: パスワードリセットの手続きメールを送信しました。メールから手続きを行ってください。
+    update:
+      no_change: パスワードの変更がありませんでした
+      changed: パスワードを変更しました
+      failed: パスワードを変更できませんでした
   shared:
     _footer:
       terms: "利用規約"

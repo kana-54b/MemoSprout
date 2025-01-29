@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   it "姓と名のどちらも無ければ無効であること" do
     user = build(:user, first_name: nil, last_name: nil)
     expect(user).not_to be_valid
-    expect(user.errors[:base]).to include("姓もしくは名のどちらかの入力は必須です")
+    expect(user.errors[:base]).to include("姓もしくは名のどちらかは入力必須です")
   end
 
   it "メールアドレスが無ければ無効な状態であること" do

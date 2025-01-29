@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   root "top#index"
   get "top/index" # TOPページ
   post "login", to: "user_sessions#create" # ログインする
@@ -23,6 +25,8 @@ Rails.application.routes.draw do
 
   get "privacy_policy", to: "top#privacy_policy"
   get "terms_of_service", to: "top#terms_of_service"
+
+  resources :password_resets, only: %i[new create edit update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

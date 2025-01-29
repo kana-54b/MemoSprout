@@ -40,9 +40,7 @@
               <%= f.label :password, t('activerecord.attributes.user.password'), class: "label text-sm" %>
               <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
               <!-- パスワードをお忘れの方 -->
-              <div class="tooltip tooltip-bottom" data-tip="アップデートをお待ちください">
-                <%= link_to t('.forgot_password?'), "#", class: "label link link-hover text-xs" %>
-              </div>
+              <%= link_to t('.forgot_password?'), new_password_reset_path, class: "label link link-hover text-xs" %>
               <%= submit_tag t('.login'), class: "btn btn-primary mt-4 lg:mt-8 mb-3 btn-block" %>
             <% end %>
             <!-- 新規登録ページへ -->

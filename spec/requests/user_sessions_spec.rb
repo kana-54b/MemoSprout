@@ -38,7 +38,7 @@ RSpec.describe "UserSessions", type: :request do
         post guest_login_path
       }.to change(User, :count).by(1)
 
-      expect(response).to redirect_to(memos_path(user_id: User.last.id))
+      expect(response).to redirect_to memos_path
       follow_redirect!
       expect(response.body).to include("ゲストログインしました")
     end
