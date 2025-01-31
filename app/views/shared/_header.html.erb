@@ -4,7 +4,7 @@
   <div class="flex items-center">
     <!-- ロゴ -->
     <%= link_to '/' do %>
-      <%= image_tag 'logo3.jpg', alt: "Memo Sprout logo", class: "h-14 py-2 w-auto object-contain" %>
+      <%= image_tag 'logo2.png', alt: "Memo Sprout logo", class: "h-14 py-1 w-auto object-contain" %>
     <% end %>
     <!-- 記録して振り返り、思考を育てる（モバイル非表示） -->
     <h2 class="text-base leading-8 text-gray-900 whitespace-nowrap hidden md:block md:pl-4">
@@ -16,7 +16,7 @@
   <div class="flex items-stretch justify-end min-w-0">
     <!-- 「ログイン中」もしくは「ゲストログイン中」の画像 -->
     <div class="text-error text-sm flex items-center">
-      <img src="<%= asset_path(logged_in? && current_user.email.start_with?("guest_") ? 'guest_login.png' : 'login.png') %>" 
+      <img src="<%= asset_path(logged_in? && current_user.email.start_with?("guest_") ? 'guest_login.jpg' : 'login.webp') %>" 
           alt="<%= logged_in? && current_user.email.start_with?("guest_") ? 'ゲストログイン中' : 'ログイン中' %>" 
           class="h-10 w-auto object-contain flex-shrink-0" />
     </div>
