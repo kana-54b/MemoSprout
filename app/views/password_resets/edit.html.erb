@@ -1,26 +1,24 @@
-<div class="py-12">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <% content_for :title, t('.title') %>
+<div class="layout-container">
+  <div class="inner-box">
+    <% content_for :title, t('.title') %>
 
-      <!-- パスワードリセット申請 -->
-      <h1 class="text-3xl py-14"><%= t('.title') %></h1>
-      <div class="bg-white rounded-lg py-8 md:py-20 px-8 md:px-36">
-        <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
-          <%= simple_format t('.change_password_ex') %>
-          <div class="py-12">
-            <%= f.label :password, class: "block" %>
-            <%= f.password_field :password, class: "input input-bordered input-sm w-full max-w-xs" %>
-          </div>
-          <div class="pb-8">
-            <%= f.label :password_confirmation, class: "block" %>
-            <%= f.password_field :password_confirmation, class: "input input-bordered input-sm w-full max-w-xs" %>
-          </div>
-          <%= f.submit class: "btn btn-primary my-8" %>
-        <% end %>
-      </div>
-
+    <!-- パスワード変更 -->
+    <h1><%= t('.title') %></h1>
+    <div class="bg-white rounded-lg py-8 md:py-20 px-8 md:px-36">
+      <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= simple_format t('.change_password_ex') %>
+        <div class="py-12">
+          <%= f.label :password, class: "block" %>
+          <%= f.password_field :password, class: "input input-bordered input-sm w-full max-w-xs" %>
+        </div>
+        <div class="pb-8">
+          <%= f.label :password_confirmation, class: "block" %>
+          <%= f.password_field :password_confirmation, class: "input input-bordered input-sm w-full max-w-xs" %>
+        </div>
+        <%= f.submit class: "btn btn-primary my-8" %>
+      <% end %>
     </div>
+
   </div>
 </div>

@@ -1,37 +1,35 @@
-<div class="py-12">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <% content_for :title, JSON.parse(@memo.memo_content)["what"] + t('.detail') %>
+<div class="layout-container">
+  <div class="inner-box">
+    <% content_for :title, JSON.parse(@memo.memo_content)["what"] + t('.detail') %>
 
-      <h1 class="text-3xl py-14"><%= "#{JSON.parse(@memo.memo_content)["what"]}" %><%= t('.detail') %></h1>
-      <div class="flex justify-end">
-        <!-- アイコン：編集 -->
-        <%= link_to edit_memo_path(@memo), class: "mx-2" do %>
-          <i class="fa-solid fa-pen-to-square"></i>
-        <% end %>
+    <h1><%= "#{JSON.parse(@memo.memo_content)["what"]}" %><%= t('.detail') %></h1>
+    <div class="flex justify-end">
+      <!-- アイコン：編集 -->
+      <%= link_to edit_memo_path(@memo), class: "mx-2" do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
 
-        <!-- アイコン：削除 -->
-        <%= link_to memo_path(@memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2" do %>
-          <i class="fa-solid fa-trash"></i>
-        <% end %>
+      <!-- アイコン：削除 -->
+      <%= link_to memo_path(@memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2" do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
 
-        <!-- アイコン：Xシェア -->
-        <%= link_to "", 
-          target: "_blank", 
-          rel: "noopener noreferrer", 
-          href: "https://twitter.com/intent/tweet?text=#{CGI.escape(@share_text)}",
-          class: "mx-2" do %>
-          <i class='fa-brands fa-x-twitter'></i>
-        <% end %>
-      </div>
-
-      <%= form_with model: @memo, url: memos_path, local: true do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div class="bg-white rounded-lg p-12">
-          <!-- フォームの内容 -->
-          <%= render 'memo_content', f: f %>
-        </div>
+      <!-- アイコン：Xシェア -->
+      <%= link_to "", 
+        target: "_blank", 
+        rel: "noopener noreferrer", 
+        href: "https://twitter.com/intent/tweet?text=#{CGI.escape(@share_text)}",
+        class: "mx-2" do %>
+        <i class='fa-brands fa-x-twitter'></i>
       <% end %>
     </div>
+
+    <%= form_with model: @memo, url: memos_path, local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="bg-white rounded-lg p-12">
+        <!-- フォームの内容 -->
+        <%= render 'memo_content', f: f %>
+      </div>
+    <% end %>
   </div>
 </div>
