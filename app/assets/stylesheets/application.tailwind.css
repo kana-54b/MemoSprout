@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&display=swap');
+
 @tailwind base;
+@layer base {
+  h1 {
+    @apply text-3xl mb-16;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
