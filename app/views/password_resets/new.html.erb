@@ -6,7 +6,7 @@
     <h1><%= t('.title') %></h1>
     <div class="rounded-lg py-8 md:py-30 px-8 md:px-36">
       <%= form_with url: password_resets_path do |f| %>
-        <%= f.label :email, "#{I18n.t('activerecord.attributes.user.email')}", class: "label text-sm md:text-base font-bold" %>
+        <%= f.label :email, "#{I18n.t('activerecord.attributes.user.email')}", class: "custom-label" %>
         <%= f.email_field :email, autocomplete: "email", class: "input input-bordered input-sm  w-full mb-12" %>
         <%= f.submit t('.submit'), class: "btn btn-error" %>
       <% end %>

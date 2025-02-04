@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 h-16 flex justify-between shadow">
+<div class="custom-header">
 
   <!-- 左側要素 -->
   <div class="flex items-center">
@@ -7,7 +7,7 @@
       <%= image_tag 'logo2.png', alt: "Memo Sprout logo", class: "h-14 py-1 w-auto object-contain" %>
     <% end %>
     <!-- 記録して振り返り、思考を育てる（モバイル非表示） -->
-    <h2 class="text-base leading-8 text-gray-900 whitespace-nowrap hidden md:block md:pl-4">
+    <h2 class="text-base leading-8 whitespace-nowrap hidden md:block md:pl-4">
       - <%= t('shared._header.catchphrase') %> -
     </h2>
   </div>

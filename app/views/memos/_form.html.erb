@@ -18,38 +18,38 @@
     <!-- いつ -->
     <div class="my-8 sm:my-16">
       <%= f.label :date, "#{t('memos._form.when')}（When）", class: "block" %>
-      <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "input input-bordered w-full max-w-xs" %>
+      <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "custom-input" %>
     </div>
 
     <%= f.fields_for :memo_content do |key| %>
       <!-- 何 -->
       <div class="my-8 sm:my-16">
         <%= key.label :what, "#{t('memos._form.what')}（What）(*)", class: "block" %>
-        <%= key.text_area :what, value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :what, value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- なぜ -->
       <div class="my-8 sm:my-16">
         <%= key.label :why, "#{t('memos._form.why')}(Why)(*)", class: "block" %>
-        <%= key.text_area :why, value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :why, value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- なぜをもっと深掘り -->
       <div class="my-8 sm:my-16">
         <%= key.label :why_more, "#{t('memos._form.why_more')}(*)", class: "block" %>
-        <%= key.text_area :why_more, value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :why_more, value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- どのように -->
       <div class="my-8 sm:my-16">
         <%= key.label :how, "#{t('memos._form.how')}(How)(*)", class: "block" %>
-        <%= key.text_area :how, value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :how, value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- まとめ・気付き -->
       <div class="my-8 sm:my-16">
         <%= key.label :summary, "#{t('memos._form.summary')}(*)", class: "block" %>
-        <%= key.text_area :summary, value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "input input-bordered w-full max-w-xs h-32" %>
+        <%= key.text_area :summary, value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "custom-input h-32" %>
       </div>
     <% end %>
 
