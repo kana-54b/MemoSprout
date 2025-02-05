@@ -16,7 +16,7 @@
   <div class="flex items-stretch justify-end min-w-0">
     <!-- 「ログイン中」もしくは「ゲストログイン中」の画像 -->
     <div class="text-error text-sm flex items-center">
-      <img src="<%= asset_path(logged_in? && current_user.email.start_with?("guest_") ? 'guest_login.jpg' : 'login.webp') %>" 
+      <img src="<%= asset_path(logged_in? && current_user.email.start_with?("guest_") ? 'guest_login-Photoroom.webp' : 'login-Photoroom.webp') %>" 
           alt="<%= logged_in? && current_user.email.start_with?("guest_") ? 'ゲストログイン中' : 'ログイン中' %>" 
           class="h-10 w-auto object-contain flex-shrink-0" />
     </div>

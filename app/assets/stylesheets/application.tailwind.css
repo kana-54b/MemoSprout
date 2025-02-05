@@ -3,12 +3,13 @@
 @tailwind base;
 @layer base {
   h1 {
-    @apply text-3xl mb-16;
+    @apply text-2xl lg:text-3xl mb-14;
   }
 
   body {
+    background: url('/assets/bg-fabric.jpg') repeat, linear-gradient(to bottom, #f9f6f2, #d5bb99);
     font-family: 'Noto Sans JP', sans-serif;
-    @apply bg-[#f9f6f2] text-[#423521];
+    color: #423521; /* テキストカラー */
   }
 }
 
@@ -24,29 +25,42 @@
     @apply mx-auto max-w-2xl text-center;
   }
 
+  /* 白背景のコンテンツ枠 */
+  .content-box {
+    @apply bg-base-100 rounded-lg py-6 px-8 md:px-24 text-sm md:text-base;
+  }
+
   /* メインコンテンツの小枠（ワイド） */
   .inner-box-w {
     @apply mx-auto max-w-5xl text-center;
   }
 
   .custom-header {
-    @apply navbar bg-[#FEFEFE] h-16 flex justify-between shadow text-[#280f1f];
+    @apply navbar bg-[#F5F2E7] h-16 flex justify-between shadow text-[#280f1f];
   }
 
   .custom-footer {
-    @apply footer footer-center text-base-content rounded p-12 bottom-0 mx-auto bg-[#544120] text-[#fff9f2];
+    @apply footer footer-center text-base-content rounded p-12 bottom-0 mx-auto bg-[#9e7f5a] text-[#fff9f2];
   }
 
   .custom-input {
-    @apply input input-bordered w-full max-w-xs;
+    @apply input input-bordered w-full max-w-xs bg-[#FFFFFF];
   }
 
   .custom-input-sm {
-    @apply input input-bordered input-sm w-full;
+    @apply input input-bordered input-sm w-full bg-[#FFFFFF];
   }
 
   .custom-label {
     @apply label text-sm md:text-base font-bold;
+  }
+
+  .custom-card {
+    @apply card bg-[#fffefc] w-full md:w-9/12 shadow-2xl;
+  }
+
+  .custom-form {
+    @apply my-8 sm:my-16 text-sm md:text-base;
   }
 }
 
