@@ -1,7 +1,10 @@
 <!-- 呼び出し元 memos/show.html.erb, memos/confirm.html.erb -->
 
-<div class="badge badge-error badge-outline badge-lg w-full max-w-xs mt-8">
-  <%= emotion_label(@memo.emotion) %>
+<div class="mt-5 md:mt-10">
+<!-- 感情別に色変更 -->
+<% selected_emotion = emotion_options.find { |_, value, _| value == @memo.emotion } %>
+<div class="badge badge-outline badge-lg w-full max-w-xs <%= selected_emotion[2] %>">
+  <%= selected_emotion[0] %>
 </div>
 <%= f.hidden_field :emotion, value: @memo.emotion %>
 
@@ -72,3 +75,4 @@
     <%= key.hidden_field 'summary', value: JSON.parse(@memo.memo_content)["summary"] %>
   </div>
 <% end %>
+</div>
