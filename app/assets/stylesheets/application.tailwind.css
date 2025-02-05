@@ -8,8 +8,46 @@
 
   body {
     font-family: 'Noto Sans JP', sans-serif;
+    @apply bg-[#f9f6f2] text-[#423521];
   }
 }
 
 @tailwind components;
+@layer components {
+  /* ページ全体のコンテナ */
+  .layout-container {
+    @apply py-20 mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  /* メインコンテンツの小枠 */
+  .inner-box {
+    @apply mx-auto max-w-2xl text-center;
+  }
+
+  /* メインコンテンツの小枠（ワイド） */
+  .inner-box-w {
+    @apply mx-auto max-w-5xl text-center;
+  }
+
+  .custom-header {
+    @apply navbar bg-[#FEFEFE] h-16 flex justify-between shadow text-[#280f1f];
+  }
+
+  .custom-footer {
+    @apply footer footer-center text-base-content rounded p-12 bottom-0 mx-auto bg-[#544120] text-[#fff9f2];
+  }
+
+  .custom-input {
+    @apply input input-bordered w-full max-w-xs;
+  }
+
+  .custom-input-sm {
+    @apply input input-bordered input-sm w-full;
+  }
+
+  .custom-label {
+    @apply label text-sm md:text-base font-bold;
+  }
+}
+
 @tailwind utilities;

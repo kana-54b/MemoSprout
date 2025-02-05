@@ -1,6 +1,6 @@
 <div id="memo-<%= memo.id %>">
   <%= link_to memo_path(memo), class: "w-full block" do %>
-    <div class="border flex w-full items-center hover:bg-gray-200 relative">
+    <div class="border flex w-full items-center hover:bg-[#eae1d0] relative">
       <!-- 日付 -->
       <div class="flex justify-start ml-4 text-sm lg:text-base">
         <%= memo.date || t('.no_date') %>

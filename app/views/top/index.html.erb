@@ -1,7 +1,7 @@
 <% content_for :title %>
-<div class="hero min-h-screen" style="background-image: url('<%= asset_path('background.webp') %>');">
-  <div class="hero-overlay bg-opacity-50"></div>
-    <div class="hero-content text-neutral-content text-center flex-col">
+<div class="hero min-h-screen" data-theme="light" style="background-image: url('<%= asset_path('background.webp') %>');">
+  <div class="hero-overlay bg-[#1a2303] bg-opacity-60"></div>
+    <div class="hero-content text-gray-300 text-center flex-col">
       <h1 class="mb-12 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
       <div class="max-w-sm md:max-w-2xl">
         <p class="py-4 md:text-xl">
@@ -13,7 +13,7 @@
   </div>
 </div>
 
-  <div class="bg-gray-300">
+  <div class="bg-[#eae1d0]">
     <!-- グリッドコンテナ -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 pt-8 pt-10 lg:pt-20">
       <!-- カード1 -->
@@ -67,16 +67,19 @@
     </div>
   </div><!-- グリッドコンテナ終了 -->
 
-  <div class="grid justify-items-center bg-gray-300">
+  <div class="grid justify-items-center bg-[#eae1d0]">
     <div class="py-10 mb-10">
+      <!-- ログインしていない場合 -->
       <%= link_to 'メモを作成する', '#login-section', class: 'btn btn-wide' %>
+      <!-- ログインしている場合 -->
+      <!-- <%= link_to t('.create_new'), new_memo_path, class: "btn btn-wide" %> 「メモを作成する」 -->
     </div>
   </div>
 
 <div id="login-section"> <!-- アンカー -->
   <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
-    <div class="hero bg-base-200">
-      <div class="hero-content flex-col lg:flex-row-reverse my-8 lg:h-[110vh]">
+    <div class="hero bg-[#f9f6f2]">
+      <div class="hero-content w-full flex-col lg:flex-row-reverse my-8 lg:h-[110vh]">
         <!-- 大きい画面の場合のみ表示する画像 -->
         <div class="md:text-center lg:scale-50 rounded-lg hidden lg:block">
           <%= image_tag 'login_image.jpg' %>
@@ -95,10 +98,10 @@
             <!-- フォーム -->
             <%= form_with url: login_path, method: :post, locale: true do |f| %>
               <%= f.label :email, t('activerecord.attributes.user.email'), class: "label text-sm" %>
-              <%= f.email_field :email, placeholder: "email", autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
+              <%= f.email_field :email, placeholder: "email", autocomplete: "email", class: "custom-input" %>
 
               <%= f.label :password, t('activerecord.attributes.user.password'), class: "label text-sm" %>
-              <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
+              <%= f.password_field :password, placeholder: "password", autocomplete: "current-password", class: "custom-input" %>
               <!-- パスワードをお忘れの方 -->
               <%= link_to t('.forgot_password?'), new_password_reset_path, class: "label link link-hover text-xs" %>
               <%= submit_tag t('.login'), class: "btn btn-primary mt-4 lg:mt-8 mb-3 btn-block" %>
