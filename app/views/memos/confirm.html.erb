@@ -5,10 +5,10 @@
       <%= render 'shared/error_messages', object: f.object %>
       <!-- この内容でよろしいですか？ -->
       <div class="mb-8"><%= t('.is_ok?') %></div>
-      <div class="bg-white rounded-lg p-6"> <!-- 角丸と背景色 -->
+      <div class="content-box">
         <!-- フォームの内容 -->
         <%= render 'memo_content', f: f %>
-        <%= f.submit t('.save'), class: "btn btn-error mb-8" %>
+        <%= f.submit t('.save'), class: "btn btn-info mb-8" %>
       </div>
     <% end %>
   </div>

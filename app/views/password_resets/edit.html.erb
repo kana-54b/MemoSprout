@@ -4,7 +4,6 @@
 
     <!-- パスワード変更 -->
     <h1><%= t('.title') %></h1>
-    <div class="bg-white rounded-lg py-8 md:py-20 px-8 md:px-36">
       <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= simple_format t('.change_password_ex') %>
@@ -18,7 +17,7 @@
         </div>
         <%= f.submit class: "btn btn-primary my-8" %>
       <% end %>
-    </div>
+
 
   </div>
 </div>

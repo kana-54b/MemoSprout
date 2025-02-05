@@ -1,6 +1,6 @@
 <% content_for :title %>
 <div class="hero min-h-screen" data-theme="light" style="background-image: url('<%= asset_path('background.webp') %>');">
-  <div class="hero-overlay bg-[#1a2303] bg-opacity-60"></div>
+  <div class="hero-overlay bg-[#0f0c01] bg-opacity-45"></div>
     <div class="hero-content text-gray-300 text-center flex-col">
       <h1 class="mb-12 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
       <div class="max-w-sm md:max-w-2xl">
@@ -13,11 +13,11 @@
   </div>
 </div>
 
-  <div class="bg-[#eae1d0]">
+
     <!-- グリッドコンテナ -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 pt-8 pt-10 lg:pt-20">
       <!-- カード1 -->
-      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-end">
+      <div class="custom-card justify-self-end">
         <div class="card-body items-center text-center">
           <h2 class="card-title my-3">どんな気持ちも大切に</h2>
           <p class="text-sm lg:text-base">嬉しいことも、悲しいことも。<br>複数の感情に対応し<br>あなたの感じたすべてを記録に残せます。</p>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <!-- カード2 -->
-      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-start">
+      <div class="custom-card justify-self-start">
         <div class="card-body items-center text-center">
           <h2 class="card-title my-3">本当の気持ちを見つける</h2>
           <p class="text-sm lg:text-base">出来事を掘り下げることで<br>自分でも気づかなかった<br>本音や考えを発見できます。</p>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <!-- カード3 -->
-      <div class="card bg-white w-full md:w-9/12 md:col-span-2 shadow-2xl mx-auto">
+      <div class="custom-card md:col-span-2 mx-auto">
         <div class="card-body items-center text-center">
           <h2 class="card-title my-3">習慣化をサポート</h2>
           <p class="text-sm lg:text-base">1日1投稿で連続記録を更新しましょう。<br>習慣化することで<br>毎日がもっと充実します。</p>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <!-- カード4 -->
-      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-end">
+      <div class="custom-card justify-self-end">
         <div class="card-body items-center text-center">
           <h2 class="card-title my-3">お気に入り機能</h2>
           <p class="text-sm lg:text-base lg:pt-4">あなたにとって<br>特別な記録を選んで保存。<br><br>思い出を振り返る楽しさを味わえます。</p>
@@ -49,7 +49,7 @@
         </div>
       </div>
       <!-- カード5 -->
-      <div class="card bg-white w-full md:w-9/12 shadow-2xl justify-self-start">
+      <div class="custom-card justify-self-start">
         <div class="card-body items-center text-center">
           <h2 class="card-title my-3">自分だけの時間</h2>
           <p class="text-sm lg:text-base">頭の中を整理し、<br>感じたことを書き留める。<br><br>自分自身と向き合うひとときを<br>作りましょう。</p>
@@ -57,7 +57,7 @@
         </div>
       </div>
       <!-- カード6 -->
-      <div class="card bg-white w-full md:w-9/12 md:col-span-2 shadow-2xl mx-auto mb-8">
+      <div class="custom-card md:col-span-2 mx-auto mb-8">
         <div class="card-body items-center text-center">
           <h2 class="card-title my-3">書くことが、心の整理のカギ</h2>
           <p class="text-sm lg:text-base">記録は、あなたの気持ちや考えを<br>整理する最初の一歩。<br>頭の中を言葉にしてみませんか？</p>
@@ -65,14 +65,18 @@
         </div>
       </div>
     </div>
-  </div><!-- グリッドコンテナ終了 -->
 
-  <div class="grid justify-items-center bg-[#eae1d0]">
+
+  <div class="grid justify-items-center">
     <div class="py-10 mb-10">
-      <!-- ログインしていない場合 -->
-      <%= link_to 'メモを作成する', '#login-section', class: 'btn btn-wide' %>
-      <!-- ログインしている場合 -->
-      <!-- <%= link_to t('.create_new'), new_memo_path, class: "btn btn-wide" %> 「メモを作成する」 -->
+      <% if logged_in? %>
+        <!-- ログインしている場合 -->
+        <%= link_to 'メモを作成する', new_memo_path, class: "btn btn-info btn-wide" %>
+      <% else %>
+        <!-- ログインしていない場合 -->
+        <%= link_to 'メモを作成する', '#login-section', class: 'btn btn-info btn-wide' %>
+      <% end %>
+
     </div>
   </div>
 
@@ -86,7 +90,7 @@
         </div>
 
         <!-- ログインフォーム -->
-        <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl lg:ml-52">
+        <div class="card bg-[#FFFEFC] w-full max-w-sm shrink-0 shadow-2xl lg:ml-52">
           <p class="text-xs md:text-sm text-center mt-4"><br>サービスをご利用いただくにはログインが必要です。</p>
           <div class="card-body form-control">
             <!-- Google認証ボタン -->

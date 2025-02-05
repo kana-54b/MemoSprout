@@ -3,8 +3,8 @@
     <% content_for :title, t('.title') %>
 
     <!-- ユーザー登録 -->
-    <h1 class="text-3xl py-14"><%= t('.title') %></h1>
-    <div class="bg-white rounded-lg py-8 md:py-20 px-8 md:px-36">
+    <h1><%= t('.title') %></h1>
+    <div class="content-box py-12">
       <%= form_with model: @user do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
@@ -31,7 +31,7 @@
         <%= f.label :password_confirmation, "#{I18n.t('activerecord.attributes.user.password_confirmation')} (*)", class: "custom-label" %>
         <%= f.password_field :password_confirmation, class: "custom-input-sm mb-12" %>
 
-        <%= f.submit t('.submit'), class: "btn btn-error" %>
+        <%= f.submit t('.submit'), class: "btn btn-info" %>
       <% end %>
     </div>
   </div>

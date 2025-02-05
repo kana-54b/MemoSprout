@@ -8,7 +8,7 @@
     <!-- 書き方例 -->
     <button class="btn btn-outline btn-success mb-10" onclick="my_modal_3.showModal()"><%= t('.example') %></button>
     <%#= render "example" %> <!-- 書き方例 はヘッダーに記述のファイルを利用 -->
-    <div class="bg-white rounded-lg p-6">
+    <div class="content-box">
       <%= render "form", memo: @memo, form_url: memo_path(@memo) %>
     </div>
   </div>
