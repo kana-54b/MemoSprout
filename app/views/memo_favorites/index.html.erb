@@ -1,25 +1,28 @@
-  <div class="layout-container">
-    <div class="inner-box">
-      <% content_for :title, t('.title') %>
-      <!-- お気に入り一覧 -->
-      <h1><%= t('.title') %></h1>
+<div class="layout-container">
+  <div class="inner-box">
+    <% content_for :title, t('.title') %>
+    <!-- お気に入り一覧 -->
+    <h1><%= t('.title') %></h1>
+  </div>
 
-      <!-- お気に入りがない場合 -->
-      <% if @memo_favorites.empty? %>
-        <div class="pb-12">
-          <!-- 「お気に入りのメモはまだありません。」 -->
-          <%= t('.no_favorites') %>
-        </div>
-        <%= link_to t('.memo_list'), memos_path, class: "btn btn-active mb-14" %>
-      <!-- お気に入りがある場合 -->
-      <% else %>
-        <% @memo_favorites.each do |mf| %>
-          <%= render "memo_favorite", memo: mf.memo %>
-        <% end %>
-        <!-- ページネーション -->
-        <div class="pt-8 text-center">
-          <%= paginate @memo_favorites %>
-        </div>
+  <!-- お気に入りがない場合 -->
+  <% if @memo_favorites.empty? %>
+    <div class="inner-box pb-12">
+      <!-- 「お気に入りのメモはまだありません。」 -->
+      <%= t('.no_favorites') %>
+      <%= link_to t('.memo_list'), memos_path, class: "btn btn-info mb-14" %>
+    </div>
+
+  <!-- お気に入りがある場合 -->
+  <% else %>
+    <div class="mx-auto max-w-4xl">
+      <% @memo_favorites.each do |mf| %>
+        <%= render "memo_favorite", memo: mf.memo %>
       <% end %>
     </div>
-  </div>
+    <!-- ページネーション -->
+    <div class="pt-8 text-center">
+      <%= paginate @memo_favorites %>
+    </div>
+  <% end %>
+</div>
