@@ -1,17 +1,18 @@
+<!-- 呼び出し元　memos/new -->
 <div class="my-6">
   <!-- タブ：感情一覧 -->
-  <div role="tablist" class="tabs tabs-lifted tabs-lg ">
+  <div role="tablist" class="tabs tabs-lifted tabs-lg">
     <% emotions = { 
-      happy: t('memos._tabs.happy'),
-      angry: t('memos._tabs.angry'),
-      sad: t('memos._tabs.sad'),
-      funny: t('memos._tabs.funny'),
-      other: t('memos._tabs.other') 
-      } %>
+      happy: { label: t('memos._tabs.happy'), color: "text-[#9d7abc]" },
+      angry: { label: t('memos._tabs.angry'), color: "text-[#D62828]" },
+      sad: { label: t('memos._tabs.sad'), color: "text-[#3D5F91]" },
+      funny: { label: t('memos._tabs.funny'), color: "text-[#E6953D]" },
+      other: { label: t('memos._tabs.other'), color: "text-[#4F8D60]" }
+    } %>
 
     <!-- 各感情のタブ -->
-    <% emotions.each do |emotion, label| %>
-      <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="<%= label %>" <%= 'checked="checked"' if emotion == :happy %> />
+    <% emotions.each do |emotion, data| %>
+      <input type="radio" name="my_tabs_2" role="tab" class="tab <%= data[:color] %>" aria-label="<%= data[:label] %>" <%= 'checked="checked"' if emotion == :happy %> />
       <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
         <%= render "emotion_form", emotion: emotion %>
       </div>
