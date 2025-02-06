@@ -23,31 +23,31 @@
       <!-- 何 -->
       <div class="custom-form">
         <%= key.label :what, "#{t('memos._form.what')}（What）(*)", class: "block" %>
-        <%= key.text_area :what, value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "custom-input text-sm lg:text-base" %>
+        <%= key.text_area :what, value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- なぜ -->
       <div class="custom-form">
         <%= key.label :why, "#{t('memos._form.why')}(Why)(*)", class: "block" %>
-        <%= key.text_area :why, value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "custom-input text-sm lg:text-base" %>
+        <%= key.text_area :why, value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- なぜをもっと深掘り -->
       <div class="custom-form">
         <%= key.label :why_more, "#{t('memos._form.why_more')}(*)", class: "block" %>
-        <%= key.text_area :why_more, value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "custom-input text-sm lg:text-base" %>
+        <%= key.text_area :why_more, value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- どのように -->
       <div class="custom-form">
         <%= key.label :how, "#{t('memos._form.how')}(How)(*)", class: "block" %>
-        <%= key.text_area :how, value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "custom-input text-sm lg:text-base" %>
+        <%= key.text_area :how, value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- まとめ・気付き -->
       <div class="custom-form">
         <%= key.label :summary, "#{t('memos._form.summary')}(*)", class: "block" %>
-        <%= key.text_area :summary, value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "custom-input text-sm lg:text-base h-32" %>
+        <%= key.text_area :summary, value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "custom-input h-32" %>
       </div>
     <% end %>
 

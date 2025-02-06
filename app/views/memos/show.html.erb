@@ -9,6 +9,9 @@
         <i class="fa-solid fa-pen-to-square"></i>
       <% end %>
 
+      <!-- アイコン：お気に入りの☆ -->
+      <%= render "shared/favorite_star", memo: @memo %>
+
       <!-- アイコン：削除 -->
       <%= link_to memo_path(@memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2" do %>
         <i class="fa-solid fa-trash"></i>
