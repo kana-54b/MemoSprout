@@ -3,35 +3,37 @@
     <% content_for :title, t('.title') %>
     <!-- メモ一覧 -->
     <h1><%= t('.title') %></h1>
+  </div>
 
-    <!-- メモが存在する場合 -->
-    <% if @memos.present? %>
-      <div class="bg-base-100 pb-4">
-        <!-- 「最終更新のメモ」 -->
-        <div class="block font-bold bg-[#b79d7e] py-4 flex-auto">
-            <%= t('.last_update_memo') %>
-        </div>
-        <!-- 日付 -->
-        <div class="mt-6">
-          <%= @latest_memo.date %>
-        </div>
-        <div class="mb-6 mx-7">
-          <%= JSON.parse(@latest_memo.memo_content)["what"] %>
-        </div>
-        <!-- 「まとめ・気付き」 -->
-        <%= t('.summary') %>
-        <div class="mb-8 mx-7">
-          <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
-        </div>
+  <!-- メモが存在する場合 -->
+  <% if @memos.present? %>
+  <div class="inner-box">
+    <div class="bg-base-100 pb-4">
+      <!-- 「最終更新のメモ」 -->
+      <div class="block font-bold bg-[#b79d7e] py-4 flex-auto">
+          <%= t('.last_update_memo') %>
       </div>
-      <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
+      <!-- 日付 -->
+      <div class="mt-6">
+        <%= @latest_memo.date %>
+      </div>
+      <div class="mb-6 mx-7">
+        <%= JSON.parse(@latest_memo.memo_content)["what"] %>
+      </div>
+      <!-- 「まとめ・気付き」 -->
+      <%= t('.summary') %>
+      <div class="mb-8 mx-7">
+        <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
+      </div>
+    </div>
+    <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
   </div>
 
   <!-- メモ一覧 -->
   <div class="mx-auto max-w-4xl">
   <% @memos.each do |memo| %>
-      <% selected_emotion = emotion_options.find { |_, value, _| value == memo.emotion } %>
-      <% emotion_color = selected_emotion ? selected_emotion[2] : "text-gray-500" %> <!-- 選択された感情の色を取得 -->
+    <% selected_emotion = emotion_options.find { |_, value, _| value == memo.emotion } %>
+    <% emotion_color = selected_emotion ? selected_emotion[2] : "text-gray-500" %> <!-- 選択された感情の色を取得 -->
 
     <div id="memo-<%= memo.id %>">
       <%= link_to memo_path(memo), class: "w-full block" do %>
@@ -67,13 +69,14 @@
     <%= paginate @memos %>
   </div>
 
-    <!-- メモがない場合 -->
-    <% else %>
+  <!-- メモがない場合 -->
+  <% else %>
+    <div class="inner-box">
       <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
       <div class="py-8">
         <%= simple_format t('.no_memo') %> <!-- 「記録がありませんー」 -->
       </div>
       <%= link_to t('.create_new'), new_memo_path, class: "btn btn-info" %> <!-- 「メモを作成する」 -->
-    <% end %>
-
+    </div>
+  <% end %>
 </div>

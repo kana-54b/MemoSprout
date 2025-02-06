@@ -2,7 +2,7 @@
 
 <div id="count_memos">
   <!-- 連続記録日数 -->
-  <div class="block pt-6">
+  <div class="block mt-20">
     <%= t('memos._count_memos.streak_days') %>
 
     <!-- モーダル -->
@@ -27,11 +27,11 @@
         <button>close</button>
       </form>
     </dialog>
-    <div class="text-lg font-bold">
+    <div class="text-lg font-bold text-center">
     　<%= @streak_days %>日
     </div>
   </div>
-  <div class="mb-16 text">
+  <div class="mb-20">
     <% if @today_memo %>
       <!-- 「（今日の記録はカウントされています）」 -->
       <%= t('memos._count_memos.with_count') %>

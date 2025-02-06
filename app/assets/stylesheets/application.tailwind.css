@@ -36,7 +36,7 @@
   }
 
   .custom-header {
-    @apply navbar bg-[#F5F2E7] h-16 flex justify-between shadow text-[#280f1f];
+    @apply navbar bg-[#F8F6F1] h-16 flex justify-between shadow text-[#280f1f];
   }
 
   .custom-footer {
@@ -44,7 +44,7 @@
   }
 
   .custom-input {
-    @apply input input-bordered w-full max-w-xs bg-[#FFFFFF];
+    @apply input input-bordered w-full max-w-md bg-[#FFFFFF] text-sm lg:text-base;
   }
 
   .custom-input-sm {
