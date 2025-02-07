@@ -1,40 +1,38 @@
-<div class="py-12">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <% content_for :title, t('.title') %>
+<div class="layout-container">
+  <div class="inner-box">
+    <% content_for :title, t('.title') %>
 
-      <!-- ユーザー登録 -->
-      <h1 class="text-3xl py-14"><%= t('.title') %></h1>
-      <div class="bg-white rounded-lg py-8 md:py-20 px-8 md:px-36">
-        <%= form_with model: @user do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+    <!-- ユーザー登録 -->
+    <h1><%= t('.title') %></h1>
+    <div class="content-box py-12">
+      <%= form_with model: @user do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-          <!-- 姓 / （※姓または名のいずれかは入力が必要です） -->
-          <div class="flex items-center">
-          <%= f.label :last_name, "#{I18n.t('activerecord.attributes.user.last_name')}", class: "label text-sm md:text-base font-bold" %>
-          <%= f.label :last_name, "#{I18n.t('activerecord.helpers.hints.user.name')}", class: "text-xs md:text-sm ml-4" %>
-          </div>
-          <%= f.text_field :last_name, class: "input input-bordered input-sm md:input-md w-full" %>
+        <!-- 姓 / （※姓または名のいずれかは入力が必要です） -->
+        <div class="flex items-center">
+        <%= f.label :last_name, "#{I18n.t('activerecord.attributes.user.last_name')}", class: "custom-label" %>
+        <%= f.label :last_name, "#{I18n.t('activerecord.helpers.hints.user.name')}", class: "text-xs md:text-sm ml-4" %>
+        </div>
+        <%= f.text_field :last_name, class: "custom-input-sm" %>
 
-          <!-- 名 -->
-          <%= f.label :first_name, "#{I18n.t('activerecord.attributes.user.first_name')} ", class: "label text-sm md:text-base font-bold" %>
-          <%= f.text_field :first_name, class: "input input-bordered input-sm md:input-md w-full mb-12" %>
+        <!-- 名 -->
+        <%= f.label :first_name, "#{I18n.t('activerecord.attributes.user.first_name')} ", class: "custom-label" %>
+        <%= f.text_field :first_name, class: "custom-input-sm mb-12" %>
 
-          <!-- メールアドレス -->
-          <%= f.label :email, "#{I18n.t('activerecord.attributes.user.email')} (*)", class: "label text-sm md:text-base font-bold" %>
-          <%= f.email_field :email, autocomplete: "email", class: "input input-bordered input-sm  md:input-md w-full mb-12" %>
+        <!-- メールアドレス -->
+        <%= f.label :email, "#{I18n.t('activerecord.attributes.user.email')} (*)", class: "custom-label" %>
+        <%= f.email_field :email, autocomplete: "email", class: "custom-input-sm mb-12" %>
 
-          <!-- パスワード / (※4文字以上) -->
-          <%= f.label :password, "#{I18n.t('activerecord.attributes.user.password')} (*)#{I18n.t('activerecord.helpers.hints.user.password')}", class: "label text-sm md:text-base font-bold" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered input-sm md:input-md w-full" %>
+        <!-- パスワード / (※4文字以上) -->
+        <%= f.label :password, "#{I18n.t('activerecord.attributes.user.password')} (*)#{I18n.t('activerecord.helpers.hints.user.password')}", class: "custom-label" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "custom-input-sm" %>
 
-          <!-- パスワード（再入力） -->
-          <%= f.label :password_confirmation, "#{I18n.t('activerecord.attributes.user.password_confirmation')} (*)", class: "label text-sm md:text-base font-bold" %>
-          <%= f.password_field :password_confirmation, class: "input input-bordered input-sm md:input-md w-full mb-12" %>
+        <!-- パスワード（再入力） -->
+        <%= f.label :password_confirmation, "#{I18n.t('activerecord.attributes.user.password_confirmation')} (*)", class: "custom-label" %>
+        <%= f.password_field :password_confirmation, class: "custom-input-sm mb-12" %>
 
-          <%= f.submit t('.submit'), class: "btn btn-error" %>
-        <% end %>
-      </div>
+        <%= f.submit t('.submit'), class: "btn btn-info" %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,12 +1,10 @@
 <!-- 呼び出し元 memos/new.html.erb, memos/edit.html.erb -->
 <% parsed_content = JSON.parse(@memo.memo_content) rescue {} %>
 
-<!-- 感情に応じたキーワード -->
+<!-- 感情に応じたキーワード（色別） -->
 <% selected_emotion = emotion_options.find { |_, value| value == @memo.emotion } %>
   <% if selected_emotion %>
-    <div class="emotion-keywords mt-8">
-      <p><%= selected_emotion[0] %></p>
-    </div>
+    <p class="<%= selected_emotion[2] %> pt-8"><%= selected_emotion[0] %></p>
   <% end %>
   <!-- について、一つずつ掘り下げてみましょう -->
   <%= simple_format (t('memos._form.before')) %>
@@ -16,42 +14,42 @@
     <%= f.hidden_field :emotion, value: @memo.emotion %> <!-- フォームに感情を隠しフィールドで渡す -->
 
     <!-- いつ -->
-    <div class="my-8 sm:my-16">
+    <div class="custom-form pt-4">
       <%= f.label :date, "#{t('memos._form.when')}（When）", class: "block" %>
-      <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "input input-bordered w-full max-w-xs" %>
+      <%= f.date_field :date, value: @memo.new_record? ? Date.today : @memo.date, class: "custom-input" %>
     </div>
 
     <%= f.fields_for :memo_content do |key| %>
       <!-- 何 -->
-      <div class="my-8 sm:my-16">
+      <div class="custom-form">
         <%= key.label :what, "#{t('memos._form.what')}（What）(*)", class: "block" %>
-        <%= key.text_area :what, value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :what, value: parsed_content['what'], placeholder: @memo.placeholder_for_all(:what, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- なぜ -->
-      <div class="my-8 sm:my-16">
+      <div class="custom-form">
         <%= key.label :why, "#{t('memos._form.why')}(Why)(*)", class: "block" %>
-        <%= key.text_area :why, value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :why, value: parsed_content['why'], placeholder: @memo.placeholder_for_all(:why, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- なぜをもっと深掘り -->
-      <div class="my-8 sm:my-16">
+      <div class="custom-form">
         <%= key.label :why_more, "#{t('memos._form.why_more')}(*)", class: "block" %>
-        <%= key.text_area :why_more, value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :why_more, value: parsed_content['why_more'], placeholder: @memo.placeholder_for_all(:why_more, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- どのように -->
-      <div class="my-8 sm:my-16">
+      <div class="custom-form">
         <%= key.label :how, "#{t('memos._form.how')}(How)(*)", class: "block" %>
-        <%= key.text_area :how, value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "input input-bordered w-full max-w-xs" %>
+        <%= key.text_area :how, value: parsed_content['how'],  placeholder: @memo.placeholder_for_all(:how, @memo.emotion), class: "custom-input" %>
       </div>
 
       <!-- まとめ・気付き -->
-      <div class="my-8 sm:my-16">
+      <div class="custom-form">
         <%= key.label :summary, "#{t('memos._form.summary')}(*)", class: "block" %>
-        <%= key.text_area :summary, value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "input input-bordered w-full max-w-xs h-32" %>
+        <%= key.text_area :summary, value: parsed_content['summary'], placeholder: @memo.placeholder_for_all(:summary, @memo.emotion), class: "custom-input h-32" %>
       </div>
     <% end %>
 
-  <%= f.submit @memo.new_record? ? t('memos._form.confirm') : t('memos._form.update'), class: "btn btn-error mb-8" %>
+  <%= f.submit @memo.new_record? ? t('memos._form.confirm') : t('memos._form.update'), class: "btn btn-info mb-8" %>
 <% end %>

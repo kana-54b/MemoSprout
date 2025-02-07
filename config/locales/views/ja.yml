@@ -44,6 +44,7 @@ ja:
       description_2_2: |
         「なぜ？」を掘り下げて
         自身の考えを見つめ直します。
+        　
       summary: "まとめ"
       description_3: |-
         自分なりの答えや気づきを
@@ -125,7 +126,7 @@ ja:
       failed: パスワードを変更できませんでした
   shared:
     _footer:
-      terms: "利用規約"
+      terms: "　利用規約　"
       privacy: "プライバシーポリシー"
       contact: "お問い合わせ"
     _header_before_login:

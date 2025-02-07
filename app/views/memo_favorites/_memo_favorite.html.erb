@@ -1,13 +1,17 @@
+<!-- お気に入り一覧 -->
 <div id="memo-<%= memo.id %>">
+  <% selected_emotion = emotion_options.find { |_, value, _| value == memo.emotion } %>
+  <% emotion_color = selected_emotion ? selected_emotion[2] : "text-gray-500" %> <!-- 選択された感情の色を取得 -->
+
   <%= link_to memo_path(memo), class: "w-full block" do %>
-    <div class="border flex w-full items-center hover:bg-gray-200 relative">
+    <div class="border flex w-full items-center bg-base-100 hover:bg-[#F4F2E7] relative">
       <!-- 日付 -->
       <div class="flex justify-start ml-4 text-sm lg:text-base">
         <%= memo.date || t('.no_date') %>
       </div>
 
-      <!-- Whatの内容 -->
-      <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-base lg:text-lg ">
+      <!-- Whatの内容（感情の色適用） -->
+      <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-sm lg:text-base <%= emotion_color %>">
         <%= JSON.parse(memo.memo_content)["what"] %>
       </div>
 

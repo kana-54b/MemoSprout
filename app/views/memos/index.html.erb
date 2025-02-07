@@ -1,77 +1,84 @@
-<div class="mb-20">
-  <div class="mx-auto max-w-7xl px-6 md:px-36">
-
-    <div class="mx-auto max-w-2xl text-center">
-      <% content_for :title, t('.title') %>
-      <!-- メモ一覧 -->
-      <h1 class="text-3xl py-14"><%= t('.title') %></h1>
-
-      <!-- メモが存在する場合 -->
-      <% if @memos.present? %>
-        <div class="border bg-white mb-10">
-          <!-- 「最終更新のメモ」 -->
-          <div class="block font-bold bg-gray-200 py-4 flex-auto">
-              <%= t('.last_update_memo') %>
-          </div>
-          <!-- 日付 -->
-          <div class="mt-6">
-            <%= @latest_memo.date %>
-          </div>
-          <div class="mb-6 mx-7">
-            <%= JSON.parse(@latest_memo.memo_content)["what"] %>
-          </div>
-          <!-- 「まとめ・気付き」 -->
-          <%= t('.summary') %>
-          <div class="mb-8 mx-7">
-            <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
-          </div>
-        </div>
-        <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
-    </div>
-
+<div class="layout-container">
+  <div class="inner-box">
+    <% content_for :title, t('.title') %>
     <!-- メモ一覧 -->
-    <% @memos.each do |memo| %>
-      <div id="memo-<%= memo.id %>">
-        <%= link_to memo_path(memo), class: "w-full block" do %>
-          <div class="border flex w-full items-center hover:bg-gray-200 relative">
-            <!-- 日付 -->
-            <div class="flex justify-start ml-4 text-sm lg:text-base">
-              <%= memo.date || t('.no_date') %>
-            </div>
-
-            <!-- Whatの内容 -->
-            <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-base lg:text-lg ">
-              <%= JSON.parse(memo.memo_content)["what"] %>
-            </div>
-
-            <!-- アイコン部分 -->
-            <div class="flex absolute right-0 lg:text-lg">
-              <!-- アイコン：お気に入りの☆ -->
-              <%= render "shared/favorite_star", memo: memo %>
-
-              <!-- アイコン：削除 -->
-              <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2 mr-4" do %>
-                <i class="fa-solid fa-trash"></i>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
-    <!-- ページネーション -->
-    <div class="pt-8 text-center">
-      <%= paginate @memos %>
-    </div>
-
-      <!-- メモがない場合 -->
-      <% else %>
-        <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
-        <div class="py-8">
-          <%= simple_format t('.no_memo') %> <!-- 「記録がありませんー」 -->
-        </div>
-        <%= link_to t('.create_new'), new_memo_path, class: "btn btn-active mb-10" %> <!-- 「メモを作成する」 -->
-      <% end %>
-
+    <h1><%= t('.title') %></h1>
   </div>
+
+  <!-- メモが存在する場合 -->
+  <% if @memos.present? %>
+  <div class="inner-box">
+    <div class="bg-base-100 pb-4">
+      <!-- 「最終更新のメモ」 -->
+      <div class="block font-bold bg-[#b79d7e] py-4 flex-auto">
+          <%= t('.last_update_memo') %>
+      </div>
+      <!-- 日付 -->
+      <p class="mt-6 font-bold">
+        <%= @latest_memo.date %>
+      </p>
+      <div class="mb-6 mx-7">
+        <%= JSON.parse(@latest_memo.memo_content)["what"] %>
+      </div>
+      <!-- 「まとめ・気付き」 -->
+      <p class="font-bold">
+        <%= t('.summary') %>
+      </p>
+      <div class="mb-8 mx-7">
+        <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
+      </div>
+    </div>
+    <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
+  </div>
+
+  <!-- メモ一覧 -->
+  <div class="mx-auto max-w-4xl">
+  <% @memos.each do |memo| %>
+    <% selected_emotion = emotion_options.find { |_, value, _| value == memo.emotion } %>
+    <% emotion_color = selected_emotion ? selected_emotion[2] : "text-gray-500" %> <!-- 選択された感情の色を取得 -->
+
+    <div id="memo-<%= memo.id %>">
+      <%= link_to memo_path(memo), class: "w-full block" do %>
+        <div class="border flex w-full items-center bg-base-100 hover:bg-[#F4F2E7] relative">
+          <!-- 日付 -->
+          <div class="flex justify-start ml-4 text-sm lg:text-base">
+            <%= memo.date || t('.no_date') %>
+          </div>
+
+          <!-- Whatの内容 -->
+          <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-xs md:text-base <%= emotion_color %>">
+            <%= JSON.parse(memo.memo_content)["what"] %>
+          </div>
+
+          <!-- アイコン部分 -->
+          <div class="flex absolute right-0 lg:text-lg">
+            <!-- アイコン：お気に入りの☆ -->
+            <%= render "shared/favorite_star", memo: memo %>
+
+            <!-- アイコン：削除 -->
+            <%= link_to memo_path(memo), data: { turbo_method: :delete, turbo_confirm: t('.caution') }, class: "mx-2 mr-4" do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+
+  <!-- ページネーション -->
+  <div class="pt-12 text-center">
+    <%= paginate @memos %>
+  </div>
+
+  <!-- メモがない場合 -->
+  <% else %>
+    <div class="inner-box">
+      <%= render "count_memos" %> <!-- メモ総数と連続記録日数 -->
+      <div class="py-8">
+        <%= simple_format t('.no_memo') %> <!-- 「記録がありませんー」 -->
+      </div>
+      <%= link_to t('.create_new'), new_memo_path, class: "btn btn-info" %> <!-- 「メモを作成する」 -->
+    </div>
+  <% end %>
 </div>
