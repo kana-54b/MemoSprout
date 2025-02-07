@@ -1,61 +1,88 @@
 <!-- 呼び出し元 memos/new.html.erb, shared/_header.html.erb -->
 <dialog id="my_modal_3" class="modal">
 
-  <div class="modal-box max-w-5xl">
-    <div class="flex flex-wrap md:flex-nowrap"><!-- 子要素を横並びに配置。flex-wrapにより、画面が狭い時には要素が折り返すが、
-                                                    md:flex-nowrapで中サイズ以上の画面では折り返さずに横並びに -->
+  <div class="modal-box max-w-5xl bg-[#F0D8A8] p-4">
+    <div class="flex flex-wrap md:flex-nowrap">
 
       <!-- 左側モックアップ -->
-      <div class="mockup-window border-base-300 border w-full md:w-2/3">
-        <div class="border-base-300 flex justify-center border-t px-4">
-          <div class="bg-white py-8 w-full text-center" style="transform: scale(0.95);">
+      <div class="mockup-window border-base-300 border w-full md:w-2/3" style="background: url('/assets/bg-fabric.jpg') repeat;">
+        <div class="border-base-300 flex justify-center border-t px-2">
+          <div class="w-full text-center" style="transform: scale(0.95);">
 
-            <% parsed_content = JSON.parse(memo_example) rescue {} %>
-            
-            <p>どんなことがありましたか？</p>
-            
-            <%= form_with url: '#', data: { turbo: false } do |f| %>
-              <%= f.select :emotion, emotion_options, { selected: "happy" }, class: "select select-error sm:w-[60%]" %>
-              
-              <br><br>
-              <p>いつ（When）</p>
-              <%= f.date_field :date, value: Date.today, class: "input input-bordered w-[60%]" %>
-              
-              <br><br>
-              <%= f.fields_for :memo_content do |key| %>
-                何（What）(*)<br><p class="text-gray-400">どんなことが嬉しかったの？</p>
-                <%= key.text_area "what", value: parsed_content["what"], class: "input input-bordered w-[60%]" %>
-                
-                <br><br>
-                なぜ(Why)(*)<br><p class="text-gray-400">どうして嬉しかったの？</p>
-                <%= key.text_area "why", value: parsed_content["why"], class: "input input-bordered w-[60%]" %>
-                
-                <br><br>
-                なぜをもっと深掘り(*)<br><p class="text-gray-400">具体的にはそれのどんなところが？</p>
-                <%= key.text_area "why_more", value: parsed_content["why_more"], class: "input input-bordered w-[60%]" %>
-                
-                <br><br>
-                どのように(How)(*)<br><p class="text-gray-400">どうやって実現したの？何かアクションをした？</p>
-                <%= key.text_area "how", value: parsed_content["how"], class: "input input-bordered w-[60%]" %>
-                
-                <br><br>
-                まとめ・気付き(*)<br><p class="text-gray-400">自分の言葉で書き出してみよう</p>
-                <%= key.text_area "summary", value: parsed_content["summary"], class: "input input-bordered h-40 w-[60%]" %>
+            <div role="tablist" class="tabs tabs-lifted md:tabs-lg">
+              <% emotions = { 
+                happy: { label: t('memos._tabs.happy'), color: "text-[#9d7abc]" },
+                angry: { label: t('memos._tabs.angry'), color: "text-[#D62828]" },
+                sad: { label: t('memos._tabs.sad'), color: "text-[#3D5F91]" },
+                funny: { label: t('memos._tabs.funny'), color: "text-[#E6953D]" },
+                other: { label: t('memos._tabs.other'), color: "text-[#4F8D60]" }
+              } %>
+
+              <!-- 各感情のタブ -->
+              <% emotions.each do |emotion, data| %>
+                <input type="radio" name="example_tabs" role="tab" 
+                  class="tab <%= data[:color] %> <%= emotion == :happy ? '' : 'pointer-events-none' %>" 
+                  aria-label="<%= data[:label] %>" <%= 'checked="checked"' if emotion == :happy %> />
+                <div role="tabpanel" class="tab-content bg-[#fffefc] border-base-300 rounded-box p-6">
+
+                  <div class="pt-4 text-sm lg:text-base">
+                    <p class="text-[#9d7abc]">嬉しかったこと・いいね</p>
+                    <!-- について、一つずつ掘り下げてみましょう -->
+                    <%= simple_format(t('memos._form.before')) %>
+                  </div>
+
+                  <% parsed_content = JSON.parse(memo_example) rescue {} %>
+                  <%= form_with url: '#', data: { turbo: false } do |f| %>
+                    <div class="custom-form pt-4">
+                      <%= f.label :date, "#{t('memos._form.when')}（When）", class: "block" %>
+                      <%= f.date_field :date, value: Date.today, class: "custom-input" %>
+                    </div>
+
+                    <!-- 何（What）(*) -->
+                    <div class="custom-form">
+                      <%= f.label :what, "#{t('memos._form.what')}（What）(*)", class: "block" %>
+                      <%= f.text_area :what, value: parsed_content['what'], class: "custom-input" %>
+                    </div>
+
+                    <!-- なぜ（Why）(*) -->
+                    <div class="custom-form">
+                      <%= f.label :why, "#{t('memos._form.why')}（Why）(*)", class: "block" %>
+                      <%= f.text_area :why, value: parsed_content['why'], class: "custom-input" %>
+                    </div>
+
+                    <!-- なぜをもっと深掘り(*) -->
+                    <div class="custom-form">
+                      <%= f.label :why_more, "#{t('memos._form.why_more')}(*)", class: "block" %>
+                      <%= f.text_area :why_more, value: parsed_content['why_more'], class: "custom-input" %>
+                    </div>
+
+                    <!-- どのように（How）(*) -->
+                    <div class="custom-form">
+                      <%= f.label :how, "#{t('memos._form.how')}（How）(*)", class: "block" %>
+                      <%= f.text_area :how, value: parsed_content['how'], class: "custom-input" %>
+                    </div>
+
+                    <!-- まとめ・気付き(*) -->
+                    <div class="custom-form">
+                      <%= f.label :summary, "#{t('memos._form.summary')}(*)", class: "block" %>
+                      <%= f.text_area :summary, value: parsed_content['summary'], class: "custom-input h-40" %>
+                    </div>
+
+                    <%= link_to "入力内容を確認する", "#", class: "btn btn-info" %>
+                  <% end %>
+                </div>
               <% end %>
-              
-              <br><br>
-              <%= link_to "入力内容を確認する", "#", class: "btn btn-error" %>
-            <% end %>
+            </div>
 
           </div>
         </div>
       </div>
 
       <!-- 右側カード表示 -->
-      <div class="grid gap-4 w-full md:w-1/3 p-4">
-        <div class="card shadow w-full">
-          <div class="card-body my-2" style="transform: scale(0.95);">
-            <h2 class="card-title">
+      <div class="grid gap-4 w-full py-4 md:w-1/3 md:pl-4">
+        <div class="card shadow w-full bg-[#fffefc]">
+          <div class="card-body" style="transform: scale(0.95);">
+            <h2 class="card-title text-lg md:text-xl">
               <i class="fa-solid fa-1"></i> <!-- 「1」 -->
               <!-- 「感情を選ぶ」 -->
               <%= t('memos._example.choice') %>
@@ -64,9 +91,9 @@
             <br><%= simple_format(t('memos._example.description_1')) %>
           </div>
         </div>
-        <div class="card shadow w-full">
-          <div class="card-body my-2" style="transform: scale(0.95);">
-            <h2 class="card-title">
+        <div class="card shadow w-full bg-[#fffefc]">
+          <div class="card-body" style="transform: scale(0.95);">
+            <h2 class="card-title text-lg md:text-xl">
               <i class="fa-solid fa-2"></i> <!-- 「2」 -->
               <!-- 「詳細を入力」 -->
               <%= t('memos._example.detail') %>
@@ -75,23 +102,21 @@
             <br><%= simple_format(t('memos._example.description_2_1')) %>
           </div>
         </div>
-        <div class="card shadow w-full">
-          <div class="card card-body my-2" style="transform: scale(0.95);">
+        <div class="card shadow w-full bg-[#fffefc]">
+          <div class="card card-body" style="transform: scale(0.95);">
             <!-- 「…掘り下げて…見つめ直します」 -->
             <br><%= simple_format(t('memos._example.description_2_2')) %>
           </div>
         </div>
-        <div class="card shadow w-full">
-          <div class="card-body my-2" style="transform: scale(0.95);">
-            <h2 class="card-title">
+        <div class="card shadow w-full bg-[#fffefc]">
+          <div class="card-body" style="transform: scale(0.95);">
+            <h2 class="card-title text-lg md:text-xl">
               <i class="fa-solid fa-3"></i> <!-- 「3」 -->
               <!-- 「まとめ」 -->
               <%= t('memos._example.summary') %>
             </h2>
             <!-- 「自分なりの…。…つながるかもしれません。」 -->
             <br><%= simple_format(t('memos._example.description_3').strip) %>
-            <i class="fa-solid fa-seedling"></i>
-            </p>
           </div>
         </div>
       </div>
