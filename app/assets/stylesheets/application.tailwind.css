@@ -3,7 +3,7 @@
 @tailwind base;
 @layer base {
   h1 {
-    @apply text-2xl lg:text-3xl mb-14;
+    @apply text-xl lg:text-3xl mb-14;
   }
 
   body {
@@ -22,7 +22,7 @@
 
   /* メインコンテンツの小枠 */
   .inner-box {
-    @apply mx-auto max-w-2xl text-center;
+    @apply mx-auto max-w-2xl text-center text-sm md:text-base;
   }
 
   /* 白背景のコンテンツ枠 */
@@ -40,13 +40,15 @@
   }
 
   .custom-footer {
-    @apply footer footer-center text-base-content rounded p-12 bottom-0 mx-auto bg-[#9e7f5a] text-[#fff9f2];
+    @apply footer footer-center text-base-content rounded px-8 py-10 md:py-16 bottom-0 mx-auto bg-[#9e7f5a] text-[#fff9f2];
   }
 
+  /* メモ作成入力フォーム */
   .custom-input {
-    @apply input input-bordered w-full max-w-md bg-[#FFFFFF] text-sm lg:text-base;
+    @apply input input-bordered w-full max-w-md bg-[#FFFFFF] text-sm lg:text-base h-16;
   }
 
+  /* ユーザー登録フォーム */
   .custom-input-sm {
     @apply input input-bordered input-sm w-full bg-[#FFFFFF];
   }

@@ -14,14 +14,16 @@
           <%= t('.last_update_memo') %>
       </div>
       <!-- 日付 -->
-      <div class="mt-6">
+      <p class="mt-6 font-bold">
         <%= @latest_memo.date %>
-      </div>
+      </p>
       <div class="mb-6 mx-7">
         <%= JSON.parse(@latest_memo.memo_content)["what"] %>
       </div>
       <!-- 「まとめ・気付き」 -->
-      <%= t('.summary') %>
+      <p class="font-bold">
+        <%= t('.summary') %>
+      </p>
       <div class="mb-8 mx-7">
         <%= simple_format(JSON.parse(@latest_memo.memo_content)["summary"]) %> 
       </div>
@@ -44,7 +46,7 @@
           </div>
 
           <!-- Whatの内容 -->
-          <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-sm lg:text-base <%= emotion_color %>">
+          <div class="font-bold text-center mb-6 w-3/5 mx-auto truncate text-xs md:text-base <%= emotion_color %>">
             <%= JSON.parse(memo.memo_content)["what"] %>
           </div>
 

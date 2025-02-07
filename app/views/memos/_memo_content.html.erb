@@ -3,7 +3,7 @@
 <div class="mt-3 md:mt-5">
 <!-- 感情別に色変更 -->
 <% selected_emotion = emotion_options.find { |_, value, _| value == @memo.emotion } %>
-<div class="badge badge-outline badge-lg w-full max-w-xs <%= selected_emotion[2] %>">
+<div class="badge badge-outline badge-lg w-full max-w-xs text-sm md:text-base <%= selected_emotion[2] %>">
   <%= selected_emotion[0] %>
 </div>
 <%= f.hidden_field :emotion, value: @memo.emotion %>
@@ -13,7 +13,7 @@
   <label class="block text-gray-400">
     <%= t('memos.show.when') %>（When）
   </label>
-  <div class="font-extrabold">
+  <div class="font-extrabold text-xs md:text-base">
     <%= @memo.date %>
   </div>
   <%= f.hidden_field :date, value: @memo.date %>
@@ -25,8 +25,8 @@
     <label class="block text-gray-400">
       <%= t('memos.show.what') %>（What）
     </label>
-    <div class="font-extrabold">
-      <%= JSON.parse(@memo.memo_content)["what"] %>
+    <div class="font-extrabold text-xs md:text-base">
+      <%= simple_format JSON.parse(@memo.memo_content)["what"] %>
     </div>
     <%= key.hidden_field 'what', value: JSON.parse(@memo.memo_content)["what"] %>
   </div>
@@ -36,8 +36,8 @@
     <label class="block text-gray-400">
       <%= t('memos.show.why') %>(Why)
     </label>
-    <div class="font-extrabold">
-      <%= JSON.parse(@memo.memo_content)["why"] %>
+    <div class="font-extrabold text-xs md:text-base">
+      <%= simple_format JSON.parse(@memo.memo_content)["why"] %>
     </div>
     <%= key.hidden_field 'why', value: JSON.parse(@memo.memo_content)["why"] %>
   </div>
@@ -47,8 +47,8 @@
     <label class="block text-gray-400">
       <%= t('memos.show.why_more') %>
     </label>
-    <div class="font-extrabold">
-      <%= JSON.parse(@memo.memo_content)["why_more"] %>
+    <div class="font-extrabold text-xs md:text-base">
+      <%= simple_format JSON.parse(@memo.memo_content)["why_more"] %>
     </div>
     <%= key.hidden_field 'why_more', value: JSON.parse(@memo.memo_content)["why_more"] %>
   </div>
@@ -58,8 +58,8 @@
     <label class="block text-gray-400">
       <%= t('memos.show.how') %>(How)
     </label>
-    <div class="font-extrabold">
-      <%= JSON.parse(@memo.memo_content)["how"] %>
+    <div class="font-extrabold text-xs md:text-base">
+      <%= simple_format JSON.parse(@memo.memo_content)["how"] %>
     </div>
     <%= key.hidden_field 'how', value: JSON.parse(@memo.memo_content)["how"] %>
   </div>
@@ -69,7 +69,7 @@
     <label class="block text-gray-400">
       <%= t('memos.show.summary') %>
     </label>
-    <div class="font-extrabold">
+    <div class="font-extrabold text-xs md:text-base">
       <%= simple_format JSON.parse(@memo.memo_content)["summary"] %>
     </div>
     <%= key.hidden_field 'summary', value: JSON.parse(@memo.memo_content)["summary"] %>
