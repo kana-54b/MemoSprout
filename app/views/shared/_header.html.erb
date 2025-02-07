@@ -21,7 +21,7 @@
           class="h-10 w-auto object-contain flex-shrink-0" />
     </div>
     <!-- メモ作成アイコン（＋） -->
-    <%= link_to new_memo_path, class: "btn btn-ghost rounded-btn px-3 md:px-4" do %>
+    <%= link_to new_memo_path, class: "btn btn-ghost rounded-btn px-3 md:px-4", data: { turbo_method: :get} do %>
       <i class="fa-solid fa-plus"></i>
       <p class="hidden sm:block">
         <%= t('shared._header.create_memo') %>
@@ -43,7 +43,7 @@
         </li>
         <li>
           <!-- お気に入り -->
-          <%= link_to t('shared._header.favorite'), memo_favorites_path %>
+          <%= link_to t('shared._header.favorite'), memo_favorites_path, data: { turbo_method: :get} %>
         </li>
         <li>
           <%= link_to "https://twitter.com/intent/tweet?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#{root_url}\n#MemoSprout")}", target: "_blank", rel: "noopener noreferrer" do %>
