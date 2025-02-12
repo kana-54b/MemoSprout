@@ -9,7 +9,7 @@
   <% if @memo_favorites.empty? %>
     <div class="inner-box pb-12">
       <!-- 「お気に入りのメモはまだありません。」 -->
-      <%= t('.no_favorites') %>
+      <p class="my-24"><%= t('.no_favorites') %></p>
       <%= link_to t('.memo_list'), memos_path, class: "btn btn-info mb-14" %>
     </div>
 
