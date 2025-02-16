@@ -36,7 +36,7 @@
   }
 
   .custom-header {
-    @apply navbar bg-[#fcf6ef] h-16 flex justify-between text-[#280f1f];
+    @apply navbar bg-[#fffaf4] h-16 flex justify-between text-[#280f1f];
   }
 
   .custom-footer {
