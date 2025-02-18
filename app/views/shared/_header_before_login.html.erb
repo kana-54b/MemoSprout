@@ -7,7 +7,7 @@
       <%= image_tag 'logo2.png', alt: "Memo Sprout logo", class: "h-14 py-1 w-auto object-contain" %>
     <% end %>
     <!-- 記録して振り返り、思考を育てる（モバイル非表示） -->
-    <h2 class="text-base leading-8 whitespace-nowrap hidden md:block md:pl-4">
+    <h2 class="text-sm font-medium leading-8 whitespace-nowrap hidden md:block md:pl-4">
       - <%= t('shared._header.catchphrase') %> -
     </h2>
   </div>
@@ -28,14 +28,11 @@
         <i class="fa-solid fa-bars"></i>
       </div>
       <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
-        <li>
-          <!-- 使い方 -->
-          <a onclick="my_modal_3.showModal()"><%= t('shared._header.how_to_use') %></a> <!-- モーダルを開くリンク -->
-        </li>
-        <li>
+                <li>
           <!-- メモ一覧 -->
           <div class="tooltip tooltip-bottom md:tooltip-left" data-tip="ログイン後に使える機能です">
-            <p class="text-left">
+            <p class="flex items-center gap-2">
+              <i class="fa-solid fa-list"></i>
               <%= t('shared._header_before_login.memo_list') %></a>
             </p>
           </div>
@@ -43,17 +40,27 @@
         <li>
           <!-- お気に入り -->
           <div class="tooltip tooltip-bottom md:tooltip-left" data-tip="ログイン後に使える機能です">
-            <p class="text-left">
+            <p class="flex items-center gap-2">
+              <i class="fa-regular fa-star"></i>
               <a><%= t('shared._header_before_login.favorite') %></a>
             </p>
           </div>
         </li>
-        <li>
-          <%= link_to "https://twitter.com/intent/tweet?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#{root_url}\n#MemoSprout")}", target: "_blank", rel: "noopener noreferrer" do %>
-            <!-- アプリをシェア -->
-            <%= t('shared._header_before_login.share_app') %><i class="fa-brands fa-x-twitter"></i>
+        <li class="my-1">
+          <!-- 使い方 -->
+          <a onclick="my_modal_3.showModal()" class="flex items-center">
+            <i class="fa-solid fa-person-circle-question"></i>
+            <span><%= t('shared._header.how_to_use') %></span>
+          </a> <!-- モーダルを開くリンク -->
+        </li>
+                <li class="my-1">
+          <!-- アプリをシェア -->
+          <%= link_to "https://twitter.com/intent/tweet?text=#{CGI.escape("一言ずつの入力で出来事を掘り下げてみよう🌱\n#{root_url}\n#MemoSprout")}", target: "_blank", rel: "noopener noreferrer", class: "flex items-center" do %>
+            <i class="fa-brands fa-x-twitter"></i>
+            <%= t('shared._header_before_login.share_app') %>
           <% end %>
         </li>
+
       </ul>
     </div>
   </div>

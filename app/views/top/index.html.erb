@@ -1,10 +1,10 @@
 <% content_for :title %>
 <div class="hero min-h-screen" data-theme="light" style="background-image: url('<%= asset_path('background.webp') %>');">
-  <div class="hero-overlay bg-[#0f0c01] bg-opacity-45"></div>
+  <div class="hero-overlay bg-[#0c0601] bg-opacity-60"></div>
     <div class="hero-content text-gray-300 text-center flex-col">
       <h1 class="mb-12 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
       <div class="max-w-sm md:max-w-2xl">
-        <p class="py-4 md:text-xl">
+        <p class="py-4 md:text-base">
           <!-- アプリ説明文 -->
           <%= simple_format(t('.introduction'), {}, wrapper_tag: "span") %>
         </p>
@@ -82,7 +82,7 @@
 
 <div id="login-section"> <!-- アンカー -->
   <% if current_user.nil? %> <!-- ログインしていない場合に表示 -->
-    <div class="hero bg-[#f9f6f2]">
+    <div class="hero bg-[#F8F0E8]">
       <div class="hero-content w-full flex-col lg:flex-row-reverse my-8 lg:h-[110vh]">
         <!-- 大きい画面の場合のみ表示する画像 -->
         <div class="md:text-center lg:scale-50 rounded-lg hidden lg:block">
