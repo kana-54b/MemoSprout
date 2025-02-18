@@ -54,7 +54,7 @@
 ### ■ 連続記録
 | 連続記録の更新 |
 | ---- |
-| [![Image from Gyazo](https://i.gyazo.com/cc776a5cdd9cbce36ad57ac0ce7c2f27.gif)](https://gyazo.com/cc776a5cdd9cbce36ad57ac0ce7c2f27) |
+| [![Image from Gyazo](https://i.gyazo.com/7c5d23300417b5f64d18130fd8f05c99.gif)](https://gyazo.com/7c5d23300417b5f64d18130fd8f05c99) |
 | 1日1投稿で連続記録が更新されます。日々の積み重ねを可視化することで習慣づけを後押しします。 |
 
 <br>
